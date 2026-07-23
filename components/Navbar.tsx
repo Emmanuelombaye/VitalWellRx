@@ -210,6 +210,7 @@ export default function Navbar() {
           {/* Mobile Menu Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden"
             style={{
               display: 'flex',
               alignItems: 'center',
