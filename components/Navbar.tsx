@@ -13,7 +13,10 @@ export default function Navbar() {
   const treatmentCategories = [
     {
       category: 'Metabolic & Weight Loss',
-      icon: <Scale size={18} className="text-gold" />,
+      color: '#10B981',
+      bg: 'rgba(16, 185, 129, 0.15)',
+      border: 'rgba(16, 185, 129, 0.35)',
+      icon: <Scale size={16} style={{ color: '#10B981' }} />,
       items: [
         { name: 'Tirzepatide Dual GIP/GLP-1', desc: 'Up to 22.5% fat reduction', href: '/treatments/weight-loss' },
         { name: 'Sublingual GLP-1 ODT', desc: 'Needle-free oral tablets', href: '/treatments/odt-tablets' },
@@ -21,8 +24,11 @@ export default function Navbar() {
       ],
     },
     {
-      category: "Men's Health & Hair Loss",
-      icon: <Zap size={18} className="text-gold" />,
+      category: "Men's Health & Hair",
+      color: '#3B82F6',
+      bg: 'rgba(59, 130, 246, 0.15)',
+      border: 'rgba(59, 130, 246, 0.35)',
+      icon: <Zap size={16} style={{ color: '#3B82F6' }} />,
       items: [
         { name: 'Bioidentical TRT Cypionate', desc: 'Free testosterone optimization', href: '/treatments/mens-hormone' },
         { name: 'Oral Finasteride + Minoxidil', desc: 'Dual-action hair restoration', href: '/treatments/mens-hairloss' },
@@ -31,7 +37,10 @@ export default function Navbar() {
     },
     {
       category: "Women's Health & BHRT",
-      icon: <Heart size={18} className="text-gold" />,
+      color: '#EC4899',
+      bg: 'rgba(236, 72, 153, 0.15)',
+      border: 'rgba(236, 72, 153, 0.35)',
+      icon: <Heart size={16} style={{ color: '#EC4899' }} />,
       items: [
         { name: 'BHRT Estradiol & Progesterone', desc: 'Female REM sleep & hot flashes', href: '/treatments/womens-hormone' },
         { name: 'DHEA & Thyroid Balance', desc: 'Energy & mood resilience', href: '/treatments/womens-hormone' },
@@ -39,13 +48,16 @@ export default function Navbar() {
     },
     {
       category: 'Peptide Therapy & Repair',
-      icon: <Dna size={18} className="text-gold" />,
+      color: '#F59E0B',
+      bg: 'rgba(245, 158, 11, 0.15)',
+      border: 'rgba(245, 158, 11, 0.35)',
+      icon: <Dna size={16} style={{ color: '#F59E0B' }} />,
       items: [
         { name: 'BPC-157 Pentadecapeptide', desc: 'Tendon, joint & gut repair', href: '/treatments/peptide-therapy' },
         { name: 'CJC-1295 / Ipamorelin', desc: 'Pulsatile GH surge', href: '/treatments/cjc-ipamorelin' },
         { name: 'GHK-Cu Copper Peptide', desc: 'Dermal collagen & scalp density', href: '/treatments/ghk-cu' },
       ],
-    },
+    }
   ]
 
   return (
@@ -130,7 +142,23 @@ export default function Navbar() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
                     {treatmentCategories.map((col, idx) => (
                       <div key={idx}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '0.875rem', color: 'white', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.5rem' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            fontWeight: 800,
+                            fontSize: '0.8rem',
+                            color: col.color,
+                            backgroundColor: col.bg,
+                            border: `1px solid ${col.border}`,
+                            padding: '6px 12px',
+                            borderRadius: '99px',
+                            marginBottom: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px',
+                          }}
+                        >
                           {col.icon} {col.category}
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -139,10 +167,10 @@ export default function Navbar() {
                               key={i}
                               href={item.href}
                               onClick={() => setMegaMenuOpen(false)}
-                              style={{ textDecoration: 'none', display: 'block', padding: '0.4rem 0.5rem', borderRadius: '0.5rem' }}
+                              style={{ textDecoration: 'none', display: 'block', padding: '0.5rem', borderRadius: '0.5rem', transition: 'background-color 0.2s' }}
                             >
-                              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(255,255,255,0.95)' }}>{item.name}</div>
-                              <div style={{ fontSize: '0.725rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
+                              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'white' }}>{item.name}</div>
+                              <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
                             </Link>
                           ))}
                         </div>
