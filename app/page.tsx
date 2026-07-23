@@ -39,10 +39,14 @@ export default function Home() {
       }}>
         {/* Single First Hero Background Image */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <img 
+          <Image 
             src="/hero_bg.png" 
             alt="VitalWellRx Hero Background" 
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} 
+            fill
+            priority
+            quality={75}
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center' }} 
           />
         </div>
 
