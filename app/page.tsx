@@ -20,47 +20,51 @@ export default function Home() {
   const featuredProtocols = [
     {
       id: 'weight-loss',
-      badge: 'MOST POPULAR METABOLIC',
+      badge: '🔥 MOST POPULAR METABOLIC',
       title: 'Tirzepatide Dual GIP / GLP-1',
       subtitle: 'Up to 22.5% average weight reduction',
       price: '$340',
       period: '/month',
-      image: '/gen_weight1.webp',
+      image: '/shop_tirzepatide.webp',
       href: '/treatments/weight-loss',
       bullets: ['Curbs food noise in 24-48 hours', 'Preserves lean skeletal muscle', '100% board-certified MD oversight'],
+      tags: ['503A Compounded', 'SubQ Injectable'],
     },
     {
       id: 'odt-tablets',
-      badge: '100% NEEDLE-FREE ORAL',
+      badge: '⚡ 100% NEEDLE-FREE ORAL',
       title: 'Sublingual Tirzepatide & GLP-1 ODT',
       subtitle: 'Daily sublingual oral dissolving tablets',
       price: '$310',
       period: '/month',
-      image: '/supplement_bottle.webp',
+      image: '/shop_glp1_odt.webp',
       href: '/treatments/odt-tablets',
       bullets: ['Dissolves under tongue in 90 seconds', 'Zero needles, syringes, or refrigerating', 'Direct capillary mucosal absorption'],
+      tags: ['Sublingual ODT', 'Painless Daily'],
     },
     {
       id: 'mens-trt',
-      badge: 'BIOIDENTICAL TESTOSTERONE',
+      badge: '👑 BIOIDENTICAL TESTOSTERONE',
       title: "Men's TRT & Vitality Protocol",
       subtitle: 'Restoring free serum testosterone levels',
       price: '$199',
       period: '/month',
-      image: '/gen_mens1.webp',
+      image: '/shop_trt.webp',
       href: '/treatments/mens-hormone',
       bullets: ['Target range: 800–1,100 ng/dL', 'Includes estrogen blocker & supplies', 'Quarterly full blood panel tracking'],
+      tags: ['Testosterone Cypionate', 'Lab Tracking'],
     },
     {
       id: 'peptide-repair',
-      badge: 'CELLULAR REGENERATION',
+      badge: '🧬 CELLULAR REGENERATION',
       title: 'BPC-157 Pentadecapeptide Repair',
       subtitle: 'Accelerated joint, tendon & gut healing',
       price: '$349',
       period: '/month',
-      image: '/gen_peptides1.webp',
+      image: '/shop_bpc157.webp',
       href: '/treatments/peptide-therapy',
       bullets: ['Micro-vascular angiogenesis support', '2x–3x faster tendon recovery', '503A cold-chain doorstep delivery'],
+      tags: ['Pentadecapeptide', 'Tissue Repair'],
     },
   ]
 
@@ -213,13 +217,23 @@ export default function Home() {
                       {fp.subtitle}
                     </div>
 
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                       {fp.bullets.map((bullet, idx) => (
                         <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.9)' }}>
                           <CheckCircle2 size={16} style={{ color: '#10B981', flexShrink: 0 }} /> {bullet}
                         </li>
                       ))}
                     </ul>
+
+                    {fp.tags && (
+                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                        {fp.tags.map(tag => (
+                          <span key={tag} style={{ backgroundColor: 'rgba(212,175,55,0.1)', color: 'var(--primary-gold)', border: '1px solid rgba(212,175,55,0.25)', padding: '3px 10px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 700 }}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
