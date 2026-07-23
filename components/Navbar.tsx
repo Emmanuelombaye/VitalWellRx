@@ -66,8 +66,8 @@ export default function Navbar() {
       <nav className="container" style={{ padding: '1.1rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Left: Brand Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-          <div style={{ position: 'relative', width: '38px', height: '38px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
-            <Image src="/newlogo.png" alt="VitalWellRx Logo" fill sizes="38px" style={{ objectFit: 'contain' }} priority />
+          <div style={{ position: 'relative', width: '92px', height: '44px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, backgroundColor: '#ffffff', padding: '3px 6px', boxShadow: '0 2px 8px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Image src="/newlogo.png" alt="VitalWellRx Logo" fill sizes="92px" style={{ objectFit: 'contain', padding: '2px' }} priority />
           </div>
           <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'white', letterSpacing: '-0.5px' }}>
             VitalWell<span className="text-gold" style={{ fontSize: '1.3rem' }}>Rx</span>
