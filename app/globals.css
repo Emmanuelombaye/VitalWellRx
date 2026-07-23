@@ -207,6 +207,9 @@ a {
 
 /* Responsive Display & Grid Utilities */
 .hidden { display: none !important; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 @media (min-width: 640px) {
   .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
   .sm\:grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
@@ -236,16 +239,16 @@ a {
 }
 
 @media (max-width: 768px) {
-  .h1 { font-size: 2.15rem !important; line-height: 1.15 !important; margin-bottom: 1rem !important; }
+  .h1 { font-size: 2.15rem !important; line-height: 1.15 !important; margin-bottom: 0.85rem !important; }
   .h2 { font-size: 1.65rem !important; line-height: 1.2 !important; }
 
   section {
-    padding-top: 3.5rem !important;
-    padding-bottom: 3.5rem !important;
+    padding-top: 3.25rem !important;
+    padding-bottom: 3.25rem !important;
   }
 
   .container {
-    padding: 0 1.25rem !important;
+    padding: 0 1rem !important;
   }
 
   .grid-cols-2,
@@ -257,31 +260,43 @@ a {
 
   .condition-card-grid {
     grid-template-columns: 1fr !important;
-    padding: 1.25rem !important;
-    gap: 1.25rem !important;
+    padding: 1.15rem !important;
+    gap: 1.15rem !important;
   }
 
   .treatment-card-even,
   .treatment-card-odd {
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    gap: 1.25rem !important;
   }
 
   .detail-panel-grid {
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    gap: 1.25rem !important;
   }
 
   .footer-main-grid {
     grid-template-columns: 1fr !important;
-    gap: 2.25rem !important;
+    gap: 2rem !important;
   }
 
   .btn-primary, .btn-outline {
-    padding: 0.85rem 1.5rem;
+    padding: 0.85rem 1.25rem;
     font-size: 0.95rem;
     width: 100%;
-    min-height: 44px;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+
+  .card-actions-wrapper {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .btn-card-primary, .btn-card-secondary {
+    width: 100% !important;
+    min-height: 44px !important;
+    text-align: center !important;
   }
 
   /* Portal Dashboard Mobile */
@@ -295,7 +310,7 @@ a {
     padding: 1.25rem 1rem !important;
   }
   .portal-main {
-    padding: 1.5rem 1rem !important;
+    padding: 1.25rem 1rem !important;
   }
 }
 
@@ -304,6 +319,6 @@ a {
   .h2 { font-size: 1.45rem !important; }
 
   .glass-card {
-    padding: 1.25rem;
+    padding: 1.15rem;
   }
 }

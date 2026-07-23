@@ -171,40 +171,49 @@ export default function ShopPage() {
       <section style={{ padding: '5rem 0 7rem' }}>
         <div className="container">
           {/* Category Filter Pills Bar */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+          <div className="no-scrollbar" style={{ display: 'flex', justifyContent: 'flex-start', gap: '0.65rem', marginBottom: '3rem', overflowX: 'auto', paddingBottom: '0.5rem', WebkitOverflowScrolling: 'touch' }}>
             {[
               { id: 'all', label: '🛒 All Prescription Meds' },
               { id: 'weight', label: '🔥 Weight & GLP-1 ODT' },
-              { id: 'mens', label: '⚡ Men\'s Health & Hair Loss' },
-              { id: 'womens', label: '🌸 Women\'s Bioidentical BHRT' },
+              { id: 'mens', label: '⚡ Men\'s Health & Hair' },
+              { id: 'womens', label: '🌸 Women\'s BHRT' },
               { id: 'peptides', label: '🧬 Peptides & Repair' },
             ].map(tab => (
-              <button
+              <motion.button
                 key={tab.id}
+                whileTap={{ scale: 0.94 }}
                 onClick={() => setActiveCategory(tab.id as any)}
                 style={{
-                  padding: '0.75rem 1.5rem',
+                  padding: '0.65rem 1.25rem',
                   borderRadius: '99px',
                   fontWeight: 700,
-                  fontSize: '0.95rem',
+                  fontSize: '0.875rem',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
                   border: activeCategory === tab.id ? '2px solid var(--primary-gold)' : '1px solid rgba(255,255,255,0.15)',
-                  backgroundColor: activeCategory === tab.id ? 'var(--primary-gold)' : 'rgba(255,255,255,0.04)',
+                  backgroundColor: activeCategory === tab.id ? 'var(--primary-gold)' : 'rgba(255,255,255,0.05)',
                   color: activeCategory === tab.id ? 'var(--primary-navy)' : 'white',
                   cursor: 'pointer',
                   transition: 'all 0.25s ease',
+                  boxShadow: activeCategory === tab.id ? '0 8px 20px rgba(212,175,55,0.3)' : 'none',
                 }}
               >
                 {tab.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
           {/* Product Cards Grid */}
           <div className="grid grid-cols-3 gap-8">
-            {filteredProducts.map(p => (
+            {filteredProducts.map((p, idx) => (
               <motion.div
                 key={p.id}
-                whileHover={{ y: -6 }}
+                initial={{ opacity: 0, y: 35, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-30px' }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 20, delay: idx * 0.05 }}
                 style={{
                   backgroundColor: 'var(--primary-navy)',
                   borderRadius: '1.5rem',
@@ -214,19 +223,24 @@ export default function ShopPage() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
+                  transition: 'border-color 0.25s, box-shadow 0.25s',
                 }}
               >
                 <div>
-                  {/* Product Image */}
-                  <div style={{ position: 'relative', height: '230px', width: '100%', overflow: 'hidden' }}>
+                  {/* Product Image Banner with Smooth Zoom */}
+                  <motion.div
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                    style={{ position: 'relative', height: '230px', width: '100%', overflow: 'hidden' }}
+                  >
                     <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 100vw, 33vw" quality={80} loading="eager" priority={p.id === 'tirzepatide-injectable' || p.id === 'glp1-odt'} style={{ objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', top: '0.85rem', left: '0.85rem', backgroundColor: 'rgba(11,19,43,0.9)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '4px 12px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.4)' }}>
                       {p.badge}
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Product Info */}
-                  <div style={{ padding: '1.75rem 1.5rem 1rem' }}>
+                  <div style={{ padding: '1.5rem 1.25rem 1rem' }}>
                     <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary-gold)', marginBottom: '0.35rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                       {p.dosage}
                     </div>
@@ -248,16 +262,16 @@ export default function ShopPage() {
                 </div>
 
                 {/* Pricing & Add Button */}
-                <div style={{ padding: '1.25rem 1.5rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ padding: '1.25rem 1.25rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
                   <div>
-                    <div style={{ fontSize: '2rem', fontWeight: 900, color: 'white', lineHeight: 1 }}>
+                    <div style={{ fontSize: '1.85rem', fontWeight: 900, color: 'white', lineHeight: 1 }}>
                       {p.price}<span style={{ fontSize: '0.85rem', color: '#94A3B8', fontWeight: 600 }}>{p.period}</span>
                     </div>
                     <div style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 700, marginTop: '2px' }}>503A Pharmacy Compounded</div>
                   </div>
 
-                  <Link href={p.href} className="btn-primary" style={{ padding: '0.7rem 1.25rem', fontSize: '0.875rem' }}>
-                    Order & Intake →
+                  <Link href={p.href} className="btn-primary" style={{ padding: '0.65rem 1.25rem', fontSize: '0.875rem' }}>
+                    Select Protocol →
                   </Link>
                 </div>
               </motion.div>

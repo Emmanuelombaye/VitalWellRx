@@ -185,10 +185,15 @@ export default function Home() {
 
           {/* 4 Cards Grid */}
           <div className="grid grid-cols-2 gap-8">
-            {featuredProtocols.map(fp => (
+            {featuredProtocols.map((fp, idx) => (
               <motion.div
                 key={fp.id}
-                whileHover={{ y: -6 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 20, delay: idx * 0.1 }}
                 style={{
                   backgroundColor: 'var(--primary-navy)',
                   borderRadius: '1.5rem',
@@ -201,13 +206,17 @@ export default function Home() {
                 }}
               >
                 <div>
-                  {/* Card Image Banner */}
-                  <div style={{ position: 'relative', height: '240px', width: '100%' }}>
+                  {/* Card Image Banner with Smooth Zoom */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    style={{ position: 'relative', height: '240px', width: '100%', overflow: 'hidden' }}
+                  >
                     <Image src={fp.image} alt={fp.title} fill sizes="(max-width: 768px) 100vw, 50vw" quality={80} loading="eager" priority style={{ objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', top: '1rem', left: '1rem', backgroundColor: 'rgba(11,19,43,0.9)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '5px 14px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.4)' }}>
                       {fp.badge}
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Body Content */}
                   <div style={{ padding: '2rem' }}>
@@ -239,15 +248,15 @@ export default function Home() {
                 </div>
 
                 {/* Footer Pricing & Button */}
-                <div style={{ padding: '1.5rem 2rem 2rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ padding: '1.25rem 1.5rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
                   <div>
-                    <div style={{ fontSize: '2.25rem', fontWeight: 900, color: 'white', lineHeight: 1 }}>
-                      {fp.price}<span style={{ fontSize: '0.9rem', color: '#94A3B8', fontWeight: 600 }}>{fp.period}</span>
+                    <div style={{ fontSize: '2rem', fontWeight: 900, color: 'white', lineHeight: 1 }}>
+                      {fp.price}<span style={{ fontSize: '0.85rem', color: '#94A3B8', fontWeight: 600 }}>{fp.period}</span>
                     </div>
                     <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>No hidden fees</div>
                   </div>
 
-                  <Link href={fp.href} className="btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.9rem' }}>
+                  <Link href={fp.href} className="btn-primary" style={{ padding: '0.65rem 1.25rem', fontSize: '0.875rem' }}>
                     Explore Protocol <ArrowRight size={16} style={{ marginLeft: '6px' }} />
                   </Link>
                 </div>

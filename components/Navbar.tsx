@@ -113,13 +113,15 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: '100%',
-                    left: '-100px',
-                    width: '920px',
+                    left: '50%',
+                    transform: 'translateX(-38%)',
+                    width: 'min(920px, calc(100vw - 2rem))',
+                    maxWidth: 'calc(100vw - 2rem)',
                     backgroundColor: 'rgba(11, 19, 43, 0.98)',
                     backdropFilter: 'blur(20px)',
                     border: '1px solid rgba(212, 175, 55, 0.4)',
                     borderRadius: '1.25rem',
-                    padding: '2rem',
+                    padding: '1.75rem',
                     boxShadow: '0 25px 60px rgba(0,0,0,0.65)',
                     zIndex: 200,
                   }}
@@ -137,7 +139,7 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1.25rem' }}>
                     {treatmentCategories.map((col, idx) => (
                       <div key={idx}>
                         <div
@@ -146,28 +148,28 @@ export default function Navbar() {
                             alignItems: 'center',
                             gap: '0.5rem',
                             fontWeight: 800,
-                            fontSize: '0.8rem',
+                            fontSize: '0.75rem',
                             color: col.color,
                             backgroundColor: col.bg,
                             border: `1px solid ${col.border}`,
-                            padding: '6px 12px',
+                            padding: '6px 10px',
                             borderRadius: '99px',
-                            marginBottom: '1rem',
+                            marginBottom: '0.85rem',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
                           }}
                         >
                           {col.icon} {col.category}
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                           {col.items.map((item, i) => (
                             <Link
                               key={i}
                               href={item.href}
                               onClick={() => setMegaMenuOpen(false)}
-                              style={{ textDecoration: 'none', display: 'block', padding: '0.5rem', borderRadius: '0.5rem', transition: 'background-color 0.2s' }}
+                              style={{ textDecoration: 'none', display: 'block', padding: '0.45rem', borderRadius: '0.5rem', transition: 'background-color 0.2s' }}
                             >
-                              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'white' }}>{item.name}</div>
+                              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'white' }}>{item.name}</div>
                               <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
                             </Link>
                           ))}
@@ -206,7 +208,8 @@ export default function Navbar() {
           </Link>
 
           {/* Mobile Menu Hamburger Toggle */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.92 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden"
             style={{
@@ -219,91 +222,138 @@ export default function Navbar() {
               cursor: 'pointer',
               padding: '0.5rem',
               borderRadius: '0.5rem',
-              backgroundColor: 'rgba(255,255,255,0.06)',
+              backgroundColor: mobileMenuOpen ? 'rgba(212,175,55,0.15)' : 'rgba(255,255,255,0.06)',
             }}
           >
             {mobileMenuOpen ? <X size={24} className="text-gold" /> : <Menu size={24} />}
-          </button>
+          </motion.button>
         </div>
       </nav>
+
+      {/* Mobile Backdrop Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'fixed',
+              top: '72px',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(5, 10, 25, 0.75)',
+              backdropFilter: 'blur(8px)',
+              zIndex: 998,
+            }}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Mobile Animated Accordion Dropdown Navigation Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: -18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -14, scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 22 }}
             style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              width: '100%',
               backgroundColor: 'rgba(11, 19, 43, 0.98)',
-              backdropFilter: 'blur(20px)',
-              borderTop: '1px solid rgba(255,255,255,0.08)',
-              padding: '1.25rem 1.5rem 2rem',
-              maxHeight: '85vh',
+              backdropFilter: 'blur(28px)',
+              borderTop: '1px solid rgba(212,175,55,0.25)',
+              borderBottom: '1px solid rgba(212,175,55,0.25)',
+              padding: '1.25rem 1.25rem 2rem',
+              maxHeight: '82vh',
               overflowY: 'auto',
+              boxShadow: '0 30px 70px rgba(0,0,0,0.85)',
+              zIndex: 999,
+              transformOrigin: 'top center',
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {/* Quick Navigation Links */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                <Link
-                  href="/shop"
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{
-                    backgroundColor: 'rgba(212,175,55,0.15)',
-                    border: '1px solid rgba(212,175,55,0.3)',
-                    color: 'var(--primary-gold)',
-                    fontWeight: 800,
-                    fontSize: '0.9rem',
-                    padding: '0.75rem 1rem',
-                    borderRadius: '0.75rem',
-                    textAlign: 'center',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.4rem'
-                  }}
-                >
-                  <ShoppingBag size={16} /> Shop Catalog
-                </Link>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '0.25rem' }}>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.92 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
+                  <Link
+                    href="/shop"
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      backgroundColor: 'rgba(212,175,55,0.15)',
+                      border: '1px solid rgba(212,175,55,0.4)',
+                      color: 'var(--primary-gold)',
+                      fontWeight: 800,
+                      fontSize: '0.875rem',
+                      padding: '0.75rem 0.85rem',
+                      borderRadius: '0.75rem',
+                      textAlign: 'center',
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.4rem'
+                    }}
+                  >
+                    <ShoppingBag size={16} /> Shop Catalog
+                  </Link>
+                </motion.div>
 
-                <Link
-                  href="/treatments"
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: 'white',
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
-                    padding: '0.75rem 1rem',
-                    borderRadius: '0.75rem',
-                    textAlign: 'center',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.4rem'
-                  }}
-                >
-                  🌟 All Treatments
-                </Link>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.92 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
+                  <Link
+                    href="/treatments"
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(255,255,255,0.15)',
+                      color: 'white',
+                      fontWeight: 700,
+                      fontSize: '0.875rem',
+                      padding: '0.75rem 0.85rem',
+                      borderRadius: '0.75rem',
+                      textAlign: 'center',
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.4rem'
+                    }}
+                  >
+                    🌟 All Treatments
+                  </Link>
+                </motion.div>
               </div>
 
               {/* Treatment Categories Collapsible Accordion Dropdowns */}
               <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '1.5px', marginTop: '0.25rem' }}>
-                Prescription Protocols Dropdown Menu
+                Prescription Protocols Dropdown
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {treatmentCategories.map((col, idx) => {
                   const isExpanded = mobileExpandedCat === col.category
 
                   return (
-                    <div key={idx} style={{ backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '0.85rem', border: `1px solid ${col.border}`, overflow: 'hidden' }}>
-                      <button
+                    <motion.div
+                      key={idx}
+                      layout
+                      style={{
+                        backgroundColor: isExpanded ? 'rgba(212,175,55,0.08)' : 'rgba(255,255,255,0.03)',
+                        borderRadius: '0.85rem',
+                        border: isExpanded ? `1.5px solid ${col.color}` : `1px solid ${col.border}`,
+                        overflow: 'hidden',
+                        boxShadow: isExpanded ? `0 8px 25px rgba(0,0,0,0.3)` : 'none',
+                        transition: 'all 0.25s ease',
+                      }}
+                    >
+                      <motion.button
+                        whileTap={{ scale: 0.97 }}
                         onClick={() => setMobileExpandedCat(isExpanded ? null : col.category)}
                         style={{
                           width: '100%',
@@ -315,7 +365,7 @@ export default function Navbar() {
                           border: 'none',
                           color: 'white',
                           fontWeight: 800,
-                          fontSize: '0.95rem',
+                          fontSize: '0.9rem',
                           cursor: 'pointer',
                           textAlign: 'left',
                         }}
@@ -323,65 +373,74 @@ export default function Navbar() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: col.color }}>
                           {col.icon} {col.category}
                         </div>
-                        <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                        <motion.div animate={{ rotate: isExpanded ? 180 : 0, scale: isExpanded ? 1.15 : 1 }} transition={{ type: 'spring', stiffness: 300, damping: 20 }}>
                           <ChevronDown size={18} style={{ color: 'var(--primary-gold)' }} />
                         </motion.div>
-                      </button>
+                      </motion.button>
 
                       <AnimatePresence>
                         {isExpanded && (
                           <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                            style={{ overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.06)', backgroundColor: 'rgba(0,0,0,0.2)', padding: '0.5rem 0.75rem 0.75rem' }}
+                            initial={{ height: 0, opacity: 0, scaleY: 0.95 }}
+                            animate={{ height: 'auto', opacity: 1, scaleY: 1 }}
+                            exit={{ height: 0, opacity: 0, scaleY: 0.95 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                            style={{ overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.06)', backgroundColor: 'rgba(0,0,0,0.28)', padding: '0.5rem 0.75rem 0.75rem' }}
                           >
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                               {col.items.map((item, i) => (
-                                <Link
-                                  key={i}
-                                  href={item.href}
-                                  onClick={() => { setMobileMenuOpen(false); setMobileExpandedCat(null) }}
-                                  style={{
-                                    display: 'block',
-                                    padding: '0.6rem 0.75rem',
-                                    borderRadius: '0.5rem',
-                                    backgroundColor: 'rgba(255,255,255,0.04)',
-                                    textDecoration: 'none'
-                                  }}
-                                >
-                                  <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'white' }}>{item.name}</div>
-                                  <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
-                                </Link>
+                                <motion.div key={i} whileHover={{ x: 4, scale: 1.01 }} whileTap={{ scale: 0.95 }} transition={{ type: 'spring', stiffness: 400, damping: 18 }}>
+                                  <Link
+                                    href={item.href}
+                                    onClick={() => { setMobileMenuOpen(false); setMobileExpandedCat(null) }}
+                                    style={{
+                                      display: 'block',
+                                      padding: '0.6rem 0.75rem',
+                                      borderRadius: '0.5rem',
+                                      backgroundColor: 'rgba(255,255,255,0.04)',
+                                      textDecoration: 'none'
+                                    }}
+                                  >
+                                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'white' }}>{item.name}</div>
+                                    <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
+                                  </Link>
+                                </motion.div>
                               ))}
                             </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </div>
+                    </motion.div>
                   )
                 })}
               </div>
 
               {/* General Navigation Links */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '0.95rem', padding: '0.4rem 0.5rem', textDecoration: 'none' }}>
-                  ⚙️ How It Works
-                </Link>
-                <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '0.95rem', padding: '0.4rem 0.5rem', textDecoration: 'none' }}>
-                  ℹ️ About VitalWellRx
-                </Link>
-                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)} style={{ color: '#94A3B8', fontWeight: 600, fontSize: '0.95rem', padding: '0.4rem 0.5rem', textDecoration: 'none' }}>
-                  🔑 Patient Portal
-                </Link>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.96 }}>
+                  <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '0.9rem', padding: '0.4rem 0.5rem', textDecoration: 'none', display: 'block' }}>
+                    ⚙️ How It Works
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.96 }}>
+                  <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '0.9rem', padding: '0.4rem 0.5rem', textDecoration: 'none', display: 'block' }}>
+                    ℹ️ About VitalWellRx
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.96 }}>
+                  <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)} style={{ color: '#94A3B8', fontWeight: 600, fontSize: '0.9rem', padding: '0.4rem 0.5rem', textDecoration: 'none', display: 'block' }}>
+                    🔑 Patient Portal
+                  </Link>
+                </motion.div>
               </div>
 
               {/* Action Buttons */}
-              <div style={{ paddingTop: '0.75rem' }}>
-                <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary" style={{ width: '100%', padding: '0.85rem', fontSize: '1rem' }}>
-                  Get Started Intake →
-                </Link>
+              <div style={{ paddingTop: '0.5rem' }}>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.93 }} transition={{ type: 'spring', stiffness: 400, damping: 16 }}>
+                  <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary" style={{ width: '100%', padding: '0.85rem', fontSize: '0.95rem' }}>
+                    Get Started Intake →
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </motion.div>

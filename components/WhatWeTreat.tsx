@@ -161,127 +161,145 @@ export default function WhatWeTreat() {
         </div>
 
         {/* Filter Navigation Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+        <div className="no-scrollbar" style={{ display: 'flex', justifyContent: 'flex-start', gap: '0.65rem', marginBottom: '3rem', overflowX: 'auto', paddingBottom: '0.5rem', WebkitOverflowScrolling: 'touch' }}>
           {[
             { id: 'all', label: '🌟 All Conditions' },
             { id: 'weight', label: '🔥 Weight & Metabolism' },
             { id: 'mens', label: '⚡ Men\'s Vitality (TRT)' },
             { id: 'womens', label: '🌸 Women\'s Balance (BHRT)' },
-            { id: 'peptides', label: '🧬 Peptides & Cellular Repair' },
+            { id: 'peptides', label: '🧬 Peptides & Repair' },
           ].map(tab => (
-            <button
+            <motion.button
               key={tab.id}
+              whileTap={{ scale: 0.94 }}
               onClick={() => setActiveTab(tab.id as any)}
               style={{
-                padding: '0.75rem 1.5rem',
+                padding: '0.65rem 1.25rem',
                 borderRadius: '99px',
                 fontWeight: 700,
-                fontSize: '0.95rem',
+                fontSize: '0.875rem',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
                 border: activeTab === tab.id ? '2px solid var(--primary-gold)' : '1px solid #CBD5E1',
                 backgroundColor: activeTab === tab.id ? 'var(--primary-navy)' : 'white',
                 color: activeTab === tab.id ? 'white' : '#334155',
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',
-                boxShadow: activeTab === tab.id ? '0 10px 25px rgba(11,19,43,0.25)' : 'none',
+                boxShadow: activeTab === tab.id ? '0 8px 20px rgba(11,19,43,0.2)' : 'none',
               }}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
         </div>
 
         {/* Condition Cards Grid */}
         <motion.div layout className="grid grid-cols-1 gap-8">
           <AnimatePresence>
-            {filtered.map(item => {
+            {filtered.map((item, idx) => {
               const isExpanded = expandedId === item.id
 
               return (
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{ opacity: 0, y: 35, scale: 0.96 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-30px' }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  whileHover={{ y: -4, scale: 1.005 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 22, delay: idx * 0.05 }}
                   style={{
                     backgroundColor: 'white',
                     borderRadius: '1.5rem',
                     overflow: 'hidden',
                     border: isExpanded ? '2px solid var(--primary-gold)' : '1px solid #E2E8F0',
-                    boxShadow: isExpanded ? '0 20px 45px rgba(11,19,43,0.15)' : '0 10px 25px rgba(0,0,0,0.04)',
-                    transition: 'border-color 0.2s',
+                    boxShadow: isExpanded
+                      ? '0 0 30px rgba(212,175,55,0.4), 0 20px 45px rgba(11,19,43,0.15)'
+                      : '0 10px 25px rgba(0,0,0,0.04)',
+                    transition: 'border-color 0.25s, box-shadow 0.25s',
                   }}
                 >
                   {/* Card Header & Main Overview */}
                   <div className="condition-card-grid">
-                    <div style={{ position: 'relative', height: '220px', width: '100%', borderRadius: '1rem', overflow: 'hidden' }}>
+                    <motion.div
+                      whileHover={{ scale: 1.04 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                      style={{ position: 'relative', height: '220px', width: '100%', borderRadius: '1rem', overflow: 'hidden' }}
+                    >
                       <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 320px" quality={80} loading="eager" style={{ objectFit: 'cover' }} />
                       <div style={{ position: 'absolute', top: '0.75rem', left: '0.75rem', backgroundColor: 'rgba(11,19,43,0.85)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '4px 12px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.3)' }}>
                         {item.badge}
                       </div>
-                    </div>
+                    </motion.div>
 
                     <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-                        <div>
-                          <h3 style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem' }}>
+                        <div style={{ flex: '1 1 200px' }}>
+                          <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.25rem' }}>
                             {item.title}
                           </h3>
-                          <div style={{ fontSize: '0.9rem', color: 'var(--primary-gold)', fontWeight: 700, marginBottom: '0.75rem' }}>
+                          <div style={{ fontSize: '0.875rem', color: 'var(--primary-gold)', fontWeight: 700, marginBottom: '0.75rem' }}>
                             {item.subtitle}
                           </div>
                         </div>
 
-                        <div style={{ textAlign: 'right', backgroundColor: 'rgba(11,19,43,0.04)', padding: '0.5rem 1rem', borderRadius: '0.75rem', border: '1px solid #E2E8F0' }}>
-                          <div style={{ fontSize: '1.35rem', fontWeight: 900, color: 'var(--primary-navy)' }}>{item.stat}</div>
-                          <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 600 }}>{item.statLabel}</div>
+                        <div style={{ backgroundColor: 'rgba(11,19,43,0.04)', padding: '0.5rem 0.85rem', borderRadius: '0.75rem', border: '1px solid #E2E8F0', flexShrink: 0 }}>
+                          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--primary-navy)' }}>{item.stat}</div>
+                          <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 600 }}>{item.statLabel}</div>
                         </div>
                       </div>
 
-                      <p style={{ color: '#475569', fontSize: '1rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                      <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                         {item.desc}
                       </p>
 
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                        <button
+                      <div className="card-actions-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                        <motion.button
+                          whileTap={{ scale: 0.96 }}
                           onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                          className="btn-card-secondary"
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
+                            justifyContent: 'center',
                             gap: '6px',
-                            backgroundColor: 'white',
+                            backgroundColor: isExpanded ? 'rgba(11,19,43,0.08)' : 'white',
                             color: 'var(--primary-navy)',
-                            border: '1.5px solid var(--primary-navy)',
-                            padding: '0.6rem 1.25rem',
+                            border: isExpanded ? '2px solid var(--primary-navy)' : '1.5px solid var(--primary-navy)',
+                            padding: '0.6rem 1.15rem',
                             borderRadius: '99px',
-                            fontSize: '0.875rem',
+                            fontSize: '0.85rem',
                             fontWeight: 700,
                             cursor: 'pointer',
                             transition: 'all 0.2s',
                           }}
                         >
-                          {isExpanded ? 'Hide Clinical Details' : 'View Clinical Science & Labs'}
+                          {isExpanded ? 'Hide Clinical Science' : 'View Clinical Science & Labs'}
                           <ChevronDown size={16} style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }} />
-                        </button>
+                        </motion.button>
 
-                        <Link
-                          href={item.href}
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '6px',
-                            backgroundColor: 'var(--primary-navy)',
-                            color: 'white',
-                            padding: '0.65rem 1.35rem',
-                            borderRadius: '99px',
-                            fontSize: '0.875rem',
-                            fontWeight: 700,
-                            textDecoration: 'none',
-                          }}
-                        >
-                          Check Eligibility <ArrowRight size={16} />
-                        </Link>
+                        <motion.div whileTap={{ scale: 0.96 }}>
+                          <Link
+                            href={item.href}
+                            className="btn-card-primary"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: '6px',
+                              backgroundColor: 'var(--primary-navy)',
+                              color: 'white',
+                              padding: '0.65rem 1.25rem',
+                              borderRadius: '99px',
+                              fontSize: '0.85rem',
+                              fontWeight: 700,
+                              textDecoration: 'none',
+                            }}
+                          >
+                            Check Eligibility <ArrowRight size={16} />
+                          </Link>
+                        </motion.div>
                       </div>
                     </div>
                   </div>
