@@ -27,7 +27,7 @@ export default function Footer() {
           <div>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', marginBottom: '1.25rem' }}>
               <div style={{ position: 'relative', width: '160px', height: '42px' }}>
-                <Image src="/logo.jpeg" alt="VitalWellRx Logo" fill sizes="160px" style={{ objectFit: 'contain' }} />
+                <Image src="/newlogo.png" alt="VitalWellRx Logo" fill sizes="160px" style={{ objectFit: 'contain' }} />
               </div>
             </Link>
             <p style={{ color: '#94A3B8', fontSize: '0.925rem', lineHeight: 1.7, maxWidth: '320px', marginBottom: '1.5rem' }}>

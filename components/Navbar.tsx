@@ -67,7 +67,7 @@ export default function Navbar() {
         {/* Left: Brand Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
           <div style={{ position: 'relative', width: '38px', height: '38px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
-            <Image src="/logo.jpeg" alt="VitalWellRx Logo" fill sizes="38px" style={{ objectFit: 'cover' }} priority />
+            <Image src="/newlogo.png" alt="VitalWellRx Logo" fill sizes="38px" style={{ objectFit: 'contain' }} priority />
           </div>
           <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'white', letterSpacing: '-0.5px' }}>
             VitalWell<span className="text-gold" style={{ fontSize: '1.3rem' }}>Rx</span>
