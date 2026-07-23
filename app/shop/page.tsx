@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ShoppingBag, ShieldCheck, Truck, Lock } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import FAQSection from '../../components/FAQSection'
 
 interface Product {
   id: string
@@ -277,6 +278,9 @@ export default function ShopPage() {
           </div>
         </div>
       </section>
+
+      {/* Frequently Asked Questions Section */}
+      <FAQSection />
     </main>
   )
 }

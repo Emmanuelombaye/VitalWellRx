@@ -5,6 +5,7 @@ import { Activity, ShieldCheck, Dumbbell, ArrowRight, HeartPulse, Stethoscope, B
 import Link from 'next/link'
 import Image from 'next/image'
 import WhatWeTreat from '../components/WhatWeTreat'
+import FAQSection from '../components/FAQSection'
 
 export default function Home() {
   const containerVariants = {
@@ -315,6 +316,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Frequently Asked Questions Section */}
+      <FAQSection />
     </main>
   )
 }
