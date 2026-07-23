@@ -49,12 +49,11 @@ export default function Footer() {
               Treatments
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Link href="/treatments/weight-loss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}>Medical Weight Loss</Link>
-              <Link href="/treatments/weight-loss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}>Tirzepatide Dual GIP/GLP-1</Link>
-              <Link href="/treatments/mens-hormone" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}>Men&apos;s TRT Protocol</Link>
-              <Link href="/treatments/womens-hormone" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}>Women&apos;s Bioidentical BHRT</Link>
-              <Link href="/treatments/peptide-therapy" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}>Peptide Tissue Repair (BPC-157)</Link>
-              <Link href="/treatments/peptide-therapy" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}>GH Secretagogues (CJC/Ipamorelin)</Link>
+              <Link href="/treatments/weight-loss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Medical Weight Loss</Link>
+              <Link href="/treatments/mens-hormone" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Men&apos;s TRT Protocol</Link>
+              <Link href="/treatments/mens-hairloss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Men&apos;s Hair Loss Restoration</Link>
+              <Link href="/treatments/womens-hormone" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Women&apos;s Bioidentical BHRT</Link>
+              <Link href="/treatments/peptide-therapy" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Peptide Tissue Repair (BPC-157)</Link>
             </div>
           </div>
 
@@ -64,12 +63,12 @@ export default function Footer() {
               Navigation
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <Link href="/shop" style={{ color: 'var(--primary-gold)', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}>🛒 Pharmacy Shop Catalog</Link>
               <Link href="/about" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>About VitalWellRx</Link>
               <Link href="/how-it-works" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Telehealth Process</Link>
               <Link href="/treatments" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>What We Treat A–Z</Link>
               <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>5-Minute Assessment</Link>
               <Link href="/dashboard" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Member Patient Portal</Link>
-              <Link href="/contact" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Contact & Support</Link>
             </div>
           </div>
 

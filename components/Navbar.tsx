@@ -3,50 +3,47 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ChevronDown, Scale, Zap, Heart, Dna, ArrowRight, Sparkles, ShieldCheck, Menu, X } from 'lucide-react'
+import { ChevronDown, Scale, Zap, Heart, Dna, ArrowRight, Sparkles, ShieldCheck, Menu, X, ShoppingBag, Scissors, Pill } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const quickLinks = [
-    { title: 'Weight Loss', href: '/treatments/weight-loss' },
-    { title: "Men's Health", href: '/treatments/mens-hormone' },
-    { title: "Women's Health", href: '/treatments/womens-hormone' },
-    { title: 'Peptides', href: '/treatments/peptide-therapy' },
-    { title: 'How It Works', href: '/how-it-works' },
-  ]
-
-  const aToZCategories = [
+  const treatmentCategories = [
     {
       category: 'Metabolic & Weight Loss',
       icon: <Scale size={18} className="text-gold" />,
       items: [
         { name: 'Tirzepatide Dual GIP/GLP-1', desc: 'Up to 22.5% fat reduction', href: '/treatments/weight-loss' },
         { name: 'Sublingual GLP-1 ODT', desc: 'Needle-free oral tablets', href: '/treatments/odt-tablets' },
-        { name: 'Metabolic Rate Reset', desc: 'Set-point calibration', href: '/treatments/weight-loss' },
-        { name: 'Appetite & Craving Control', desc: '24-48hr onset', href: '/treatments/weight-loss' },
+        { name: 'Metabolic Set-Point Reset', desc: 'Satiation & craving control', href: '/treatments/weight-loss' },
       ],
     },
     {
-      category: "Men's & Women's Hormones",
+      category: "Men's Health & Hair Loss",
       icon: <Zap size={18} className="text-gold" />,
       items: [
-        { name: 'Bioidentical TRT Cypionate', desc: 'Testosterone optimization', href: '/treatments/mens-hormone' },
-        { name: 'HCG & Enclomiphene Support', desc: 'Male fertility preservation', href: '/treatments/fertility-mens' },
-        { name: 'BHRT Estradiol & Progesterone', desc: 'Female REM sleep & hot flashes', href: '/treatments/womens-hormone' },
-        { name: 'DHEA & Thyroid Balance', desc: 'Energy & emotional resilience', href: '/treatments/womens-hormone' },
+        { name: 'Bioidentical TRT Cypionate', desc: 'Free testosterone optimization', href: '/treatments/mens-hormone' },
+        { name: 'Oral Finasteride + Minoxidil', desc: 'Dual-action hair restoration', href: '/treatments/mens-hairloss' },
+        { name: 'HCG & Enclomiphene Fertility', desc: 'Male fertility preservation', href: '/treatments/fertility-mens' },
       ],
     },
     {
-      category: 'Cellular Repair & Peptides',
+      category: "Women's Health & BHRT",
+      icon: <Heart size={18} className="text-gold" />,
+      items: [
+        { name: 'BHRT Estradiol & Progesterone', desc: 'Female REM sleep & hot flashes', href: '/treatments/womens-hormone' },
+        { name: 'DHEA & Thyroid Balance', desc: 'Energy & mood resilience', href: '/treatments/womens-hormone' },
+      ],
+    },
+    {
+      category: 'Peptide Therapy & Repair',
       icon: <Dna size={18} className="text-gold" />,
       items: [
         { name: 'BPC-157 Pentadecapeptide', desc: 'Tendon, joint & gut repair', href: '/treatments/peptide-therapy' },
-        { name: 'CJC-1295 / Ipamorelin', desc: 'Pulsatile pituitary GH surge', href: '/treatments/cjc-ipamorelin' },
-        { name: 'GHK-Cu Copper Peptide', desc: 'Dermal collagen & hair density', href: '/treatments/ghk-cu' },
-        { name: '503A Compounded Sterile Vials', desc: 'Insulated cold-pack shipping', href: '/treatments/peptide-therapy' },
+        { name: 'CJC-1295 / Ipamorelin', desc: 'Pulsatile GH surge', href: '/treatments/cjc-ipamorelin' },
+        { name: 'GHK-Cu Copper Peptide', desc: 'Dermal collagen & scalp density', href: '/treatments/ghk-cu' },
       ],
     },
   ]
@@ -64,19 +61,9 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Center Nav Links & Ro-style What We Treat Mega Dropdown (Desktop) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }} className="hidden md:flex">
-          {quickLinks.map(link => (
-            <Link
-              key={link.title}
-              href={link.href}
-              style={{ fontWeight: 600, color: 'rgba(255,255,255,0.85)', fontSize: '0.925rem', transition: 'color 0.2s', textDecoration: 'none' }}
-            >
-              {link.title}
-            </Link>
-          ))}
-
-          {/* Ro-Style Mega Dropdown */}
+        {/* Center Top Nav Links (Desktop) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
+          {/* Treatments Mega Dropdown */}
           <div
             style={{ position: 'relative', padding: '0.5rem 0' }}
             onMouseEnter={() => setMegaMenuOpen(true)}
@@ -89,23 +76,23 @@ export default function Navbar() {
                 border: 'none',
                 fontWeight: 700,
                 color: megaMenuOpen ? 'var(--primary-gold)' : 'white',
-                fontSize: '0.925rem',
+                fontSize: '0.95rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.35rem',
                 cursor: 'pointer',
-                padding: '0.2rem 0.6rem',
+                padding: '0.3rem 0.75rem',
                 borderRadius: '0.5rem',
                 backgroundColor: megaMenuOpen ? 'rgba(212,175,55,0.15)' : 'transparent',
               }}
             >
-              What We Treat
+              Treatments
               <motion.div animate={{ rotate: megaMenuOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
                 <ChevronDown size={16} />
               </motion.div>
             </button>
 
-            {/* Full Mega Dropdown Menu Panel */}
+            {/* Mega Dropdown Panel */}
             <AnimatePresence>
               {megaMenuOpen && (
                 <motion.div
@@ -116,8 +103,8 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: '100%',
-                    right: '-160px',
-                    width: '880px',
+                    left: '-100px',
+                    width: '920px',
                     backgroundColor: 'rgba(11, 19, 43, 0.98)',
                     backdropFilter: 'blur(20px)',
                     border: '1px solid rgba(212, 175, 55, 0.4)',
@@ -129,7 +116,7 @@ export default function Navbar() {
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.08)', marginBottom: '1.5rem' }}>
                     <div style={{ fontSize: '0.8rem', fontWeight: 900, color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <Sparkles size={16} /> WHAT WE TREAT A–Z
+                      <Sparkles size={16} /> PRESCRIPTION TREATMENTS A–Z
                     </div>
                     <Link
                       href="/treatments"
@@ -140,10 +127,10 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
-                    {aToZCategories.map((col, idx) => (
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+                    {treatmentCategories.map((col, idx) => (
                       <div key={idx}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.95rem', color: 'white', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.5rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '0.875rem', color: 'white', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.5rem' }}>
                           {col.icon} {col.category}
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -152,10 +139,10 @@ export default function Navbar() {
                               key={i}
                               href={item.href}
                               onClick={() => setMegaMenuOpen(false)}
-                              style={{ textDecoration: 'none', display: 'block', padding: '0.4rem 0.6rem', borderRadius: '0.5rem' }}
+                              style={{ textDecoration: 'none', display: 'block', padding: '0.4rem 0.5rem', borderRadius: '0.5rem' }}
                             >
-                              <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'rgba(255,255,255,0.95)' }}>{item.name}</div>
-                              <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
+                              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(255,255,255,0.95)' }}>{item.name}</div>
+                              <div style={{ fontSize: '0.725rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
                             </Link>
                           ))}
                         </div>
@@ -166,9 +153,24 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Shop Direct Link */}
+          <Link href="/shop" style={{ fontWeight: 700, color: 'var(--primary-gold)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}>
+            <ShoppingBag size={17} /> Shop
+          </Link>
+
+          {/* How It Works */}
+          <Link href="/how-it-works" style={{ fontWeight: 600, color: 'rgba(255,255,255,0.9)', fontSize: '0.95rem', textDecoration: 'none' }}>
+            How It Works
+          </Link>
+
+          {/* About */}
+          <Link href="/about" style={{ fontWeight: 600, color: 'rgba(255,255,255,0.9)', fontSize: '0.95rem', textDecoration: 'none' }}>
+            About
+          </Link>
         </div>
 
-        {/* Right CTA (Desktop) */}
+        {/* Right CTAs */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link href="/dashboard" style={{ fontWeight: 600, color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>
             Portal
@@ -215,36 +217,37 @@ export default function Navbar() {
               <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 Navigation & Treatments
               </div>
-              <Link href="/treatments" onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}>
+              <Link href="/shop" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--primary-gold)', fontWeight: 800, fontSize: '1.1rem' }}>
+                🛒 Pharmacy Shop Catalog
+              </Link>
+              <Link href="/treatments" onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontWeight: 700, fontSize: '1.05rem' }}>
                 🌟 All Treatments
               </Link>
-              <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--primary-gold)', fontWeight: 700, fontSize: '1.05rem' }}>
+              <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '1rem' }}>
                 ⚙️ How It Works
               </Link>
-              <Link href="/treatments/weight-loss" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
+              <Link href="/treatments/weight-loss" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
                 🔥 Medical Weight Loss (Tirzepatide)
               </Link>
-              <Link href="/treatments/odt-tablets" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
+              <Link href="/treatments/odt-tablets" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
                 💊 Sublingual GLP-1 ODT Tablets
               </Link>
-              <Link href="/treatments/mens-hormone" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
+              <Link href="/treatments/mens-hormone" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
                 ⚡ Men&apos;s TRT Protocol
               </Link>
-              <Link href="/treatments/fertility-mens" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
+              <Link href="/treatments/mens-hairloss" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
+                💇 Men&apos;s Hair Loss (Finasteride + Minoxidil)
+              </Link>
+              <Link href="/treatments/fertility-mens" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
                 🌱 Male Fertility & HCG
               </Link>
-              <Link href="/treatments/womens-hormone" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
+              <Link href="/treatments/womens-hormone" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
                 🌸 Women&apos;s BHRT Therapy
               </Link>
-              <Link href="/treatments/peptide-therapy" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
+              <Link href="/treatments/peptide-therapy" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
                 🧬 BPC-157 Peptide Repair
               </Link>
-              <Link href="/treatments/cjc-ipamorelin" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
-                ⚡ CJC-1295 / Ipamorelin
-              </Link>
-              <Link href="/treatments/ghk-cu" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
-                ✨ GHK-Cu Copper Peptide
-              </Link>
+
               <div style={{ paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', gap: '1rem' }}>
                 <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary" style={{ width: '100%', padding: '0.85rem' }}>
                   Get Started →
