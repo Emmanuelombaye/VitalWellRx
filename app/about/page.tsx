@@ -45,7 +45,7 @@ export default function About() {
                 Every protocol we design is backed by real-time biomarker data and overseen by board-certified physicians who specialize in metabolic health, hormone optimization, and cellular longevity.
               </p>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { icon: <Heart size={28} />, title: 'Patient-First', desc: 'Your health goals drive every decision we make.' },
                 { icon: <Microscope size={28} />, title: 'Science-Backed', desc: 'Protocols grounded in peer-reviewed research.' },
@@ -66,7 +66,7 @@ export default function About() {
       {/* Stats */}
       <section style={{ backgroundColor: 'var(--primary-navy)', padding: '5rem 0', borderTop: '1px solid rgba(212,175,55,0.2)', borderBottom: '1px solid rgba(212,175,55,0.2)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'center' }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { num: '30,000+', label: 'Patients Served' },
               { num: '98%', label: 'Satisfaction Rate' },

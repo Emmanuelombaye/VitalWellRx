@@ -265,7 +265,7 @@ export default function ShopPage() {
           </div>
 
           {/* Guarantee Badges */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(255,255,255,0.9)', fontSize: '0.95rem' }}>
               <ShieldCheck size={22} className="text-gold" /> 100% Board-Certified Physician Consultation Included
             </div>

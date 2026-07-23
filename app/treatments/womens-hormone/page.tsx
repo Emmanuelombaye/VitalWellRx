@@ -137,7 +137,7 @@ export default function WomensHormoneHealth() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem', marginTop: '2rem', fontSize: '0.75rem', fontWeight: 700 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2" style={{ marginTop: '2rem', fontSize: '0.75rem', fontWeight: 700 }}>
                 <div style={{ color: '#D4AF37' }}>● Estradiol (E2)</div>
                 <div style={{ color: '#10B981' }}>● Progesterone</div>
                 <div style={{ color: '#3B82F6' }}>● DHEA-S</div>

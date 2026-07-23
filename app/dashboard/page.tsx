@@ -230,7 +230,7 @@ export default function Dashboard() {
             </div>
 
             {/* Guarantees */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
                 <ShieldCheck size={20} className="text-gold" /> No Insurance Needed (Flat Monthly Pricing)
               </div>

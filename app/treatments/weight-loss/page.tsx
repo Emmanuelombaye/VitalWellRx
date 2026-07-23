@@ -193,7 +193,7 @@ export default function MedicalWeightLoss() {
             <h2 className="h2" style={{ marginTop: '0.5rem' }}>Your 90-Day <span className="text-gold">Transformation Roadmap</span></h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { phase: 'Weeks 1–2', title: 'Initiation & Adaptation', desc: 'Low starter dose to assess tolerance. Craving reduction begins within 48 hours.' },
               { phase: 'Weeks 3–6', title: 'Steady Reduction', desc: 'Gradual dose titration. Fat loss accelerates while maintaining high energy levels.' },

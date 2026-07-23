@@ -267,7 +267,7 @@ export default function Home() {
           <h2 className="h2" style={{ marginTop: '0.5rem' }}>Simple. <span className="text-gold">Seamless.</span> Science-Backed.</h2>
           <p className="text-muted" style={{ fontSize: '1.125rem', maxWidth: '550px', margin: '0 auto 3rem' }}>From your first consult to your front door — optimized health in 4 simple steps.</p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { num: '01', title: 'Health Profile', desc: 'Quick 5-min online questionnaire.' },
               { num: '02', title: 'MD Review', desc: 'Board-certified physician reviews in 24–48hrs.' },

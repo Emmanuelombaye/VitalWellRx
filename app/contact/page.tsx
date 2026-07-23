@@ -31,7 +31,7 @@ export default function Contact() {
 
       {/* Contact Form + Info */}
       <section style={{ padding: '2rem 0 6rem' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+        <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* Contact Info */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '2rem' }}>Contact <span className="text-gold">Information</span></h2>
@@ -70,7 +70,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Send Us a Message</h2>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>First Name *</label>
                     <input required type="text" placeholder="John" style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none' }} />
