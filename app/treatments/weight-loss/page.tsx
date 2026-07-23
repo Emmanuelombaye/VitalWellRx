@@ -34,7 +34,7 @@ export default function MedicalWeightLoss() {
       {/* 1. HERO SECTION (2-Image Moving Carousel) */}
       <section style={{ position: 'relative', minHeight: '75vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <ImageCarousel images={['/gen_weight1.jpg', '/gen_weight2.jpg']} alt="Medical Weight Loss Hero" height="100%" borderRadius="0" />
+          <ImageCarousel images={['/gen_weight1.webp', '/gen_weight2.webp']} alt="Medical Weight Loss Hero" height="100%" borderRadius="0" />
         </div>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(11,19,43,0.96) 0%, rgba(11,19,43,0.8) 55%, rgba(11,19,43,0.3) 100%)', zIndex: 1 }}></div>
 
@@ -44,7 +44,7 @@ export default function MedicalWeightLoss() {
               <Sparkles size={16} /> Dual-Action GIP/GLP-1 Science
             </div>
             <h1 className="h1" style={{ color: 'white', fontSize: '3.5rem', lineHeight: 1.1 }}>
-              Medical <span className="text-gold">Weight Loss</span><br/>& Metabolic Optimization.
+              Medical <span className="text-gold">Weight Loss</span><br />& Metabolic Optimization.
             </h1>
             <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.6, marginBottom: '2rem', maxWidth: '580px' }}>
               Reset your body set-point with doctor-guided Tirzepatide and GLP-1 protocols. Average clinical weight loss of up to 22.5% without restrictive dieting or muscle loss.
@@ -157,7 +157,7 @@ export default function MedicalWeightLoss() {
 
           <div className="grid grid-cols-2 gap-8" style={{ alignItems: 'center' }}>
             <div style={{ position: 'relative', height: '400px', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}>
-              <Image src="/supplement_bottle.png" alt="Cere Vitality & Tirzepatide Compounds" fill style={{ objectFit: 'cover' }} />
+              <Image src="/supplement_bottle.webp" alt="Cere Vitality & Tirzepatide Compounds" fill style={{ objectFit: 'cover' }} />
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

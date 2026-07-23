@@ -14,13 +14,13 @@ export default function About() {
     <main>
       {/* Hero */}
       <section style={{ position: 'relative', minHeight: '60vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
-        <Image src="/about_hero.png" alt="Our Medical Team" fill priority style={{ objectFit: 'cover' }} />
+        <Image src="/about_hero.webp" alt="Our Medical Team" fill priority style={{ objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(11,19,43,0.95) 0%, rgba(11,19,43,0.6) 100%)' }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 10, padding: '6rem 1.5rem' }}>
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <span className="text-gold" style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '2px' }}>About VitalWellRx</span>
             <h1 className="h1" style={{ marginTop: '1rem' }}>
-              Redefining <span className="text-gold">Personalized</span><br/>Healthcare.
+              Redefining <span className="text-gold">Personalized</span><br />Healthcare.
             </h1>
             <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.8)', maxWidth: '550px', lineHeight: 1.7 }}>
               We combine cutting-edge science with compassionate care to deliver health optimization protocols that are as unique as you are.
@@ -36,7 +36,7 @@ export default function About() {
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
               <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '2px', color: 'var(--primary-gold)' }}>Our Mission</span>
               <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginTop: '0.5rem', lineHeight: 1.1 }}>
-                Live Vital.<br/>Live Well.
+                Live Vital.<br />Live Well.
               </h2>
               <p style={{ fontSize: '1.125rem', color: '#475569', lineHeight: 1.8, marginTop: '1.5rem' }}>
                 At VitalWellRx, we believe that everyone deserves access to the highest standard of personalized medicine. Our mission is to democratize longevity science through accessible telehealth consultations, data-driven protocols, and pharmaceutical-grade supplements.

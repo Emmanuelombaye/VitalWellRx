@@ -15,7 +15,7 @@ const treatments = [
     price: '$340/mo',
     icon: <Scale size={28} />,
     tags: ['GLP-1', 'Heart Health', 'Metabolism Boost'],
-    images: ['/gen_weight1.jpg', '/gen_weight2.jpg'],
+    images: ['/gen_weight1.webp', '/gen_weight2.webp'],
     features: ['Provider-guided weight management', 'Monthly blood panels', 'Customized dose titration', 'Free discreet shipping'],
   },
   {
@@ -27,7 +27,7 @@ const treatments = [
     price: '$199/mo',
     icon: <Beaker size={28} />,
     tags: ['TRT', 'Stamina', 'Lean Muscle'],
-    images: ['/gen_mens1.jpg', '/gen_mens2.jpg'],
+    images: ['/gen_mens1.webp', '/gen_mens2.webp'],
     features: ['Bioidentical TRT formulation', 'Estrogen blocker support', 'Quarterly blood work analysis', '1-on-1 specialist consults'],
   },
   {
@@ -39,7 +39,7 @@ const treatments = [
     price: '$189/mo',
     icon: <Heart size={28} />,
     tags: ['BHRT Balance', 'Sleep & Mood', 'Skin Collagen'],
-    images: ['/gen_womens1.jpg', '/gen_womens2.jpg'],
+    images: ['/gen_womens1.webp', '/gen_womens2.webp'],
     features: ['Bioidentical Estradiol & Progesterone', 'DHEA & thyroid evaluation', 'Dedicated female health MD', 'Discreet doorstep delivery'],
   },
   {
@@ -51,7 +51,7 @@ const treatments = [
     price: '$349/mo',
     icon: <Dna size={28} />,
     tags: ['Recovery', 'Muscle Growth', 'Cellular Repair'],
-    images: ['/gen_peptides1.jpg', '/gen_peptides2.jpg'],
+    images: ['/gen_peptides1.webp', '/gen_peptides2.webp'],
     features: ['Prescription BPC-157 & CJC/Ipamorelin', '503A licensed compounding', 'Growth hormone pulse release', 'Cold-chain shipping'],
   },
 ]

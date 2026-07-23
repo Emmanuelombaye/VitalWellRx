@@ -37,7 +37,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Appetite suppression onset in 24-48 hrs; steady weight loss of 1.5–3 lbs/week through Week 12+',
     stat: 'Up to 22.5%',
     statLabel: 'Average Weight Loss',
-    image: '/gen_weight1.jpg',
+    image: '/shop_tirzepatide.webp',
     href: '/treatments/weight-loss',
   },
   {
@@ -53,7 +53,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Consistent appetite regulation starting Day 1; zero injection discomfort',
     stat: '100%',
     statLabel: 'Painless Oral Delivery',
-    image: '/supplement_bottle.png',
+    image: '/shop_glp1_odt.webp',
     href: '/treatments/odt-tablets',
   },
   {
@@ -69,7 +69,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Energy & libido improvements in 2-3 weeks; lean muscle & fat reduction by Weeks 6-8',
     stat: '800–1,100 ng/dL',
     statLabel: 'Target Free Serum Range',
-    image: '/gen_mens1.jpg',
+    image: '/shop_trt.webp',
     href: '/treatments/mens-hormone',
   },
   {
@@ -85,7 +85,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Maintains testicular volume and fertility metrics continuously throughout therapy',
     stat: '100%',
     statLabel: 'Endocrine Protection',
-    image: '/gen_mens2.jpg',
+    image: '/shop_fertility.webp',
     href: '/treatments/fertility-mens',
   },
   {
@@ -101,7 +101,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Hot flashes & sleep disruptions abate within 7-14 days; skin elasticity improves by Month 2',
     stat: '88%',
     statLabel: 'Sleep Quality Relief',
-    image: '/gen_womens1.jpg',
+    image: '/shop_womens_bhrt.webp',
     href: '/treatments/womens-hormone',
   },
   {
@@ -117,7 +117,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Noticeable reduction in joint stiffness and pain within 7-10 days of protocol start',
     stat: '2x – 3x',
     statLabel: 'Faster Tissue Recovery',
-    image: '/gen_peptides1.jpg',
+    image: '/shop_bpc157.webp',
     href: '/treatments/peptide-therapy',
   },
   {
@@ -133,7 +133,7 @@ const detailedConditions: ConditionDetail[] = [
     timeline: 'Deeper REM sleep and faster workout recovery within Week 1; fat loss noticeable by Week 4',
     stat: 'Pulsatile',
     statLabel: 'Natural GH Surge',
-    image: '/gen_peptides2.jpg',
+    image: '/shop_cjc_ipamorelin.webp',
     href: '/treatments/cjc-ipamorelin',
   },
 ]

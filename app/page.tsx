@@ -25,7 +25,7 @@ export default function Home() {
       subtitle: 'Up to 22.5% average weight reduction',
       price: '$340',
       period: '/month',
-      image: '/gen_weight1.jpg',
+      image: '/gen_weight1.webp',
       href: '/treatments/weight-loss',
       bullets: ['Curbs food noise in 24-48 hours', 'Preserves lean skeletal muscle', '100% board-certified MD oversight'],
     },
@@ -36,7 +36,7 @@ export default function Home() {
       subtitle: 'Daily sublingual oral dissolving tablets',
       price: '$310',
       period: '/month',
-      image: '/supplement_bottle.png',
+      image: '/supplement_bottle.webp',
       href: '/treatments/odt-tablets',
       bullets: ['Dissolves under tongue in 90 seconds', 'Zero needles, syringes, or refrigerating', 'Direct capillary mucosal absorption'],
     },
@@ -47,7 +47,7 @@ export default function Home() {
       subtitle: 'Restoring free serum testosterone levels',
       price: '$199',
       period: '/month',
-      image: '/gen_mens1.jpg',
+      image: '/gen_mens1.webp',
       href: '/treatments/mens-hormone',
       bullets: ['Target range: 800–1,100 ng/dL', 'Includes estrogen blocker & supplies', 'Quarterly full blood panel tracking'],
     },
@@ -58,7 +58,7 @@ export default function Home() {
       subtitle: 'Accelerated joint, tendon & gut healing',
       price: '$349',
       period: '/month',
-      image: '/gen_peptides1.jpg',
+      image: '/gen_peptides1.webp',
       href: '/treatments/peptide-therapy',
       bullets: ['Micro-vascular angiogenesis support', '2x–3x faster tendon recovery', '503A cold-chain doorstep delivery'],
     },
@@ -72,39 +72,39 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section style={{ 
-        position: 'relative', 
-        minHeight: '82vh', 
-        display: 'flex', 
-        alignItems: 'center', 
+      <section style={{
+        position: 'relative',
+        minHeight: '82vh',
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'flex-start',
         padding: '4rem 6%',
         overflow: 'hidden'
       }}>
         {/* Single First Hero Background Image */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <Image 
-            src="/hero_bg.png" 
-            alt="VitalWellRx Hero Background" 
+          <Image
+            src="/hero_bg.webp"
+            alt="VitalWellRx Hero Background"
             fill
             priority
             quality={75}
             sizes="100vw"
-            style={{ objectFit: 'cover', objectPosition: 'center' }} 
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
         </div>
 
         {/* Dark Gradient Overlay Optimized for Left-Aligned Text */}
-        <div style={{ 
-          position: 'absolute', 
-          inset: 0, 
-          background: 'linear-gradient(90deg, rgba(11,19,43,0.95) 0%, rgba(11,19,43,0.75) 55%, rgba(11,19,43,0.25) 100%)', 
-          zIndex: 1 
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(90deg, rgba(11,19,43,0.95) 0%, rgba(11,19,43,0.75) 55%, rgba(11,19,43,0.25) 100%)',
+          zIndex: 1
         }}></div>
-        
+
         {/* Left-Aligned Hero Content */}
-        <motion.div 
-          className="flex-col gap-6" 
+        <motion.div
+          className="flex-col gap-6"
           style={{ position: 'relative', zIndex: 2, maxWidth: '650px', textAlign: 'left', alignItems: 'flex-start' }}
           initial="hidden"
           animate="visible"
@@ -116,14 +116,14 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="h1" style={{ color: 'white' }}>
-            Your Care.<br/>
+            Your Care.<br />
             <span style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--primary-gold)' }}>Your Way.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} style={{ fontSize: '1.25rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.9)', maxWidth: '540px' }}>
             Clinically-proven, MD overseen, longevity protocols and metabolic treatments, delivered directly to your door. No hidden fees, ever.
           </motion.p>
-          
+
           <motion.div variants={itemVariants} className="flex gap-4" style={{ marginTop: '0.5rem', width: '100%', justifyContent: 'flex-start' }}>
             <Link href="/get-started" className="btn-primary">
               Check Eligibility <ArrowRight size={20} style={{ marginLeft: '8px' }} />

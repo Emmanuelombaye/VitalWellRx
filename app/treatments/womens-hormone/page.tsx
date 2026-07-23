@@ -34,7 +34,7 @@ export default function WomensHormoneHealth() {
       {/* 1. HERO SECTION (2-Image Moving Carousel) */}
       <section style={{ position: 'relative', minHeight: '75vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <ImageCarousel images={['/gen_womens1.jpg', '/gen_womens2.jpg']} alt="Women's Hormone Health Hero" height="100%" borderRadius="0" />
+          <ImageCarousel images={['/gen_womens1.webp', '/gen_womens2.webp']} alt="Women's Hormone Health Hero" height="100%" borderRadius="0" />
         </div>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(11,19,43,0.96) 0%, rgba(11,19,43,0.8) 55%, rgba(11,19,43,0.3) 100%)', zIndex: 1 }}></div>
 
@@ -97,7 +97,7 @@ export default function WomensHormoneHealth() {
             </div>
 
             <div style={{ position: 'relative', height: '420px', borderRadius: '1.5rem', overflow: 'hidden', border: '1px solid var(--card-border)', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
-              <Image src="/supplement_bottle.png" alt="Bioidentical Compound Packaging" fill style={{ objectFit: 'cover' }} />
+              <Image src="/supplement_bottle.webp" alt="Bioidentical Compound Packaging" fill style={{ objectFit: 'cover' }} />
               <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', backgroundColor: 'rgba(11,19,43,0.9)', backdropFilter: 'blur(10px)', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', border: '1px solid var(--primary-gold)', color: 'white', fontWeight: 700, fontSize: '0.85rem' }}>
                 💊 503A Licensed Compounding Quality
               </div>

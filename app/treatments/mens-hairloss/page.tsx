@@ -26,7 +26,7 @@ export default function MensHairLossPage() {
       {/* HERO SECTION */}
       <section style={{ position: 'relative', minHeight: '75vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <ImageCarousel images={['/gen_mens2.jpg', '/gen_mens1.jpg']} alt="Men's Hair Loss Protocol Hero" height="100%" borderRadius="0" />
+          <ImageCarousel images={['/gen_mens2.webp', '/gen_mens1.webp']} alt="Men's Hair Loss Protocol Hero" height="100%" borderRadius="0" />
         </div>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(11,19,43,0.96) 0%, rgba(11,19,43,0.8) 55%, rgba(11,19,43,0.3) 100%)', zIndex: 1 }}></div>
 
@@ -68,7 +68,7 @@ export default function MensHairLossPage() {
             </div>
 
             <div style={{ position: 'relative', height: '400px', borderRadius: '1.5rem', overflow: 'hidden', border: '1px solid var(--card-border)' }}>
-              <Image src="/gen_mens2.jpg" alt="Men's Hair Loss Restoration" fill sizes="(max-width: 768px) 100vw, 50vw" quality={80} style={{ objectFit: 'cover' }} />
+              <Image src="/gen_mens2.webp" alt="Men's Hair Loss Restoration" fill sizes="(max-width: 768px) 100vw, 50vw" quality={80} style={{ objectFit: 'cover' }} />
             </div>
           </div>
         </div>

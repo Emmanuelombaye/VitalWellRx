@@ -30,7 +30,7 @@ export default function ODTTabletsPage() {
       {/* HERO SECTION */}
       <section style={{ position: 'relative', minHeight: '75vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <ImageCarousel images={['/supplement_bottle.png', '/gen_weight2.jpg']} alt="Sublingual ODT Hero" height="100%" borderRadius="0" />
+          <ImageCarousel images={['/supplement_bottle.webp', '/gen_weight2.webp']} alt="Sublingual ODT Hero" height="100%" borderRadius="0" />
         </div>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(11,19,43,0.96) 0%, rgba(11,19,43,0.8) 55%, rgba(11,19,43,0.3) 100%)', zIndex: 1 }}></div>
 
@@ -72,7 +72,7 @@ export default function ODTTabletsPage() {
             </div>
 
             <div style={{ position: 'relative', height: '400px', borderRadius: '1.5rem', overflow: 'hidden', border: '1px solid var(--card-border)' }}>
-              <Image src="/supplement_bottle.png" alt="ODT Sublingual Bottle Packaging" fill style={{ objectFit: 'cover' }} />
+              <Image src="/supplement_bottle.webp" alt="ODT Sublingual Bottle Packaging" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
         </div>

@@ -12,7 +12,7 @@ const steps = [
     title: '1. Complete Your Online Health Profile',
     subtitle: '5-Minute Intake Assessment',
     desc: 'Fill out a confidential, HIPAA-compliant questionnaire detailing your medical history, fitness goals, and lifestyle habits. This creates your personalized clinical intake baseline.',
-    image: '/step1_profile.jpg',
+    image: '/step1_profile.webp',
     highlights: ['100% online intake in under 5 minutes', 'No medical insurance or referral needed', 'Secure 256-bit encrypted data privacy'],
   },
   {
@@ -21,7 +21,7 @@ const steps = [
     title: '2. Board-Certified Doctor Review',
     subtitle: '24–48 Hour Clinical Evaluation',
     desc: 'A licensed U.S. physician reviews your health intake and blood lab biomarkers. Your doctor designs a custom prescription protocol tailored specifically to your metabolic profile.',
-    image: '/step2_doctor.jpg',
+    image: '/step2_doctor.webp',
     highlights: ['1-on-1 telehealth physician oversight', 'Comprehensive blood lab biomarker analysis', 'Customized precision dose titration'],
   },
   {
@@ -30,7 +30,7 @@ const steps = [
     title: '3. Compounded Meds Delivered to Door',
     subtitle: 'Discreet Express Shipping',
     desc: 'Your prescribed medication is freshly compounded at an accredited 503A U.S. pharmacy and shipped directly to your home in temperature-controlled, discreet packaging.',
-    image: '/step3_shipping.jpg',
+    image: '/step3_shipping.webp',
     highlights: ['FDA-regulated 503A compounding quality', 'Temperature-controlled cold-chain packaging', 'Free overnight expedited doorstep delivery'],
   },
   {
@@ -39,7 +39,7 @@ const steps = [
     title: '4. Ongoing Tracking & Protocol Tuning',
     subtitle: 'Dedicated Member Portal',
     desc: 'Monitor your weight loss, hormone levels, and energy progress inside your Member Portal. Unlimited direct messaging with your physician ensures long-term sustained results.',
-    image: '/step4_dashboard.jpg',
+    image: '/step4_dashboard.webp',
     highlights: ['Quarterly follow-up blood panel tracking', 'Direct 1-on-1 provider portal messaging', 'Flexible month-to-month subscription (cancel anytime)'],
   },
 ]
@@ -143,7 +143,7 @@ export default function HowItWorks() {
         <div className="container" style={{ textAlign: 'center' }}>
           <span style={{ color: 'var(--primary-gold)', fontWeight: 800, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px' }}>Clear Milestones</span>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginTop: '0.5rem', marginBottom: '3rem' }}>What to Expect Timeline</h2>
-          
+
           <div className="grid grid-cols-4 gap-6">
             {[
               { time: 'Day 1', label: 'Submit your 5-min health profile online', color: '#D4AF37' },
