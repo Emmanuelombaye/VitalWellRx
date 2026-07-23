@@ -51,7 +51,7 @@ export default function Navbar() {
   ]
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: 'rgba(11, 19, 43, 0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+    <header style={{ position: 'sticky', top: 0, left: 0, width: '100%', zIndex: 1000, backgroundColor: 'rgba(11, 19, 43, 0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
       <nav className="container" style={{ padding: '1.1rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Left: Brand Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
