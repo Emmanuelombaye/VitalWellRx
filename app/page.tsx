@@ -1,24 +1,68 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Activity, ShieldCheck, Dumbbell, ArrowRight, HeartPulse, Stethoscope, BadgeCheck, Clock, Play } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Activity, ShieldCheck, Dumbbell, ArrowRight, HeartPulse, Stethoscope, BadgeCheck, Clock, Sparkles, Star, CheckCircle2, Pill, Scale, Beaker, Dna } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import ImageCarousel from '../components/ImageCarousel'
 import WhatWeTreat from '../components/WhatWeTreat'
 
 export default function Home() {
-
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   }
+
+  const featuredProtocols = [
+    {
+      id: 'weight-loss',
+      badge: 'MOST POPULAR METABOLIC',
+      title: 'Tirzepatide Dual GIP / GLP-1',
+      subtitle: 'Up to 22.5% average weight reduction',
+      price: '$340',
+      period: '/month',
+      image: '/gen_weight1.jpg',
+      href: '/treatments/weight-loss',
+      bullets: ['Curbs food noise in 24-48 hours', 'Preserves lean skeletal muscle', '100% board-certified MD oversight'],
+    },
+    {
+      id: 'odt-tablets',
+      badge: '100% NEEDLE-FREE ORAL',
+      title: 'Sublingual Tirzepatide & GLP-1 ODT',
+      subtitle: 'Daily sublingual oral dissolving tablets',
+      price: '$310',
+      period: '/month',
+      image: '/supplement_bottle.png',
+      href: '/treatments/odt-tablets',
+      bullets: ['Dissolves under tongue in 90 seconds', 'Zero needles, syringes, or refrigerating', 'Direct capillary mucosal absorption'],
+    },
+    {
+      id: 'mens-trt',
+      badge: 'BIOIDENTICAL TESTOSTERONE',
+      title: "Men's TRT & Vitality Protocol",
+      subtitle: 'Restoring free serum testosterone levels',
+      price: '$199',
+      period: '/month',
+      image: '/gen_mens1.jpg',
+      href: '/treatments/mens-hormone',
+      bullets: ['Target range: 800–1,100 ng/dL', 'Includes estrogen blocker & supplies', 'Quarterly full blood panel tracking'],
+    },
+    {
+      id: 'peptide-repair',
+      badge: 'CELLULAR REGENERATION',
+      title: 'BPC-157 Pentadecapeptide Repair',
+      subtitle: 'Accelerated joint, tendon & gut healing',
+      price: '$349',
+      period: '/month',
+      image: '/gen_peptides1.jpg',
+      href: '/treatments/peptide-therapy',
+      bullets: ['Micro-vascular angiogenesis support', '2x–3x faster tendon recovery', '503A cold-chain doorstep delivery'],
+    },
+  ]
 
   return (
     <main>
@@ -30,7 +74,7 @@ export default function Home() {
       {/* Hero Section */}
       <section style={{ 
         position: 'relative', 
-        minHeight: '88vh', 
+        minHeight: '82vh', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'flex-start',
@@ -85,22 +129,6 @@ export default function Home() {
               Check Eligibility <ArrowRight size={20} style={{ marginLeft: '8px' }} />
             </Link>
           </motion.div>
-
-          {/* Floating Product Card */}
-          <motion.div variants={itemVariants} className="product-overlay-card" style={{ marginTop: '1.5rem' }}>
-            <div style={{ width: '90px', flexShrink: 0, backgroundColor: '#f1f5f9', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
-              <Image src="/supplement_bottle.png" alt="Cere Vitality Blend" fill style={{ objectFit: 'cover' }} />
-            </div>
-            <div style={{ textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '1px' }}>Featured Protocol</span>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '2px 0' }}>Cere Vitality Blend</h3>
-              <p style={{ fontSize: '0.75rem', color: '#64748b' }}>Dual-action metabolic support and longevity optimization.</p>
-              <div style={{ marginTop: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.875rem', fontWeight: 800 }}>$340/mo.</span>
-                <Link href="/get-started" style={{ fontSize: '0.75rem', backgroundColor: 'var(--primary-navy)', color: 'white', padding: '5px 12px', borderRadius: '4px', fontWeight: 700 }}>Select</Link>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </section>
 
@@ -116,6 +144,101 @@ export default function Home() {
               <div className="marquee-item"><ShieldCheck size={16} /> ZERO HIDDEN FEES</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* As Featured In Press Bar */}
+      <section style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '1.75rem 0' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', letterSpacing: '2px', display: 'block', marginBottom: '1rem' }}>
+            AS FEATURED IN CLINICAL & HEALTH MEDIA
+          </span>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '3rem', flexWrap: 'wrap', opacity: 0.7, fontWeight: 900, fontSize: '1.1rem', letterSpacing: '1px', color: '#94A3B8' }}>
+            <span>FORBES</span>
+            <span>BLOOMBERG HEALTH</span>
+            <span>MEN&apos;S HEALTH</span>
+            <span>WALL STREET JOURNAL</span>
+            <span>HEALTHLINE</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Luxury Featured Protocols Showcase Section */}
+      <section style={{ padding: '6rem 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', backgroundColor: 'rgba(212,175,55,0.15)', color: 'var(--primary-gold)', padding: '0.4rem 1rem', borderRadius: '99px', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '0.75rem' }}>
+              <Sparkles size={16} /> Doctor-Supervised Formulations
+            </div>
+            <h2 className="h2" style={{ marginTop: '0.5rem' }}>
+              Featured <span className="text-gold">Medical Protocols</span>
+            </h2>
+            <p className="text-muted" style={{ fontSize: '1.15rem', maxWidth: '620px', margin: '0.75rem auto 0', lineHeight: 1.6 }}>
+              Explore our most requested telehealth programs. All plans include 1-on-1 doctor intake, pharmacy compounding, and doorstep shipping.
+            </p>
+          </div>
+
+          {/* 4 Cards Grid */}
+          <div className="grid grid-cols-2 gap-8">
+            {featuredProtocols.map(fp => (
+              <motion.div
+                key={fp.id}
+                whileHover={{ y: -6 }}
+                style={{
+                  backgroundColor: 'var(--primary-navy)',
+                  borderRadius: '1.5rem',
+                  border: '1px solid var(--primary-gold)',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 45px rgba(0,0,0,0.35)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <div>
+                  {/* Card Image Banner */}
+                  <div style={{ position: 'relative', height: '240px', width: '100%' }}>
+                    <Image src={fp.image} alt={fp.title} fill sizes="(max-width: 768px) 100vw, 50vw" quality={80} style={{ objectFit: 'cover' }} />
+                    <div style={{ position: 'absolute', top: '1rem', left: '1rem', backgroundColor: 'rgba(11,19,43,0.9)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '5px 14px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.4)' }}>
+                      {fp.badge}
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div style={{ padding: '2rem' }}>
+                    <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', marginBottom: '0.25rem' }}>
+                      {fp.title}
+                    </h3>
+                    <div style={{ fontSize: '0.875rem', color: 'var(--primary-gold)', fontWeight: 700, marginBottom: '1.25rem' }}>
+                      {fp.subtitle}
+                    </div>
+
+                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                      {fp.bullets.map((bullet, idx) => (
+                        <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.9)' }}>
+                          <CheckCircle2 size={16} style={{ color: '#10B981', flexShrink: 0 }} /> {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Footer Pricing & Button */}
+                <div style={{ padding: '1.5rem 2rem 2rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ fontSize: '2.25rem', fontWeight: 900, color: 'white', lineHeight: 1 }}>
+                      {fp.price}<span style={{ fontSize: '0.9rem', color: '#94A3B8', fontWeight: 600 }}>{fp.period}</span>
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>No hidden fees</div>
+                  </div>
+
+                  <Link href={fp.href} className="btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.9rem' }}>
+                    Explore Protocol <ArrowRight size={16} style={{ marginLeft: '6px' }} />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -178,30 +301,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Final CTA */}
-      <section style={{ padding: '6rem 0', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(212,175,55,0.08), transparent 70%)' }}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 style={{ fontSize: '3rem', fontWeight: 800, lineHeight: 1.1, marginBottom: '1rem' }}>
-              Your Health.<br/><span className="text-gold">Your Rules.</span>
-            </h2>
-            <p className="text-muted" style={{ fontSize: '1.25rem', maxWidth: '500px', margin: '0 auto 2rem' }}>
-              No insurance required. Precision care, just for you. Start your free consultation today.
-            </p>
-            <div className="flex justify-center gap-4">
-              <Link href="/contact" className="btn-primary" style={{ fontSize: '1.125rem' }}>
-                Get Started <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-              </Link>
-              <Link href="/treatments" className="btn-outline" style={{ fontSize: '1.125rem' }}>
-                View Treatments
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
     </main>
   )
 }
