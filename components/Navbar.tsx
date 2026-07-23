@@ -15,6 +15,7 @@ export default function Navbar() {
     { title: "Men's Health", href: '/treatments/mens-hormone' },
     { title: "Women's Health", href: '/treatments/womens-hormone' },
     { title: 'Peptides', href: '/treatments/peptide-therapy' },
+    { title: 'How It Works', href: '/how-it-works' },
   ]
 
   const aToZCategories = [
@@ -216,6 +217,9 @@ export default function Navbar() {
               </div>
               <Link href="/treatments" onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}>
                 🌟 All Treatments
+              </Link>
+              <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--primary-gold)', fontWeight: 700, fontSize: '1.05rem' }}>
+                ⚙️ How It Works
               </Link>
               <Link href="/treatments/weight-loss" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
                 🔥 Medical Weight Loss (Tirzepatide)
