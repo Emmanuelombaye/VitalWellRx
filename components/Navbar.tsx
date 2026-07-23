@@ -3,12 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ChevronDown, Scale, Zap, Heart, Dna, ArrowRight, Sparkles, ShieldCheck, Menu, X, ShoppingBag, Scissors, Pill } from 'lucide-react'
+import { ChevronDown, Scale, Zap, Heart, Dna, ArrowRight, Sparkles, Menu, X, ShoppingBag } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileExpandedCat, setMobileExpandedCat] = useState<string | null>('Metabolic & Weight Loss')
 
   const treatmentCategories = [
     {
@@ -219,15 +220,17 @@ export default function Navbar() {
               border: 'none',
               color: 'white',
               cursor: 'pointer',
-              padding: '0.4rem',
+              padding: '0.5rem',
+              borderRadius: '0.5rem',
+              backgroundColor: 'rgba(255,255,255,0.06)',
             }}
           >
-            {mobileMenuOpen ? <X size={26} className="text-gold" /> : <Menu size={26} />}
+            {mobileMenuOpen ? <X size={24} className="text-gold" /> : <Menu size={24} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Animated Navigation Drawer */}
+      {/* Mobile Animated Accordion Dropdown Navigation Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -236,50 +239,151 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             style={{
-              backgroundColor: 'var(--primary-navy)',
+              backgroundColor: 'rgba(11, 19, 43, 0.98)',
+              backdropFilter: 'blur(20px)',
               borderTop: '1px solid rgba(255,255,255,0.08)',
-              padding: '1.5rem',
-              overflow: 'hidden',
+              padding: '1.25rem 1.5rem 2rem',
+              maxHeight: '85vh',
+              overflowY: 'auto',
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                Navigation & Treatments
-              </div>
-              <Link href="/shop" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--primary-gold)', fontWeight: 800, fontSize: '1.1rem' }}>
-                🛒 Pharmacy Shop Catalog
-              </Link>
-              <Link href="/treatments" onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontWeight: 700, fontSize: '1.05rem' }}>
-                🌟 All Treatments
-              </Link>
-              <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '1rem' }}>
-                ⚙️ How It Works
-              </Link>
-              <Link href="/treatments/weight-loss" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                🔥 Medical Weight Loss (Tirzepatide)
-              </Link>
-              <Link href="/treatments/odt-tablets" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                💊 Sublingual GLP-1 ODT Tablets
-              </Link>
-              <Link href="/treatments/mens-hormone" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                ⚡ Men&apos;s TRT Protocol
-              </Link>
-              <Link href="/treatments/mens-hairloss" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                💇 Men&apos;s Hair Loss (Finasteride + Minoxidil)
-              </Link>
-              <Link href="/treatments/fertility-mens" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                🌱 Male Fertility & HCG
-              </Link>
-              <Link href="/treatments/womens-hormone" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                🌸 Women&apos;s BHRT Therapy
-              </Link>
-              <Link href="/treatments/peptide-therapy" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                🧬 BPC-157 Peptide Repair
-              </Link>
+              {/* Quick Navigation Links */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                <Link
+                  href="/shop"
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    backgroundColor: 'rgba(212,175,55,0.15)',
+                    border: '1px solid rgba(212,175,55,0.3)',
+                    color: 'var(--primary-gold)',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    padding: '0.75rem 1rem',
+                    borderRadius: '0.75rem',
+                    textAlign: 'center',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.4rem'
+                  }}
+                >
+                  <ShoppingBag size={16} /> Shop Catalog
+                </Link>
 
-              <div style={{ paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', gap: '1rem' }}>
-                <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary" style={{ width: '100%', padding: '0.85rem' }}>
-                  Get Started →
+                <Link
+                  href="/treatments"
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: '0.9rem',
+                    padding: '0.75rem 1rem',
+                    borderRadius: '0.75rem',
+                    textAlign: 'center',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.4rem'
+                  }}
+                >
+                  🌟 All Treatments
+                </Link>
+              </div>
+
+              {/* Treatment Categories Collapsible Accordion Dropdowns */}
+              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '1.5px', marginTop: '0.25rem' }}>
+                Prescription Protocols Dropdown Menu
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {treatmentCategories.map((col, idx) => {
+                  const isExpanded = mobileExpandedCat === col.category
+
+                  return (
+                    <div key={idx} style={{ backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '0.85rem', border: `1px solid ${col.border}`, overflow: 'hidden' }}>
+                      <button
+                        onClick={() => setMobileExpandedCat(isExpanded ? null : col.category)}
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0.85rem 1rem',
+                          background: 'none',
+                          border: 'none',
+                          color: 'white',
+                          fontWeight: 800,
+                          fontSize: '0.95rem',
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: col.color }}>
+                          {col.icon} {col.category}
+                        </div>
+                        <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                          <ChevronDown size={18} style={{ color: 'var(--primary-gold)' }} />
+                        </motion.div>
+                      </button>
+
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            style={{ overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.06)', backgroundColor: 'rgba(0,0,0,0.2)', padding: '0.5rem 0.75rem 0.75rem' }}
+                          >
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                              {col.items.map((item, i) => (
+                                <Link
+                                  key={i}
+                                  href={item.href}
+                                  onClick={() => { setMobileMenuOpen(false); setMobileExpandedCat(null) }}
+                                  style={{
+                                    display: 'block',
+                                    padding: '0.6rem 0.75rem',
+                                    borderRadius: '0.5rem',
+                                    backgroundColor: 'rgba(255,255,255,0.04)',
+                                    textDecoration: 'none'
+                                  }}
+                                >
+                                  <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'white' }}>{item.name}</div>
+                                  <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>{item.desc}</div>
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* General Navigation Links */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '0.95rem', padding: '0.4rem 0.5rem', textDecoration: 'none' }}>
+                  ⚙️ How It Works
+                </Link>
+                <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: '0.95rem', padding: '0.4rem 0.5rem', textDecoration: 'none' }}>
+                  ℹ️ About VitalWellRx
+                </Link>
+                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)} style={{ color: '#94A3B8', fontWeight: 600, fontSize: '0.95rem', padding: '0.4rem 0.5rem', textDecoration: 'none' }}>
+                  🔑 Patient Portal
+                </Link>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ paddingTop: '0.75rem' }}>
+                <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary" style={{ width: '100%', padding: '0.85rem', fontSize: '1rem' }}>
+                  Get Started Intake →
                 </Link>
               </div>
             </div>
