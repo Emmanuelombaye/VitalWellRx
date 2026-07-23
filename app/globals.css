@@ -205,6 +205,18 @@ a {
   100% { transform: translateX(-50%); }
 }
 
+/* Responsive Display Utilities */
+.hidden { display: none !important; }
+@media (min-width: 769px) {
+  .md\:flex { display: flex !important; }
+  .md\:hidden { display: none !important; }
+  .md\:grid { display: grid !important; }
+}
+@media (max-width: 768px) {
+  .md\:flex { display: none !important; }
+  .md\:hidden { display: flex !important; }
+}
+
 /* ===== Responsive Breakpoints for Mobile Displays ===== */
 @media (max-width: 1024px) {
   .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
@@ -213,17 +225,23 @@ a {
 }
 
 @media (max-width: 768px) {
-  .h1 { font-size: 2.25rem !important; }
-  .h2 { font-size: 1.75rem !important; }
+  .h1 { font-size: 2.15rem !important; line-height: 1.15 !important; margin-bottom: 1rem !important; }
+  .h2 { font-size: 1.65rem !important; line-height: 1.2 !important; }
+
+  section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
 
   .container {
-    padding: 0 1rem;
+    padding: 0 1.25rem !important;
   }
 
   .grid-cols-2,
   .grid-cols-3,
   .grid-cols-4 {
     grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
   }
 
   .condition-card-grid {
@@ -245,13 +263,14 @@ a {
 
   .footer-main-grid {
     grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
+    gap: 2.25rem !important;
   }
 
   .btn-primary, .btn-outline {
-    padding: 0.85rem 1.75rem;
+    padding: 0.85rem 1.5rem;
     font-size: 0.95rem;
     width: 100%;
+    min-height: 44px;
   }
 
   /* Portal Dashboard Mobile */
@@ -270,8 +289,8 @@ a {
 }
 
 @media (max-width: 480px) {
-  .h1 { font-size: 1.95rem !important; }
-  .h2 { font-size: 1.5rem !important; }
+  .h1 { font-size: 1.85rem !important; }
+  .h2 { font-size: 1.45rem !important; }
 
   .glass-card {
     padding: 1.25rem;

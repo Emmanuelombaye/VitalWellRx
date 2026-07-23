@@ -218,7 +218,7 @@ export default function ShopPage() {
                 <div>
                   {/* Product Image */}
                   <div style={{ position: 'relative', height: '230px', width: '100%', overflow: 'hidden' }}>
-                    <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 100vw, 33vw" quality={80} style={{ objectFit: 'cover' }} />
+                    <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 100vw, 33vw" quality={80} loading="eager" priority={p.id === 'tirzepatide-injectable' || p.id === 'glp1-odt'} style={{ objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', top: '0.85rem', left: '0.85rem', backgroundColor: 'rgba(11,19,43,0.9)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '4px 12px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.4)' }}>
                       {p.badge}
                     </div>

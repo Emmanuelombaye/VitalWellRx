@@ -202,7 +202,7 @@ export default function Home() {
                 <div>
                   {/* Card Image Banner */}
                   <div style={{ position: 'relative', height: '240px', width: '100%' }}>
-                    <Image src={fp.image} alt={fp.title} fill sizes="(max-width: 768px) 100vw, 50vw" quality={80} style={{ objectFit: 'cover' }} />
+                    <Image src={fp.image} alt={fp.title} fill sizes="(max-width: 768px) 100vw, 50vw" quality={80} loading="eager" priority style={{ objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', top: '1rem', left: '1rem', backgroundColor: 'rgba(11,19,43,0.9)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '5px 14px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.4)' }}>
                       {fp.badge}
                     </div>

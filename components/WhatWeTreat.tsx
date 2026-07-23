@@ -216,7 +216,7 @@ export default function WhatWeTreat() {
                   {/* Card Header & Main Overview */}
                   <div className="condition-card-grid">
                     <div style={{ position: 'relative', height: '220px', width: '100%', borderRadius: '1rem', overflow: 'hidden' }}>
-                      <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 320px" quality={80} style={{ objectFit: 'cover' }} />
+                      <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 320px" quality={80} loading="eager" style={{ objectFit: 'cover' }} />
                       <div style={{ position: 'absolute', top: '0.75rem', left: '0.75rem', backgroundColor: 'rgba(11,19,43,0.85)', backdropFilter: 'blur(8px)', color: 'var(--primary-gold)', padding: '4px 12px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', border: '1px solid rgba(212,175,55,0.3)' }}>
                         {item.badge}
                       </div>

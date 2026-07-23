@@ -199,11 +199,11 @@ export default function Navbar() {
         </div>
 
         {/* Right CTAs */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <Link href="/dashboard" style={{ fontWeight: 600, color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <Link href="/dashboard" className="hidden md:inline-flex" style={{ fontWeight: 600, color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>
             Portal
           </Link>
-          <Link href="/get-started" className="btn-primary" style={{ padding: '0.55rem 1.35rem', fontSize: '0.875rem' }}>
+          <Link href="/get-started" className="btn-primary hidden md:inline-flex" style={{ padding: '0.55rem 1.35rem', fontSize: '0.875rem' }}>
             Get Started
           </Link>
 
