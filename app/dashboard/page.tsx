@@ -65,13 +65,10 @@ export default function Dashboard() {
     <div className="flex portal-layout" style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
       {/* Sidebar Navigation */}
       <aside className="portal-aside" style={{ width: '260px', borderRight: '1px solid rgba(255,255,255,0.08)', padding: '2rem 1.5rem', backgroundColor: 'var(--primary-navy)' }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', marginBottom: '3rem' }}>
-          <div style={{ position: 'relative', width: '84px', height: '40px', borderRadius: '6px', overflow: 'hidden', flexShrink: 0, backgroundColor: '#ffffff', padding: '3px 6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Image src="/newlogo.png" alt="VitalWellRx" fill sizes="84px" style={{ objectFit: 'contain', padding: '2px' }} />
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginBottom: '3rem' }}>
+          <div style={{ position: 'relative', width: '150px', height: '46px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, backgroundColor: '#ffffff', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Image src="/newlogo.png" alt="VitalWellRx" fill sizes="150px" style={{ objectFit: 'contain', padding: '2px' }} />
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'white' }}>
-            VitalWell<span className="text-gold">Rx</span>
-          </span>
         </Link>
 
         <div className="flex flex-col gap-3">
