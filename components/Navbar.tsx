@@ -63,7 +63,7 @@ export default function Navbar() {
 
   return (
     <header style={{ position: 'sticky', top: 0, left: 0, width: '100%', zIndex: 1000, backgroundColor: 'rgba(11, 19, 43, 0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-      <nav className="container" style={{ padding: '1.1rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <nav className="container" style={{ position: 'relative', padding: '1.1rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Left: Brand Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <div style={{ position: 'relative', width: '160px', height: '48px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, backgroundColor: '#ffffff', padding: '4px 8px', boxShadow: '0 2px 10px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -75,7 +75,7 @@ export default function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
           {/* Treatments Mega Dropdown */}
           <div
-            style={{ position: 'relative', padding: '0.5rem 0' }}
+            style={{ padding: '0.5rem 0' }}
             onMouseEnter={() => setMegaMenuOpen(true)}
             onMouseLeave={() => setMegaMenuOpen(false)}
           >
@@ -102,7 +102,7 @@ export default function Navbar() {
               </motion.div>
             </button>
 
-            {/* Mega Dropdown Panel */}
+            {/* Mega Dropdown Panel Anchored to Nav Container */}
             <AnimatePresence>
               {megaMenuOpen && (
                 <motion.div
@@ -114,15 +114,16 @@ export default function Navbar() {
                     position: 'absolute',
                     top: '100%',
                     left: '50%',
-                    transform: 'translateX(-38%)',
-                    width: 'min(920px, calc(100vw - 2rem))',
+                    transform: 'translateX(-50%)',
+                    width: 'min(1100px, calc(100vw - 2rem))',
                     maxWidth: 'calc(100vw - 2rem)',
+                    boxSizing: 'border-box',
                     backgroundColor: 'rgba(11, 19, 43, 0.98)',
-                    backdropFilter: 'blur(20px)',
+                    backdropFilter: 'blur(24px)',
                     border: '1px solid rgba(212, 175, 55, 0.4)',
                     borderRadius: '1.25rem',
-                    padding: '1.75rem',
-                    boxShadow: '0 25px 60px rgba(0,0,0,0.65)',
+                    padding: '1.75rem 2rem',
+                    boxShadow: '0 25px 60px rgba(0,0,0,0.75)',
                     zIndex: 200,
                   }}
                 >
@@ -139,16 +140,16 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1.25rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem' }}>
                     {treatmentCategories.map((col, idx) => (
                       <div key={idx}>
                         <div
                           style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '0.5rem',
+                            gap: '0.4rem',
                             fontWeight: 800,
-                            fontSize: '0.75rem',
+                            fontSize: '0.725rem',
                             color: col.color,
                             backgroundColor: col.bg,
                             border: `1px solid ${col.border}`,
@@ -157,6 +158,7 @@ export default function Navbar() {
                             marginBottom: '0.85rem',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
+                            whiteSpace: 'nowrap',
                           }}
                         >
                           {col.icon} {col.category}
