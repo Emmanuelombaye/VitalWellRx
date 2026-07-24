@@ -22,7 +22,7 @@ export default function ImageCarousel({
   useEffect(() => {
     if (!images || images.length <= 1) return
     const timer = setInterval(() => {
-      setIndex(prev => (prev + 1) % images.length)
+      setIndex((prev) => (prev + 1) % images.length)
     }, 3500)
     return () => clearInterval(timer)
   }, [images])
@@ -59,7 +59,6 @@ export default function ImageCarousel({
         </motion.div>
       </AnimatePresence>
 
-      {/* Gradient Overlay */}
       <div
         style={{
           position: 'absolute',
@@ -69,7 +68,6 @@ export default function ImageCarousel({
         }}
       />
 
-      {/* Moving Indicator Dots */}
       <div
         style={{
           position: 'absolute',
@@ -90,6 +88,7 @@ export default function ImageCarousel({
           <button
             key={i}
             onClick={() => setIndex(i)}
+            aria-label={`Show image ${i + 1}`}
             style={{
               width: i === index ? '18px' : '6px',
               height: '6px',

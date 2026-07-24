@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Clock, Send, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
+import { contact } from '@/data/site'
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
@@ -37,9 +38,9 @@ export default function Contact() {
             <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '2rem' }}>Contact <span className="text-gold">Information</span></h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {[
-                { icon: <Mail size={24} />, label: 'Email Us', value: 'care@vitalwellrx.com', sub: 'We respond within 24 hours' },
-                { icon: <Phone size={24} />, label: 'Call Us', value: '1-800-VITAL-RX', sub: 'Mon – Fri, 8am – 8pm EST' },
-                { icon: <MapPin size={24} />, label: 'Headquarters', value: 'Miami, FL', sub: 'Telehealth available in all 50 states' },
+                { icon: <Mail size={24} />, label: 'Email Us', value: contact.email, sub: 'We respond within 24 hours' },
+                { icon: <Phone size={24} />, label: 'Call Us', value: contact.phoneDisplay, sub: 'Mon – Fri, 8am – 8pm EST' },
+                { icon: <MapPin size={24} />, label: 'Headquarters', value: contact.city, sub: 'Telehealth available in all 50 states' },
                 { icon: <Clock size={24} />, label: 'Response Time', value: '24–48 Hours', sub: 'For medical reviews' },
               ].map((item, i) => (
                 <div key={i} className="glass-card" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '1.5rem' }}>

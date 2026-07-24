@@ -1,0 +1,7 @@
+export { default as TreatmentHero } from './TreatmentHero'
+export { default as ContentWithImage } from './ContentWithImage'
+export { default as SimplePricing } from './SimplePricing'
+export { default as FeaturedPricing } from './FeaturedPricing'
+export { default as TreatmentFaq } from './TreatmentFaq'
+export { default as StatsBar } from './StatsBar'
+export { default as SimpleTreatmentPage } from './SimpleTreatmentPage'

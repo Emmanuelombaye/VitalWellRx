@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ShieldCheck, Lock, Award, HeartPulse, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { site, trustBadges } from '@/data/site'
 
 export default function Footer() {
   return (
@@ -27,19 +28,18 @@ export default function Footer() {
           <div>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', marginBottom: '1.25rem' }}>
               <div style={{ position: 'relative', width: '135px', height: '62px', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#ffffff', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/newlogo.png" alt="VitalWellRx Logo" fill sizes="135px" style={{ objectFit: 'contain', padding: '2px' }} />
+                <Image src="/newlogo.png" alt={`${site.name} Logo`} fill sizes="135px" style={{ objectFit: 'contain', padding: '2px' }} />
               </div>
             </Link>
             <p style={{ color: '#94A3B8', fontSize: '0.925rem', lineHeight: 1.7, maxWidth: '320px', marginBottom: '1.5rem' }}>
-              VitalWellRx delivers physician-guided medical weight loss, bioidentical TRT & BHRT hormone balance, and cellular peptide protocols directly to your door.
+              {site.name} delivers physician-guided medical weight loss, bioidentical TRT & BHRT hormone balance, and cellular peptide protocols directly to your door.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--primary-gold)', fontWeight: 700 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <CheckCircle2 size={16} /> 100% Board-Certified US Doctors
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <CheckCircle2 size={16} /> FDA-Regulated 503A Pharmacies
-              </div>
+              {trustBadges.map((badge) => (
+                <div key={badge} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <CheckCircle2 size={16} /> {badge}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export default function Footer() {
         {/* Bottom Rights & Badges */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <p style={{ color: '#64748B', fontSize: '0.8125rem' }}>
-            © {new Date().getFullYear()} VitalWellRx Medical PC. All rights reserved.
+            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
           <div style={{ display: 'flex', gap: '1.5rem', color: '#64748B', fontSize: '0.8125rem' }}>
             <Link href="/privacy" style={{ color: '#64748B', textDecoration: 'none' }}>Privacy Policy</Link>
