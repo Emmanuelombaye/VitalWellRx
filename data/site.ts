@@ -8,8 +8,8 @@ export const site = {
 
 export const contact: SiteContact = {
   email: 'care@vitalwellrx.com',
-  phone: '7866512127',
-  phoneDisplay: '786 651 2127',
+  phone: '1-800-VITAL-RX',
+  phoneDisplay: '1-800-VITAL-RX',
   address: 'Miami, FL',
   city: 'Miami, FL',
 }
