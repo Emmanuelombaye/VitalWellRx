@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
@@ -142,14 +142,10 @@ export default function ShopPage() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 120])
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.15])
 
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setActiveId((prev) => (prev === 'tirzepatide' ? 'semaglutide' : 'tirzepatide'))
-    }, 7000)
-    return () => window.clearInterval(id)
-  }, [activeId])
-
-  const selectProduct = (id: string) => setActiveId(id)
+  const selectProduct = (id: string) => {
+    setActiveId(id)
+    document.getElementById('shop-stage')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <main className="shop-page">
@@ -167,19 +163,19 @@ export default function ShopPage() {
             transition={{ duration: 0.7 }}
           >
             <span className="shop-pill">
-              <Sparkles size={14} /> Doctor-prescribed · 503A pharmacy
+              <Sparkles size={14} /> Shop · 2 protocols in stock
             </span>
             <h1>
-              Shop the protocols
+              Your pharmacy shelf,
               <br />
-              <em>built to work.</em>
+              <em>simplified.</em>
             </h1>
             <p>
-              Two personalized weight-loss treatments — Tirzepatide+ and Semaglutide+ — reviewed by licensed providers and shipped discreetly to your door.
+              Browse Tirzepatide+ and Semaglutide+ like a real shop — clear pricing, physician review included, shipped discreetly once approved.
             </p>
             <div className="shop-hero__actions">
-              <MagneticButton href="#shop-stage">
-                Explore products <ArrowRight size={18} />
+              <MagneticButton href="#shop-shelf">
+                Browse products <ArrowRight size={18} />
               </MagneticButton>
               <MagneticButton href="/get-started" variant="ghost">
                 Check eligibility
@@ -213,7 +209,7 @@ export default function ShopPage() {
                   animate={{ y: [0, -14, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  <Image src={active.image} alt={active.title} fill sizes="320px" priority quality={70} style={{ objectFit: 'contain' }} />
+                  <Image src={active.image} alt={active.title} fill sizes="320px" priority quality={60} style={{ objectFit: 'contain' }} />
                 </motion.div>
                 <motion.div
                   className="shop-hero__float-card"
@@ -221,13 +217,67 @@ export default function ShopPage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.35 }}
                 >
-                  <strong style={{ color: active.tone }}>{active.stat}</strong>
-                  <span>{active.statLabel}</span>
+                  <strong style={{ color: active.tone }}>{active.price}</strong>
+                  <span>{active.period} · Rx included</span>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* ── Product shelf ── */}
+      <section id="shop-shelf" className="shop-shelf">
+        <div className="shop-shell">
+          <div className="shop-shelf__bar">
+            <div>
+              <p className="shop-eyebrow">In stock</p>
+              <h2>Shop treatments</h2>
+            </div>
+            <span className="shop-shelf__count">2 products</span>
+          </div>
+
+          <div className="shop-shelf__grid">
+            {products.map((p, i) => (
+              <motion.article
+                key={p.id}
+                className={`shop-shelf-card ${activeId === p.id ? 'is-active' : ''}`}
+                style={{ ['--shelf-tone' as string]: p.tone, ['--shelf-soft' as string]: p.toneSoft }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <button type="button" className="shop-shelf-card__media" onClick={() => selectProduct(p.id)} aria-label={`View ${p.label}`}>
+                  <span className="shop-shelf-card__badge">{p.badge}</span>
+                  <Image src={p.image} alt={p.title} width={160} height={220} quality={60} loading="lazy" sizes="160px" style={{ objectFit: 'contain' }} />
+                </button>
+                <div className="shop-shelf-card__body">
+                  <p className="shop-shelf-card__mech">{p.mechanism}</p>
+                  <h3>{p.title}</h3>
+                  <p className="shop-shelf-card__tag">{p.tagline}</p>
+                  <div className="shop-shelf-card__row">
+                    <div className="shop-shelf-card__price">
+                      <strong>{p.price}</strong>
+                      <span>{p.period}</span>
+                    </div>
+                    <div className="shop-shelf-card__rating">
+                      <Star size={13} fill="currentColor" /> {p.rating}
+                    </div>
+                  </div>
+                  <div className="shop-shelf-card__actions">
+                    <button type="button" className="shop-shelf-card__view" onClick={() => selectProduct(p.id)}>
+                      Quick view
+                    </button>
+                    <Link href="/get-started" className="shop-shelf-card__buy" style={{ background: p.tone, color: p.id === 'tirzepatide' ? '#0B132B' : '#042f2e' }}>
+                      Add to plan <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── Product stage ── */}
@@ -240,14 +290,14 @@ export default function ShopPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              Choose your protocol
+              Product details
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Two treatments. <em>One clear path.</em>
+              Everything included. <em>No surprises.</em>
             </motion.h2>
           </div>
 
@@ -259,7 +309,7 @@ export default function ShopPage() {
                 aria-selected={activeId === p.id}
                 className={`shop-tab ${activeId === p.id ? 'is-active' : ''}`}
                 style={activeId === p.id ? { borderColor: p.tone, boxShadow: `0 0 0 4px ${p.toneSoft}` } : undefined}
-                onClick={() => selectProduct(p.id)}
+                onClick={() => setActiveId(p.id)}
               >
                 <span className="shop-tab__dot" style={{ background: p.tone }} />
                 {p.label}
@@ -336,11 +386,11 @@ export default function ShopPage() {
                     <span>{active.period}</span>
                   </div>
                   <div className="shop-product__cta-row">
-                    <Link href={active.href} className="shop-cta-primary" style={{ background: active.tone, color: active.id === 'tirzepatide' ? '#0B132B' : '#042f2e' }}>
-                      Start with {active.label} <ArrowRight size={18} />
+                    <Link href="/get-started" className="shop-cta-primary" style={{ background: active.tone, color: active.id === 'tirzepatide' ? '#0B132B' : '#042f2e' }}>
+                      Add {active.label} to plan <ArrowRight size={18} />
                     </Link>
-                    <Link href="/get-started" className="shop-cta-secondary">
-                      See if I qualify
+                    <Link href={active.href} className="shop-cta-secondary">
+                      Full details
                     </Link>
                   </div>
                   <p className="shop-product__enrolled">{active.enrolled}</p>
@@ -379,8 +429,8 @@ export default function ShopPage() {
                   <div className="shop-compare-card__price">
                     <strong>{p.price}</strong><span>{p.period}</span>
                   </div>
-                  <Link href={p.href} className="shop-cta-secondary shop-cta-secondary--dark">
-                    View details <ArrowRight size={16} />
+                  <Link href="/get-started" className="shop-cta-secondary shop-cta-secondary--dark">
+                    Add to plan <ArrowRight size={16} />
                   </Link>
                 </div>
               </motion.article>

@@ -32,7 +32,7 @@ export default function Footer() {
               </div>
             </Link>
             <p style={{ color: '#94A3B8', fontSize: '0.925rem', lineHeight: 1.7, maxWidth: '320px', marginBottom: '1.5rem' }}>
-              {site.name} delivers physician-guided medical weight loss, bioidentical TRT & BHRT hormone balance, and cellular peptide protocols directly to your door.
+              {site.name} delivers physician-guided Tirzepatide+ and Semaglutide+ weight-loss care — licensed providers, pharmacy fulfillment, and discreet delivery to your door.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--primary-gold)', fontWeight: 700 }}>
               {trustBadges.map((badge) => (
@@ -49,11 +49,10 @@ export default function Footer() {
               Treatments
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Link href="/treatments/weight-loss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Medical Weight Loss</Link>
-              <Link href="/treatments/mens-hormone" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Men&apos;s TRT Protocol</Link>
-              <Link href="/treatments/mens-hairloss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Men&apos;s Hair Loss Restoration</Link>
-              <Link href="/treatments/womens-hormone" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Women&apos;s Bioidentical BHRT</Link>
-              <Link href="/treatments/peptide-therapy" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Peptide Tissue Repair (BPC-157)</Link>
+              <Link href="/treatments/weight-loss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Tirzepatide+</Link>
+              <Link href="/treatments/odt-tablets" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Semaglutide+</Link>
+              <Link href="/treatments" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>All treatments</Link>
+              <Link href="/shop" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Shop</Link>
             </div>
           </div>
 
@@ -63,12 +62,12 @@ export default function Footer() {
               Navigation
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Link href="/shop" style={{ color: 'var(--primary-gold)', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}>🛒 Pharmacy Shop Catalog</Link>
+              <Link href="/shop" style={{ color: 'var(--primary-gold)', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}>Shop</Link>
               <Link href="/about" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>About VitalWellRx</Link>
-              <Link href="/how-it-works" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Telehealth Process</Link>
-              <Link href="/treatments" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>What We Treat A–Z</Link>
-              <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>5-Minute Assessment</Link>
-              <Link href="/dashboard" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Member Patient Portal</Link>
+              <Link href="/how-it-works" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>How it works</Link>
+              <Link href="/treatments" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Treatments</Link>
+              <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Get started</Link>
+              <Link href="/dashboard" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Patient portal</Link>
             </div>
           </div>
 

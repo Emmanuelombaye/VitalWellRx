@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Activity, Beaker, Dna, Settings, PieChart, Bell, Home, Lock, ShieldCheck, Check, ArrowRight, CreditCard, Sparkles, Truck, CheckCircle2, MessageSquare, AlertCircle } from 'lucide-react'
+import { Activity, Settings, PieChart, Bell, Home, Lock, ShieldCheck, Check, ArrowRight, CreditCard, Sparkles, Truck, CheckCircle2, MessageSquare, AlertCircle, Beaker } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -13,40 +13,22 @@ export default function Dashboard() {
 
   const protocols = [
     {
-      id: 'weight-loss',
-      name: 'Medical Weight Loss',
+      id: 'tirzepatide',
+      name: 'Personalized Tirzepatide+',
       badge: 'Dual GIP / GLP-1',
       price: '$340',
       period: '/month',
-      desc: 'Tirzepatide & GLP-1 compounding, monthly blood panels, and provider visits.',
+      desc: 'Weekly dual-agonist protocol with provider review, pharmacy fulfillment, and portal support.',
       icon: <Activity size={24} className="text-gold" />,
     },
     {
-      id: 'mens-trt',
-      name: "Men's Hormone Optimization",
-      badge: 'Bioidentical TRT',
-      price: '$199',
+      id: 'semaglutide',
+      name: 'Personalized Semaglutide+',
+      badge: 'Proven GLP-1',
+      price: '$310',
       period: '/month',
-      desc: 'Testosterone Cypionate, Anastrozole support, quarterly labs, and MD consults.',
-      icon: <Beaker size={24} className="text-gold" />,
-    },
-    {
-      id: 'womens-bhrt',
-      name: "Women's Bioidentical BHRT",
-      badge: 'Tri-Hormone Synergy',
-      price: '$189',
-      period: '/month',
-      desc: 'Estradiol, Micronized Progesterone & DHEA for sleep, skin & mood stability.',
+      desc: 'Weekly GLP-1 protocol for steady weight loss with licensed provider oversight.',
       icon: <Sparkles size={24} className="text-gold" />,
-    },
-    {
-      id: 'peptides',
-      name: 'Peptide Therapy & Repair',
-      badge: 'BPC-157 & CJC-1295',
-      price: '$349',
-      period: '/month',
-      desc: 'Prescription peptides for tendon, joint & gut mucosa tissue regeneration.',
-      icon: <Dna size={24} className="text-gold" />,
     },
   ]
 

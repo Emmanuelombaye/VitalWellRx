@@ -4,8 +4,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 export const metadata: Metadata = {
-  title: 'VitalWellRx | Telehealth & Longevity Protocols',
-  description: 'Comprehensive telehealth and personalized health optimization protocols backed by real-time data. Medical weight loss, bioidentical TRT/BHRT, and peptide therapy.',
+  title: 'VitalWellRx | Medical Weight Loss Telehealth',
+  description: 'Personalized Tirzepatide+ and Semaglutide+ weight-loss treatments with licensed U.S. providers, pharmacy fulfillment, and discreet delivery.',
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },

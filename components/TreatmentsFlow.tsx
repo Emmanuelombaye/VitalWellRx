@@ -12,7 +12,7 @@ const products = [
     id: 'semaglutide',
     name: 'GLP-1 (Semaglutide+)',
     short: 'Gradual, effective results.',
-    thumb: '/treatments/sema-thumb.jpg',
+    thumb: '/treatments/sema-thumb.webp',
     vial: '/treatments/vial-semaglutide.webp',
     price: 310,
     href: '/treatments/odt-tablets',
@@ -21,7 +21,7 @@ const products = [
     id: 'tirzepatide',
     name: 'GLP-1 + GIP (Tirzepatide+)',
     short: 'Faster results. Dual-action support.',
-    thumb: '/treatments/tirz-thumb.jpg',
+    thumb: '/treatments/tirz-thumb.webp',
     vial: '/treatments/vial-tirzepatide.webp',
     price: 340,
     href: '/treatments/weight-loss',
@@ -264,7 +264,9 @@ export default function TreatmentsFlow() {
                     src={s.src}
                     alt={`${s.name} before and after weight loss`}
                     fill
-                    sizes="(max-width:768px) 90vw, 420px"
+                    sizes="(max-width:768px) 85vw, 380px"
+                    quality={60}
+                    loading="lazy"
                     className="tx-result-card__photo"
                   />
 

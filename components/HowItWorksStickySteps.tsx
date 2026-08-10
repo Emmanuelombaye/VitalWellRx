@@ -107,7 +107,9 @@ export function HowItWorksStickySteps() {
                       fill
                       className="hiw-step-media__img"
                       sizes="(max-width: 992px) 92vw, 50vw"
+                      quality={60}
                       priority={i === 0}
+                      loading={i === 0 ? undefined : 'lazy'}
                     />
                   </div>
                   {step.chips ? (

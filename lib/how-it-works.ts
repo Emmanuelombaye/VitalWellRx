@@ -30,7 +30,7 @@ export const howSteps: HowStep[] = [
     titleItalic: 'verify identity',
     body: 'Complete your purchase for Tirzepatide+ or Semaglutide+, then take one quick step to verify your identity. It’s a standard part of the process — and it ensures your prescription is issued safely and securely.',
     image: {
-      src: '/images/how-step2.jpg',
+      src: '/images/how-step2.webp',
       alt: 'Secure checkout and identity verification',
     },
     chips: ['Secure checkout', 'ID verification', 'Cancel anytime'],
@@ -67,7 +67,7 @@ export const howSteps: HowStep[] = [
     titleItalic: 'treatment',
     body: 'Your care doesn’t stop at delivery. From day one, you’ll have access to your Patient Center, a step-by-step onboarding checklist for your GLP-1 protocol, and a care team you can reach anytime.',
     image: {
-      src: '/images/how-step5.jpg',
+      src: '/images/how-step5.webp',
       alt: 'Patient starting Tirzepatide or Semaglutide treatment with ongoing support',
     },
     chips: ['Patient Center', 'Onboarding checklist', 'Ongoing support'],

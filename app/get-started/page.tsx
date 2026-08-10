@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Scale, Beaker, Dna, Activity, Lock, HeartPulse } from 'lucide-react'
+import { Check, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Scale, Activity, Lock, HeartPulse } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function GetStarted() {
   const [step, setStep] = useState(1)
@@ -82,19 +81,17 @@ export default function GetStarted() {
                     Personalized Intake
                   </span>
                   <h1 style={{ fontSize: '2.25rem', fontWeight: 800, marginTop: '0.75rem', lineHeight: 1.2 }}>
-                    What is your primary <span className="text-gold">health goal?</span>
+                    What treatment are you <span className="text-gold">interested in?</span>
                   </h1>
                   <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-                    Select your focus area so our physicians can tailor your medical intake.
+                    Select Tirzepatide+ or Semaglutide+ so our physicians can tailor your medical intake.
                   </p>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {[
-                    { id: 'weight', title: 'Weight Loss & Metabolic Health', sub: 'GLP-1 & Tirzepatide prescription protocols', icon: <Scale size={24} /> },
-                    { id: 'hormones', title: 'Hormone Optimization & TRT', sub: 'Restore energy, muscle mass, and mental focus', icon: <Beaker size={24} /> },
-                    { id: 'peptides', title: 'Peptide Therapy & Cellular Repair', sub: 'BPC-157, CJC/Ipamorelin for recovery & longevity', icon: <Dna size={24} /> },
-                    { id: 'vitality', title: 'Daily Vitality & Supplementation', sub: 'Cere Vitality proprietary doctor-formulated blends', icon: <Activity size={24} /> },
+                    { id: 'tirzepatide', title: 'Tirzepatide+', sub: 'Dual GIP / GLP-1 — stronger appetite control & metabolic reset', icon: <Scale size={24} /> },
+                    { id: 'semaglutide', title: 'Semaglutide+', sub: 'Proven GLP-1 — steady, sustainable weight-loss support', icon: <Activity size={24} /> },
                   ].map(item => (
                     <button
                       key={item.id}
@@ -150,10 +147,9 @@ export default function GetStarted() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {[
-                    { id: 'target_weight', title: 'Shed 20+ lbs & reset metabolic rate', desc: 'Target appetite suppression and visceral fat reduction' },
-                    { id: 'target_energy', title: 'Boost daily energy & eliminate brain fog', desc: 'Optimize hormonal baseline and cellular ATP output' },
-                    { id: 'target_recovery', title: 'Accelerate physical recovery & joint repair', desc: 'Peptide-based tissue regeneration and inflammation reduction' },
-                    { id: 'target_longevity', title: 'Long-term anti-aging & biomarker optimization', desc: 'Proactive healthcare focused on longevity metrics' },
+                    { id: 'target_weight', title: 'Lose 20+ lbs & quiet food noise', desc: 'Appetite control and sustainable weekly progress' },
+                    { id: 'target_metabolic', title: 'Improve metabolic health & energy', desc: 'Steadier blood sugar, fewer crashes, clearer focus' },
+                    { id: 'target_maintain', title: 'Build lasting habits that stick', desc: 'Provider-guided care with accountable follow-through' },
                   ].map(item => (
                     <button
                       key={item.id}
@@ -273,10 +269,8 @@ export default function GetStarted() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {[
-                    { id: 'tirzepatide', name: 'Tirzepatide / GLP-1 Metabolic Protocol', price: '$340/mo', badge: 'Most Popular', desc: 'Dual-action appetite & metabolic control with monthly physician review.' },
-                    { id: 'hormone_trt', name: 'Precision Bioidentical Hormone Therapy', price: '$199/mo', badge: 'Doctor Prescribed', desc: 'Tailored testosterone/estrogen optimization based on lab blood panel.' },
-                    { id: 'peptide_bpc', name: 'Peptide Recovery Blend (BPC-157 & CJC)', price: '$349/mo', badge: 'Cellular Repair', desc: 'Pharmaceutical-grade peptide protocol for tissue repair and growth.' },
-                    { id: 'vitality_blend', name: 'Cere Vitality Daily Supplement Blend', price: '$149/mo', badge: 'No Prescription Needed', desc: 'Doctor-formulated daily NMN, NAD+ and cognitive vitality compounds.' },
+                    { id: 'tirzepatide', name: 'Personalized Tirzepatide+', price: '$340/mo', badge: 'Best Seller', desc: 'Dual GIP / GLP-1 weekly injection with licensed provider review and pharmacy fulfillment.' },
+                    { id: 'semaglutide', name: 'Personalized Semaglutide+', price: '$310/mo', badge: 'Proven GLP-1', desc: 'Once-weekly GLP-1 protocol for steady, sustainable weight loss and ongoing care support.' },
                   ].map(item => (
                     <button
                       key={item.id}

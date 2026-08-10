@@ -195,8 +195,8 @@ export default function GoalTreatments() {
                   alt=""
                   width={1160}
                   height={800}
-                  priority
-                  quality={70}
+                  quality={60}
+                  loading="lazy"
                   sizes="(max-width:900px) 100vw, 580px"
                   style={{
                     width: '100%',

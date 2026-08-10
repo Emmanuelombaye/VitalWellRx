@@ -96,9 +96,8 @@ export default function Contact() {
                   <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>I&apos;m interested in...</label>
                   <select style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none' }}>
                     <option value="" style={{ color: '#333' }}>Select a treatment</option>
-                    <option value="weight" style={{ color: '#333' }}>Weight & Metabolic Health</option>
-                    <option value="hormone" style={{ color: '#333' }}>Hormone Optimization</option>
-                    <option value="peptide" style={{ color: '#333' }}>Peptide Therapy</option>
+                    <option value="tirzepatide" style={{ color: '#333' }}>Tirzepatide+</option>
+                    <option value="semaglutide" style={{ color: '#333' }}>Semaglutide+</option>
                     <option value="other" style={{ color: '#333' }}>General Inquiry</option>
                   </select>
                 </div>

@@ -43,8 +43,8 @@ export default function Home() {
             src="/hero_bg.webp"
             alt="VitalWellRx Hero Background"
             fill
+            quality={60}
             priority
-            quality={75}
             sizes="100vw"
             style={{ objectFit: 'cover', objectPosition: 'center' }}
           />

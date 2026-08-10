@@ -9,7 +9,7 @@ import { Reveal } from './Reveal'
 const stories = [
   {
     step: '01',
-    img: '/images/result-1.jpg',
+    img: '/images/result-1.webp',
     title: 'Tirzepatide+ Progress',
     timeline: 'Month 3 · Dual GIP/GLP-1',
     quote: 'My provider adjusted my Tirzepatide+ dosing based on how I responded — not a template.',
@@ -18,7 +18,7 @@ const stories = [
   },
   {
     step: '02',
-    img: '/images/result-2.jpg',
+    img: '/images/result-2.webp',
     title: 'Semaglutide+ Steady Loss',
     timeline: 'Month 2 · GLP-1 Protocol',
     quote: 'Clear instructions and direct communication with my care team on Semaglutide+.',
@@ -27,7 +27,7 @@ const stories = [
   },
   {
     step: '03',
-    img: '/images/result-3.jpg',
+    img: '/images/result-3.webp',
     title: 'Discreet Delivery',
     timeline: 'Month 1 · Fulfillment',
     quote: 'Fulfillment was calm, cold-chain shipped, and completely discreet.',
