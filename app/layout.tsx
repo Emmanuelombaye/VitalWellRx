@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     shortcut: '/icon.svg',
     apple: '/newlogo.png',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({

@@ -273,10 +273,11 @@ export default function WhatWeTreat() {
               <motion.article
                 key={item.title}
                 className="home-why-card"
-                initial={{ opacity: 0, y: 18 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.45 }}
+                style={{ opacity: 1 }}
               >
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import WhatWeTreat from '../components/WhatWeTreat'
 import GoalTreatments from '../components/GoalTreatments'
+import MedicalTeam from '../components/MedicalTeam'
 
 export default function Home() {
   const containerVariants = {
@@ -26,7 +27,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section style={{
+      <section className="home-hero" style={{
         position: 'relative',
         minHeight: '82vh',
         display: 'flex',
@@ -58,7 +59,7 @@ export default function Home() {
 
         {/* Left-Aligned Hero Content */}
         <motion.div
-          className="flex-col gap-6"
+          className="home-hero__copy flex-col gap-6"
           style={{ position: 'relative', zIndex: 2, maxWidth: '650px', textAlign: 'left', alignItems: 'flex-start' }}
           initial="hidden"
           animate="visible"
@@ -119,6 +120,9 @@ export default function Home() {
 
       {/* Goal-based treatments — tryyucca-style selector */}
       <GoalTreatments />
+
+      {/* Hims-style medical team */}
+      <MedicalTeam />
 
       {/* From here down: Yucca-style lower homepage (2 treatments only) */}
       <WhatWeTreat />
