@@ -250,7 +250,7 @@ export default function ShopPage() {
               >
                 <button type="button" className="shop-shelf-card__media" onClick={() => selectProduct(p.id)} aria-label={`View ${p.label}`}>
                   <span className="shop-shelf-card__badge">{p.badge}</span>
-                  <Image src={p.image} alt={p.title} width={160} height={220} quality={60} loading="lazy" sizes="160px" style={{ objectFit: 'contain' }} />
+                  <Image src={p.image} alt={p.title} width={108} height={150} quality={60} loading="lazy" sizes="108px" style={{ objectFit: 'contain', width: '100%', height: 'auto', maxWidth: 108 }} />
                 </button>
                 <div className="shop-shelf-card__body">
                   <p className="shop-shelf-card__mech">{p.mechanism}</p>
