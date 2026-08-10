@@ -13,7 +13,7 @@ const products = [
     name: 'GLP-1 (Semaglutide+)',
     short: 'Gradual, effective results.',
     thumb: '/treatments/sema-thumb.jpg',
-    vial: '/treatments/vial-semaglutide.png',
+    vial: '/treatments/vial-semaglutide.webp',
     price: 310,
     href: '/treatments/odt-tablets',
   },
@@ -22,7 +22,7 @@ const products = [
     name: 'GLP-1 + GIP (Tirzepatide+)',
     short: 'Faster results. Dual-action support.',
     thumb: '/treatments/tirz-thumb.jpg',
-    vial: '/treatments/vial-tirzepatide.png',
+    vial: '/treatments/vial-tirzepatide.webp',
     price: 340,
     href: '/treatments/weight-loss',
   },
@@ -126,7 +126,7 @@ export default function TreatmentsFlow() {
               <button type="button" className="tx-cat is-active" role="tab" aria-selected>
                 <span>Weight Loss</span>
                 <span className="tx-cat__img">
-                  <Image src="/cutout-duo-tirzepatide.png" alt="" width={72} height={72} />
+                  <Image src="/cutout-duo-tirzepatide.webp" alt="" width={72} height={72} quality={70} loading="lazy" />
                 </span>
               </button>
             </div>
@@ -162,7 +162,7 @@ export default function TreatmentsFlow() {
                         }}
                         transition={{ type: 'spring', stiffness: 280, damping: 22 }}
                       >
-                        <Image src={p.vial} alt={p.name} width={200} height={280} priority={p.id === 'semaglutide'} />
+                        <Image src={p.vial} alt={p.name} width={200} height={280} priority={p.id === 'semaglutide'} quality={70} />
                       </motion.button>
                     ))}
                   </div>

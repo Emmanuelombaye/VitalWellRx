@@ -67,7 +67,7 @@ export default function Dashboard() {
       <aside className="portal-aside" style={{ width: '260px', borderRight: '1px solid rgba(255,255,255,0.08)', padding: '2rem 1.5rem', backgroundColor: 'var(--primary-navy)' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginBottom: '3rem' }}>
           <div style={{ position: 'relative', width: '150px', height: '46px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, backgroundColor: '#ffffff', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Image src="/newlogo.png" alt="VitalWellRx" fill sizes="150px" style={{ objectFit: 'contain', padding: '2px' }} />
+            <Image src="/newlogo.webp" alt="VitalWellRx" fill sizes="150px" quality={80} style={{ objectFit: 'contain', padding: '2px' }} />
           </div>
         </Link>
 

@@ -35,14 +35,15 @@ export default function Navbar() {
     <header className="site-header">
       <nav className="site-nav container">
         <Link href="/" className="site-nav__logo" onClick={() => setMobileMenuOpen(false)}>
-          <Image
-            src="/newlogo.png"
+            <Image
+            src="/newlogo-nav.webp"
             alt="VitalWellRx Logo"
             width={160}
             height={48}
             sizes="160px"
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            quality={80}
             priority
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           />
         </Link>
 

@@ -28,7 +28,7 @@ export default function Footer() {
           <div>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', marginBottom: '1.25rem' }}>
               <div style={{ position: 'relative', width: '135px', height: '62px', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#ffffff', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/newlogo.png" alt={`${site.name} Logo`} fill sizes="135px" style={{ objectFit: 'contain', padding: '2px' }} />
+                <Image src="/newlogo.webp" alt={`${site.name} Logo`} fill sizes="135px" quality={80} loading="lazy" style={{ objectFit: 'contain', padding: '2px' }} />
               </div>
             </Link>
             <p style={{ color: '#94A3B8', fontSize: '0.925rem', lineHeight: 1.7, maxWidth: '320px', marginBottom: '1.5rem' }}>

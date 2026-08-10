@@ -22,8 +22,8 @@ const products = [
     enrolled: '1,000+ enrolled this week',
     rating: '4.9',
     reviews: '800+',
-    image: '/vial-tirzepatide.png',
-    cutout: '/cutout-duo-tirzepatide.png',
+    image: '/vial-tirzepatide.webp',
+    cutout: '/cutout-duo-tirzepatide.webp',
     href: '/treatments/weight-loss',
     tone: '#D4AF37',
     toneSoft: 'rgba(212,175,55,0.18)',
@@ -50,8 +50,8 @@ const products = [
     enrolled: '750+ enrolled this week',
     rating: '4.8',
     reviews: '620+',
-    image: '/vial-semaglutide.png',
-    cutout: '/cutout-duo-semaglutide.png',
+    image: '/vial-semaglutide.webp',
+    cutout: '/cutout-duo-semaglutide.webp',
     href: '/treatments/odt-tablets',
     tone: '#2DD4BF',
     toneSoft: 'rgba(45,212,191,0.14)',
@@ -213,7 +213,7 @@ export default function ShopPage() {
                   animate={{ y: [0, -14, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  <Image src={active.image} alt={active.title} fill sizes="320px" priority style={{ objectFit: 'contain' }} />
+                  <Image src={active.image} alt={active.title} fill sizes="320px" priority quality={70} style={{ objectFit: 'contain' }} />
                 </motion.div>
                 <motion.div
                   className="shop-hero__float-card"
@@ -284,14 +284,14 @@ export default function ShopPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <Image src={active.cutout} alt="" fill sizes="(max-width:900px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+                  <Image src={active.cutout} alt="" fill sizes="(max-width:900px) 100vw, 50vw" quality={70} loading="lazy" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
                 </motion.div>
                 <motion.div
                   className="shop-product__vial"
                   animate={{ y: [0, -10, 0], rotate: [-2, 2, -2] }}
                   transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  <Image src={active.image} alt={active.title} fill sizes="220px" style={{ objectFit: 'contain' }} />
+                  <Image src={active.image} alt={active.title} fill sizes="220px" quality={70} loading="lazy" style={{ objectFit: 'contain' }} />
                 </motion.div>
               </div>
 
@@ -370,7 +370,7 @@ export default function ShopPage() {
                 whileHover={{ y: -8 }}
               >
                 <div className="shop-compare-card__top" style={{ borderColor: p.tone }}>
-                  <Image src={p.image} alt={p.title} width={120} height={180} style={{ objectFit: 'contain' }} />
+                  <Image src={p.image} alt={p.title} width={120} height={180} quality={70} loading="lazy" style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="shop-compare-card__body">
                   <span className="shop-compare-card__badge" style={{ background: p.toneSoft, color: p.tone }}>{p.badge}</span>

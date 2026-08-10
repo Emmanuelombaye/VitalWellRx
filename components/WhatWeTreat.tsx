@@ -17,7 +17,7 @@ const treatments = [
     desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways to regulate appetite, reduce food noise, and support stronger weight-loss outcomes.',
     bullets: ['Weekly injection', 'Provider review in 24h', 'Free expedited shipping'],
     price: '$340',
-    image: '/vial-tirzepatide.png',
+    image: '/vial-tirzepatide.webp',
     href: '/treatments/weight-loss',
     tone: '#D4AF37',
   },
@@ -31,7 +31,7 @@ const treatments = [
     desc: 'A weekly GLP-1 injection designed for steady, sustainable weight loss by helping regulate blood sugar, improve satiety, and quiet hunger signals.',
     bullets: ['Weekly injection', 'Provider review in 24h', 'Free expedited shipping'],
     price: '$310',
-    image: '/vial-semaglutide.png',
+    image: '/vial-semaglutide.webp',
     href: '/treatments/odt-tablets',
     tone: '#0F766E',
   },
@@ -79,21 +79,6 @@ const reviews = [
     body: 'Shipments arrive on time with tracking. I’ve been using Semaglutide+ for months and the support never drops.',
     name: 'Taylor H.',
     tag: 'Semaglutide+',
-  },
-]
-
-const why = [
-  {
-    title: 'Transparent & Trusted',
-    body: 'From ingredient sourcing to doorstep delivery, we prioritize pharmaceutical-grade quality and complete transparency.',
-  },
-  {
-    title: 'Tailored Personalized Care',
-    body: 'Plans built around your goals for Tirzepatide+ or Semaglutide+, ensuring the best path to lasting results.',
-  },
-  {
-    title: 'Science-backed Results',
-    body: 'Clinically guided care designed to support long-term metabolic health — not trends.',
   },
 ]
 
@@ -153,7 +138,7 @@ export default function WhatWeTreat() {
                 <div className="home-tx-card__media" style={{ background: `radial-gradient(circle at 30% 20%, ${t.tone}33, transparent 55%), #0B132B` }}>
                   <span className="home-tx-card__badge">{t.badge}</span>
                   <div className="home-tx-card__img">
-                    <Image src={t.image} alt={t.name} fill sizes="(max-width:900px) 100vw, 480px" style={{ objectFit: 'contain' }} />
+                    <Image src={t.image} alt={t.name} fill sizes="(max-width:900px) 100vw, 480px" quality={70} loading="lazy" style={{ objectFit: 'contain' }} />
                   </div>
                 </div>
 
@@ -257,33 +242,6 @@ export default function WhatWeTreat() {
             ))}
           </div>
           <p className="home-lower__disclaimer">Individual patient experiences and results may vary.</p>
-        </div>
-      </section>
-
-      {/* ── Why ── */}
-      <section className="home-lower__why">
-        <div className="home-lower__shell">
-          <div className="home-lower__head">
-            <h2>
-              Why <em>VitalWellRx</em>?
-            </h2>
-          </div>
-          <div className="home-lower__why-grid">
-            {why.map((item, i) => (
-              <motion.article
-                key={item.title}
-                className="home-why-card"
-                initial={false}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.45 }}
-                style={{ opacity: 1 }}
-              >
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </motion.article>
-            ))}
-          </div>
         </div>
       </section>
 

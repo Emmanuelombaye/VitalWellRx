@@ -9,28 +9,28 @@ const doctors = [
     role: 'Head of Weight Loss, VitalWellRx',
     specialties: ['Metabolic Health', 'GLP-1 Therapy'],
     bio: 'Board-certified obesity medicine physician focused on Semaglutide+ and Tirzepatide+ protocols, sustainable fat loss, and long-term metabolic reset.',
-    image: '/team/doctor-4.png',
+    image: '/team/doctor-4.webp',
   },
   {
     name: 'Dr. Marcus Ellison, MD',
     role: 'Chief Medical Officer, VitalWellRx',
     specialties: ['Clinical Oversight', 'Patient Safety'],
     bio: 'Leads VitalWellRx clinical standards across all 50 states — ensuring every Tirzepatide+ and Semaglutide+ plan is reviewed with precision and care.',
-    image: '/team/doctor-3.png',
+    image: '/team/doctor-3.webp',
   },
   {
     name: 'Dr. Daniel Park, MD',
     role: 'Medical Director, Metabolic Care',
     specialties: ['Endocrinology', 'Appetite Regulation'],
     bio: 'Specializes in dual-agonist and GLP-1 pathways, dose titration strategy, and helping patients quiet food noise without guesswork.',
-    image: '/team/doctor-2.png',
+    image: '/team/doctor-2.webp',
   },
   {
     name: 'Dr. James Whitfield, MD',
     role: 'Advisor, Longevity & Metabolic Health',
     specialties: ['Preventive Medicine', 'Weight Management'],
     bio: 'Brings decades of clinical experience to provider-guided weight care — pairing evidence-based protocols with clear, patient-first communication.',
-    image: '/team/doctor-1.png',
+    image: '/team/doctor-1.webp',
   },
 ]
 
@@ -70,7 +70,9 @@ export default function MedicalTeam() {
                     src={doc.image}
                     alt={doc.name}
                     fill
-                    sizes="(max-width:900px) 50vw, 280px"
+                    sizes="(max-width:700px) 45vw, (max-width:1100px) 25vw, 180px"
+                    quality={70}
+                    loading="lazy"
                     style={{ objectFit: 'cover', objectPosition: 'center top' }}
                   />
                 </div>

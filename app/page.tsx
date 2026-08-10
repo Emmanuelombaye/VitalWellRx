@@ -7,6 +7,7 @@ import Image from 'next/image'
 import WhatWeTreat from '../components/WhatWeTreat'
 import GoalTreatments from '../components/GoalTreatments'
 import MedicalTeam from '../components/MedicalTeam'
+import WhyVitalWell from '../components/WhyVitalWell'
 
 export default function Home() {
   const containerVariants = {
@@ -123,6 +124,9 @@ export default function Home() {
 
       {/* Hims-style medical team */}
       <MedicalTeam />
+
+      {/* Why VitalWellRx — 4 trust cards */}
+      <WhyVitalWell />
 
       {/* From here down: Yucca-style lower homepage (2 treatments only) */}
       <WhatWeTreat />

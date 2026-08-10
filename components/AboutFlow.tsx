@@ -21,7 +21,7 @@ const stories = [
     started: 'Jul 2025',
     lost: '50 lbs',
     plan: 'Tirzepatide+',
-    vial: '/vial-tirzepatide.png',
+    vial: '/vial-tirzepatide.webp',
     before: '/treatments/crystal.webp',
     quote: 'AFTER 40, MY BODY CHANGED — AND I WAS SO TIRED OF FEELING UNCOMFORTABLE.',
     highlight: 'SO TIRED',
@@ -33,7 +33,7 @@ const stories = [
     started: 'Mar 2025',
     lost: '50 lbs',
     plan: 'Semaglutide+',
-    vial: '/vial-semaglutide.png',
+    vial: '/vial-semaglutide.webp',
     before: '/treatments/blaze.webp',
     quote: 'I FINALLY FEEL LIKE MYSELF AGAIN — STRONGER, LIGHTER, AND IN CONTROL.',
     highlight: 'IN CONTROL',
@@ -68,7 +68,7 @@ const carePillars = [
     title: 'A partner in your health',
     body: 'Our providers are licensed clinicians with real experience in metabolic and weight health. Before anyone starts Tirzepatide+ or Semaglutide+, they review your full health history, your goals, and whether treatment is clinically appropriate.',
     bullets: ['Board-Certified', '24-hour Clinical Review', 'Message provider anytime'],
-    image: '/images/physician-1.png',
+    image: '/images/physician-1.webp',
     imageAlt: 'Licensed VitalWellRx provider',
     media: 'image' as const,
   },
@@ -77,7 +77,7 @@ const carePillars = [
     title: 'Where your medication comes from matters',
     body: 'We keep it transparent, pharmaceutical-grade, and personal — whether you choose Tirzepatide+ or Semaglutide+.',
     bullets: ['Accredited US Pharmacy Network', 'Quality Sourcing', 'Personalized Treatment Plans'],
-    image: '/about/vitalwell-dual-vials.png',
+    image: '/about/vitalwell-dual-vials.webp',
     imageAlt: 'VitalWellRx Semaglutide+ and Tirzepatide+ vials',
     media: 'vials' as const,
   },
@@ -86,7 +86,7 @@ const carePillars = [
     title: 'Ongoing support is always within reach',
     body: 'Your patient portal, your care team, and your treatment details — in one place, available whenever you need them.',
     bullets: ['Stay in touch with provider', 'Track your progress', 'Update or change your treatment'],
-    image: '/about/vitalwell-patient-portal.png',
+    image: '/about/vitalwell-patient-portal.webp',
     imageAlt: 'VitalWellRx patient portal',
     media: 'image' as const,
   },
@@ -264,12 +264,13 @@ export function AboutFlow() {
                     <div className="about-vials-stage">
                       <div className="about-vials-stage__glow" aria-hidden />
                       <Image
-                        src="/about/vitalwell-dual-vials.png"
+                        src="/about/vitalwell-dual-vials.webp"
                         alt={pillar.imageAlt}
                         fill
                         sizes="(max-width:992px) 100vw, 45vw"
                         className="about-vials-stage__hero"
-                        priority
+                        quality={70}
+                        loading="lazy"
                       />
                       <p className="about-vials-stage__brand">VitalWellRx</p>
                     </div>
@@ -279,6 +280,8 @@ export function AboutFlow() {
                       alt={pillar.imageAlt}
                       fill
                       sizes="(max-width:992px) 100vw, 45vw"
+                      quality={70}
+                      loading="lazy"
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   )}

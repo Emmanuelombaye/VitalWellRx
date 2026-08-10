@@ -23,8 +23,8 @@ const treatments = [
     enrolled: '1,000+ Patients enrolled in last 7 days',
     rating: '4.9/5',
     reviews: '800+ Reviews',
-    productImage: '/vial-tirzepatide.png',
-    cutoutImage: '/cutout-duo-tirzepatide.png',
+    productImage: '/vial-tirzepatide.webp',
+    cutoutImage: '/cutout-duo-tirzepatide.webp',
     href: '/treatments/weight-loss',
   },
   {
@@ -43,8 +43,8 @@ const treatments = [
     enrolled: '750+ Patients enrolled in last 7 days',
     rating: '4.8/5',
     reviews: '620+ Reviews',
-    productImage: '/vial-semaglutide.png',
-    cutoutImage: '/cutout-duo-semaglutide.png',
+    productImage: '/vial-semaglutide.webp',
+    cutoutImage: '/cutout-duo-semaglutide.webp',
     href: '/treatments/odt-tablets',
   },
 ]
@@ -196,6 +196,8 @@ export default function GoalTreatments() {
                   width={1160}
                   height={800}
                   priority
+                  quality={70}
+                  sizes="(max-width:900px) 100vw, 580px"
                   style={{
                     width: '100%',
                     height: 'auto',
@@ -262,6 +264,8 @@ export default function GoalTreatments() {
                     alt={`${active.title} vials`}
                     fill
                     sizes="240px"
+                    quality={70}
+                    loading="lazy"
                     style={{ objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }}
                   />
                 </div>

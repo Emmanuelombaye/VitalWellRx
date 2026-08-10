@@ -4607,5 +4607,318 @@ a {
   }
 }
 
+/* ── Why VitalWellRx (home) ── */
+.why-vw {
+  padding: 4.5rem 0 5rem;
+  background: #F4F6FA;
+}
+
+.why-vw__shell {
+  width: min(1280px, calc(100% - 2.5rem));
+  margin: 0 auto;
+}
+
+.why-vw__title {
+  margin: 0 0 2rem;
+  text-align: center;
+  font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0B132B;
+}
+
+.why-vw__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .why-vw__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .why-vw__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
+  }
+}
+
+.why-vw-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(212, 175, 55, 0.12), transparent 55%),
+    linear-gradient(180deg, #121a33 0%, #0B132B 55%, #080e22 100%);
+  color: #F8FAFC;
+  padding: 1.55rem 1.35rem 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(11, 19, 43, 0.18);
+}
+
+.why-vw-card__copy h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.why-vw-card__copy h3 em {
+  font-style: italic;
+  font-weight: 600;
+  color: #F3C94F;
+}
+
+.why-vw-card__copy p {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(248, 250, 252, 0.72);
+}
+
+.why-vw-card__rows {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.why-vw-card__rows li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.72rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #F8FAFC;
+}
+
+.why-vw-card__row-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(212, 175, 55, 0.15);
+  color: #F3C94F;
+  flex-shrink: 0;
+}
+
+.why-vw-card__rows li > span:nth-child(2) {
+  flex: 1;
+}
+
+.why-vw-card__check {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #10B981;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.why-vw-card__chart {
+  position: relative;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  min-height: 170px;
+}
+
+.why-vw-card__chart-stat {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1.1rem;
+  text-align: center;
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  user-select: none;
+}
+
+.why-vw-card__chart-svg {
+  display: block;
+  width: 100%;
+  height: 110px;
+  margin-top: 1.6rem;
+}
+
+.why-vw-card__chart-line {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: whyChartDraw 1.4s 0.25s ease forwards;
+}
+
+.why-vw-card__chart-glow {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: whyChartDraw 1.4s 0.25s ease forwards;
+}
+
+.why-vw-card__chart-dot {
+  opacity: 0;
+  animation: whyChartDot 0.35s 1.4s ease forwards;
+}
+
+@keyframes whyChartDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes whyChartDot {
+  to { opacity: 1; }
+}
+
+.why-vw-card__chart-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  padding: 0 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(248, 250, 252, 0.45);
+}
+
+.why-vw-card__vials {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 0.75rem;
+}
+
+.why-vw-card__vials img {
+  width: min(100%, 240px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
+}
+
+.why-vw-card--support {
+  padding-bottom: 0.85rem;
+}
+
+.why-vw-card__portal {
+  position: relative;
+  margin-top: auto;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.why-vw-card__phone {
+  width: min(62%, 170px);
+  border-radius: 22px 22px 0 0;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 0;
+  background: #0B132B;
+}
+
+.why-vw-card__phone img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.why-vw-card__float {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: calc(100% - 1rem);
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(11, 19, 43, 0.78);
+  backdrop-filter: blur(8px);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #F8FAFC;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  white-space: nowrap;
+}
+
+.why-vw-card__float svg {
+  color: #F3C94F;
+  flex-shrink: 0;
+}
+
+.why-vw-card__float--a {
+  top: 18%;
+  left: 0;
+  animation: whyFloatY 4.5s ease-in-out infinite;
+}
+
+.why-vw-card__float--b {
+  top: 8%;
+  right: 0;
+  animation: whyFloatY 5s ease-in-out infinite reverse;
+}
+
+.why-vw-card__float--c {
+  bottom: 18%;
+  left: 50%;
+  translate: -50% 0;
+  animation: whyFloatY 4.8s ease-in-out infinite;
+}
+
+@keyframes whyFloatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 719px) {
+  .why-vw-card {
+    min-height: 420px;
+  }
+
+  .why-vw-card__float {
+    font-size: 0.68rem;
+    padding: 0.48rem 0.65rem;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-vw-card__chart-line,
+  .why-vw-card__chart-glow,
+  .why-vw-card__chart-dot,
+  .why-vw-card__float--a,
+  .why-vw-card__float--b,
+  .why-vw-card__float--c {
+    animation: none;
+  }
+
+  .why-vw-card__chart-line,
+  .why-vw-card__chart-glow {
+    stroke-dashoffset: 0;
+  }
+
+  .why-vw-card__chart-dot {
+    opacity: 1;
+  }
+}
 
 

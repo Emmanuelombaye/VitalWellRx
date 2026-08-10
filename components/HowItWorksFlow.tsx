@@ -36,7 +36,7 @@ const stories = [
   },
   {
     step: '04',
-    img: '/images/closing-cta-lifestyle.png',
+    img: '/images/closing-cta-lifestyle.webp',
     title: 'Ongoing GLP-1 Care',
     timeline: 'Month 6 · Optimization',
     quote: 'Ongoing check-ins kept my Tirzepatide+ goals on track long term.',
@@ -72,6 +72,8 @@ export function HowItWorksFlow() {
                   alt={story.title}
                   fill
                   sizes="300px"
+                  quality={70}
+                  loading="lazy"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="hiw-story-card__phase">Phase {story.step}</span>
@@ -127,10 +129,12 @@ export function HowItWorksFlow() {
         <div className="hiw-priority__card">
           <div className="hiw-priority__media">
             <Image
-              src="/images/physician-1.png"
+              src="/images/physician-1.webp"
               alt="VitalWellRx care team support"
               fill
               sizes="(max-width: 992px) 100vw, 50vw"
+              quality={70}
+              loading="lazy"
               style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
             />
           </div>
@@ -174,10 +178,12 @@ export function HowItWorksFlow() {
         <div className="hiw-cta__grid">
           <div className="hiw-cta__media">
             <Image
-              src="/images/cta-banner.png"
+              src="/images/cta-banner.webp"
               alt="Ready to start with VitalWellRx"
               fill
               sizes="(max-width: 992px) 100vw, 50vw"
+              quality={70}
+              loading="lazy"
               style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
             />
           </div>

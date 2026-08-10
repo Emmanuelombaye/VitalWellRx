@@ -15,7 +15,7 @@ export const howSteps: HowStep[] = [
     titleItalic: 'treatment plan',
     body: 'Start with Personalized Tirzepatide+ or Semaglutide+. Select the plan that fits your goals, then complete a short medical history questionnaire — it takes just a few minutes and helps our providers confirm you’re a good fit.',
     image: {
-      src: '/hiw-step1.png',
+      src: '/hiw-step1.webp',
       alt: 'VitalWellRx Tirzepatide and Semaglutide treatment vials',
     },
     chips: ['Tirzepatide+', 'Semaglutide+'],
@@ -41,7 +41,7 @@ export const howSteps: HowStep[] = [
     titleItalic: 'reviews intake',
     body: 'A licensed U.S. provider reviews your medical history and questionnaire — typically within 24 hours. If they need clarification or have recommendations, they’ll follow up directly. No live appointment needed.',
     image: {
-      src: '/hiw-step2.png',
+      src: '/hiw-step2.webp',
       alt: 'Licensed provider reviewing patient intake',
     },
     chips: ['Licensed providers', 'Review within 24h', 'No office visit'],
@@ -52,7 +52,7 @@ export const howSteps: HowStep[] = [
     titleItalic: 'medication',
     body: 'Once approved, your Tirzepatide+ or Semaglutide+ prescription is sent to our licensed partner pharmacy and fulfilled to your exact plan. Medication ships via expedited delivery — securely packaged and delivered to your door.',
     image: {
-      src: '/hiw-step3.png',
+      src: '/hiw-step3.webp',
       alt: 'Medication delivered to your door',
     },
     chips: ['Licensed pharmacy', 'Expedited shipping', 'Discreet packaging'],
