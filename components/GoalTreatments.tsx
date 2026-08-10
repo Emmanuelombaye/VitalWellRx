@@ -257,40 +257,25 @@ export default function GoalTreatments() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: '0.5rem', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <div style={{ position: 'relative', height: '168px' }}>
+              <div className="goal-product-top">
+                <div className="goal-product-vial">
                   <Image
                     src={active.productImage}
                     alt={`${active.title} vials`}
                     fill
-                    sizes="240px"
-                    quality={70}
+                    sizes="(max-width:900px) 45vw, 240px"
+                    quality={60}
                     loading="lazy"
                     style={{ objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }}
                   />
                 </div>
-                <div>
-                  <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 600, marginBottom: '0.45rem', lineHeight: 1.35 }}>
+                <div className="goal-product-meta">
+                  <div className="goal-product-enrolled">
                     {active.enrolled}
                   </div>
-                  <div
-                    style={{
-                      display: 'inline-block',
-                      background: 'linear-gradient(145deg, #D4AF37 0%, #E8C75A 100%)',
-                      color: '#0B132B',
-                      fontWeight: 900,
-                      fontSize: '0.82rem',
-                      lineHeight: 1.2,
-                      padding: '0.85rem 0.8rem',
-                      borderRadius: '999px 999px 999px 1.1rem',
-                      boxShadow: '0 8px 20px rgba(212,175,55,0.35)',
-                      transform: 'rotate(3deg)',
-                      textAlign: 'center',
-                      border: '1.5px solid #0B132B',
-                    }}
-                  >
+                  <div className="goal-product-price">
                     FROM {active.price}{active.period}
-                    <span style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, marginTop: '2px' }}>
+                    <span>
                       lowest cash price
                     </span>
                   </div>
@@ -307,41 +292,16 @@ export default function GoalTreatments() {
                 {active.detail}
               </p>
 
-              <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+              <div className="goal-product-ctas">
                 <Link
                   href="/get-started"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '0.8rem 1.35rem',
-                    borderRadius: '999px',
-                    backgroundColor: '#D4AF37',
-                    color: '#0B132B',
-                    fontWeight: 800,
-                    fontSize: '0.9rem',
-                    textDecoration: 'none',
-                    border: '1.5px solid #0B132B',
-                    boxShadow: '2px 3px 0 #0B132B',
-                  }}
+                  className="goal-product-cta goal-product-cta--primary"
                 >
                   See if I qualify
                 </Link>
                 <Link
                   href={active.href}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    padding: '0.8rem 1.2rem',
-                    borderRadius: '999px',
-                    border: '1.5px solid #0B132B',
-                    color: '#0B132B',
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
-                    textDecoration: 'none',
-                    backgroundColor: '#fff',
-                  }}
+                  className="goal-product-cta goal-product-cta--ghost"
                 >
                   Learn more <ArrowRight size={16} />
                 </Link>

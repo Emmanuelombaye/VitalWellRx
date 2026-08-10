@@ -186,17 +186,18 @@ export default function WhatWeTreat() {
             </h2>
           </div>
 
-          <div className="home-lower__steps">
+          <div className="home-lower__steps" role="list">
             {steps.map((s, i) => (
               <motion.article
                 key={s.n}
                 className="home-step-card"
+                role="listitem"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
               >
-                <span className="home-step-card__n">{s.n}</span>
+                <span className="home-step-card__n">Step {s.n.replace(/^0/, '')}</span>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
               </motion.article>
@@ -221,11 +222,12 @@ export default function WhatWeTreat() {
             </h2>
           </div>
 
-          <div className="home-lower__reviews">
+          <div className="home-lower__reviews" role="list">
             {reviews.map((r, i) => (
               <motion.article
                 key={r.name}
                 className="home-review-card"
+                role="listitem"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

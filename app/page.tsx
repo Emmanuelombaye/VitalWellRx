@@ -38,7 +38,7 @@ export default function Home() {
         overflow: 'hidden'
       }}>
         {/* Single First Hero Background Image */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <div className="home-hero__bg" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image
             src="/hero_bg.webp"
             alt="VitalWellRx Hero Background"
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
 
         {/* Dark Gradient Overlay Optimized for Left-Aligned Text */}
-        <div style={{
+        <div className="home-hero__shade" style={{
           position: 'absolute',
           inset: 0,
           background: 'linear-gradient(90deg, rgba(11,19,43,0.95) 0%, rgba(11,19,43,0.75) 55%, rgba(11,19,43,0.25) 100%)',
@@ -104,12 +104,12 @@ export default function Home() {
       </section>
 
       {/* As Featured In Press Bar */}
-      <section style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '1.75rem 0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', letterSpacing: '2px', display: 'block', marginBottom: '1rem' }}>
-            AS FEATURED IN CLINICAL & HEALTH MEDIA
+      <section className="home-press">
+        <div className="container home-press__inner">
+          <span className="home-press__label">
+            AS FEATURED IN CLINICAL &amp; HEALTH MEDIA
           </span>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '3rem', flexWrap: 'wrap', opacity: 0.7, fontWeight: 900, fontSize: '1.1rem', letterSpacing: '1px', color: '#94A3B8' }}>
+          <div className="home-press__logos">
             <span>FORBES</span>
             <span>BLOOMBERG HEALTH</span>
             <span>MEN&apos;S HEALTH</span>
