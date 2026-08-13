@@ -1,9 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Scale, Activity, Lock, HeartPulse } from 'lucide-react'
 import Link from 'next/link'
+import {
+  getActiveScreeningQuestions,
+  isScreeningComplete,
+  questionIsDisqualified,
+} from '../../lib/intake'
 
 export default function GetStarted() {
   const [step, setStep] = useState(1)
@@ -17,12 +22,27 @@ export default function GetStarted() {
     lastName: '',
     email: '',
     phone: '',
+    height: '',
+    weight: '',
+    sex: '',
+    answers: {} as Record<string, string>,
   })
 
-  const totalSteps = 5
+  const totalSteps = 6
+  const screeningIntake = useMemo(
+    () => ({ answers: formData.answers, sexAtBirth: formData.sex }),
+    [formData.answers, formData.sex],
+  )
+  const screeningQuestions = useMemo(
+    () => getActiveScreeningQuestions(screeningIntake),
+    [screeningIntake],
+  )
 
   const updateForm = (key: string, value: string) => {
     setFormData(prev => ({ ...prev, [key]: value }))
+  }
+  const setAnswer = (id: string, value: string) => {
+    setFormData(prev => ({ ...prev, answers: { ...prev.answers, [id]: value } }))
   }
 
   const nextStep = () => {
@@ -376,22 +396,150 @@ export default function GetStarted() {
                     />
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.35rem', color: 'rgba(255,255,255,0.8)' }}>Height *</label>
+                      <input
+                        type="text"
+                        placeholder="5ft 10in"
+                        value={formData.height}
+                        onChange={e => updateForm('height', e.target.value)}
+                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255,255,255,0.05)', color: 'white', outline: 'none' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.35rem', color: 'rgba(255,255,255,0.8)' }}>Weight (lbs) *</label>
+                      <input
+                        type="number"
+                        placeholder="180"
+                        value={formData.weight}
+                        onChange={e => updateForm('weight', e.target.value)}
+                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255,255,255,0.05)', color: 'white', outline: 'none' }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.35rem', color: 'rgba(255,255,255,0.8)' }}>Sex assigned at birth *</label>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                      {['Male', 'Female'].map(sex => (
+                        <button
+                          key={sex}
+                          type="button"
+                          onClick={() => updateForm('sex', sex)}
+                          style={{
+                            padding: '0.75rem',
+                            borderRadius: '0.5rem',
+                            border: formData.sex === sex ? '2px solid var(--primary-gold)' : '1px solid rgba(255,255,255,0.1)',
+                            backgroundColor: formData.sex === sex ? 'rgba(212,175,55,0.15)' : 'transparent',
+                            color: 'white',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                          }}
+                        >
+                          {sex}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                   <button
                     onClick={() => {
-                      if (formData.firstName && formData.email) {
+                      if (formData.firstName && formData.email && formData.height && formData.weight && formData.sex) {
                         nextStep()
                       }
                     }}
                     className="btn-primary"
                     style={{ width: '100%', marginTop: '0.5rem' }}
                   >
-                    See Approval Result <Sparkles size={18} style={{ marginLeft: '8px' }} />
+                    Continue to screening <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                   </button>
                 </div>
               </motion.div>
             )}
 
-            {/* Step 6: Instant Approval & Confirmation Screen */}
+            {step === 6 && (
+              <motion.div
+                key="step6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>
+                    Clinical <span className="text-gold">screening</span>
+                  </h2>
+                  <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
+                    Answer each question. Completing intake does not guarantee a prescription.
+                  </p>
+                </div>
+                <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  {screeningQuestions.map((q) => {
+                    const value = formData.answers[q.id] || ''
+                    const blocked = questionIsDisqualified(q, value)
+                    return (
+                      <div key={q.id}>
+                        <p style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.5rem' }}>{q.question}</p>
+                        {q.type === 'boolean' ? (
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                            {(['yes', 'no'] as const).map((opt) => (
+                              <button
+                                key={opt}
+                                type="button"
+                                onClick={() => setAnswer(q.id, opt)}
+                                style={{
+                                  padding: '0.75rem',
+                                  borderRadius: '0.5rem',
+                                  border: value === opt ? '2px solid var(--primary-gold)' : '1px solid rgba(255,255,255,0.1)',
+                                  backgroundColor: value === opt ? 'rgba(212,175,55,0.15)' : 'transparent',
+                                  color: 'white',
+                                  fontWeight: 700,
+                                  cursor: 'pointer',
+                                }}
+                              >
+                                {opt === 'yes' ? 'Yes' : 'No'}
+                              </button>
+                            ))}
+                          </div>
+                        ) : q.type === 'select' ? (
+                          <select
+                            value={value}
+                            onChange={(e) => setAnswer(q.id, e.target.value)}
+                            style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'var(--primary-navy)', color: 'white' }}
+                          >
+                            <option value="">—</option>
+                            {(q.options || []).map((opt) => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            type={q.type === 'number' ? 'number' : 'text'}
+                            value={value}
+                            onChange={(e) => setAnswer(q.id, e.target.value)}
+                            style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255,255,255,0.05)', color: 'white' }}
+                          />
+                        )}
+                        {blocked ? (
+                          <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#F87171' }}>
+                            This answer requires physician review before treatment can continue.
+                          </p>
+                        ) : null}
+                      </div>
+                    )
+                  })}
+                  <button
+                    onClick={() => {
+                      if (isScreeningComplete(screeningIntake)) nextStep()
+                    }}
+                    className="btn-primary"
+                    style={{ width: '100%', marginTop: '0.5rem' }}
+                  >
+                    Submit intake <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
             {step > totalSteps && (
               <motion.div
                 key="approval"
@@ -406,15 +554,15 @@ export default function GetStarted() {
                   </div>
 
                   <span style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981', padding: '0.35rem 1rem', borderRadius: '99px', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>
-                    Pre-Approved Candidate
+                    Intake received
                   </span>
 
                   <h1 style={{ fontSize: '2.5rem', fontWeight: 800, margin: '1rem 0 0.5rem' }}>
-                    Welcome to VitalWellRx, <span className="text-gold">{formData.firstName || 'Member'}!</span>
+                    Thank you, <span className="text-gold">{formData.firstName || 'there'}.</span>
                   </h1>
 
                   <p className="text-muted" style={{ fontSize: '1.125rem', maxWidth: '500px', margin: '0 auto 2rem', lineHeight: 1.6 }}>
-                    Based on your profile, you are eligible for doctor-guided care in <strong>{formData.state}</strong>. Your preliminary intake has been sent to our medical team.
+                    A licensed provider will review your questionnaire for <strong>{formData.state}</strong>. Completing intake does not guarantee a prescription.
                   </p>
 
                   <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '1rem', padding: '1.5rem', margin: '0 auto 2rem', maxWidth: '480px', textAlign: 'left', border: '1px solid rgba(255,255,255,0.1)' }}>
