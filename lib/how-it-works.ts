@@ -15,7 +15,7 @@ export const howSteps: HowStep[] = [
     titleItalic: 'treatment plan',
     body: 'Start with Personalized Tirzepatide+ or Semaglutide+. Select the plan that fits your goals, then complete a short medical history questionnaire — it takes just a few minutes and helps our providers confirm you’re a good fit.',
     image: {
-      src: '/hiw-step1.webp?v=nologo2',
+      src: '/hiw-step1.webp',
       alt: 'VitalWellRx Tirzepatide and Semaglutide treatment vials',
     },
     chips: ['Tirzepatide+', 'Semaglutide+'],
