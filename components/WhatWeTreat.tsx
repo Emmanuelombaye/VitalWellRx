@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -9,8 +9,10 @@ import { ArrowRight, ClipboardList, Stethoscope, Truck, MessageCircle } from 'lu
 const treatments = [
   {
     id: 'tirzepatide',
+    n: '01',
     badge: 'Provider-guided',
-    name: 'Personalized Tirzepatide+',
+    name: 'Personalized',
+    nameItalic: 'Tirzepatide+',
     mechanism: 'Dual GIP / GLP-1',
     desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation when prescribed as part of a personalized plan.',
     bullets: ['Weekly injection', 'Provider review in 24h', 'Free expedited shipping'],
@@ -18,18 +20,22 @@ const treatments = [
     image: '/vial-tirzepatide.webp',
     href: '/treatments/weight-loss',
     tone: '#D4AF37',
+    calloutLabel: 'charged only if prescribed',
   },
   {
     id: 'semaglutide',
+    n: '02',
     badge: 'Provider-guided',
-    name: 'Personalized Semaglutide+',
-    mechanism: 'GLP-1 receptor agonist',
+    name: 'Personalized',
+    nameItalic: 'Semaglutide+',
+    mechanism: 'GLP-1 pathway',
     desc: 'A weekly GLP-1 injection that may support satiety and appetite regulation when prescribed by a licensed U.S. provider.',
     bullets: ['Weekly injection', 'Provider review in 24h', 'Free expedited shipping'],
     price: '$310',
     image: '/vial-semaglutide.webp',
     href: '/treatments/odt-tablets',
     tone: '#0F766E',
+    calloutLabel: 'charged only if prescribed',
   },
 ]
 
@@ -99,10 +105,85 @@ const faqs = [
 
 export default function WhatWeTreat() {
   const [openFaq, setOpenFaq] = useState(0)
+  const stackRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const root = stackRef.current
+    if (!root) return undefined
+
+    const desktopMq = window.matchMedia('(min-width: 992px)')
+    const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const cards = () => Array.from(root.querySelectorAll<HTMLElement>('.vw-tx-step-card'))
+
+    const clear = () => {
+      cards().forEach((card) => {
+        card.style.opacity = ''
+        card.style.transform = ''
+        card.style.visibility = ''
+        card.style.pointerEvents = ''
+      })
+    }
+
+    let raf = 0
+    const onScroll = () => {
+      if (!desktopMq.matches || motionMq.matches) {
+        clear()
+        return
+      }
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const steps = Array.from(root.querySelectorAll<HTMLElement>('.vw-tx-step'))
+        steps.forEach((step, i) => {
+          const card = step.querySelector<HTMLElement>('.vw-tx-step-card')
+          const next = steps[i + 1]
+          if (!card || !next) {
+            if (card) {
+              card.style.opacity = '1'
+              card.style.transform = 'scale(1)'
+              card.style.visibility = 'visible'
+              card.style.pointerEvents = ''
+            }
+            return
+          }
+          const nextTop = next.getBoundingClientRect().top
+          const stickyTop = window.innerHeight * 0.23
+          const start = stickyTop + card.offsetHeight + 80
+          const end = stickyTop + card.offsetHeight * 0.5
+          const range = Math.max(1, start - end)
+          const t = Math.min(1, Math.max(0, (start - nextTop) / range))
+          const opacity = 1 - t
+          card.style.opacity = String(opacity)
+          card.style.transform = `scale(${1 - t * 0.12})`
+          card.style.visibility = opacity < 0.02 ? 'hidden' : 'visible'
+          card.style.pointerEvents = opacity < 0.02 ? 'none' : ''
+        })
+      })
+    }
+
+    const refresh = () => {
+      clear()
+      onScroll()
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', refresh)
+    desktopMq.addEventListener('change', refresh)
+    motionMq.addEventListener('change', refresh)
+    refresh()
+
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', refresh)
+      desktopMq.removeEventListener('change', refresh)
+      motionMq.removeEventListener('change', refresh)
+      clear()
+    }
+  }, [])
 
   return (
     <div className="home-lower">
-      {/* ── Two treatments ── */}
+      {/* ── Two treatments — Pax how-it-works sticky stack ── */}
       <section className="home-lower__treatments">
         <div className="home-lower__shell">
           <div className="home-lower__head">
@@ -117,47 +198,75 @@ export default function WhatWeTreat() {
             </p>
           </div>
 
-          <div className="home-lower__cards">
-            {treatments.map((t, i) => (
-              <motion.article
-                key={t.id}
-                className="home-tx-card"
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ delay: i * 0.08, duration: 0.55 }}
-              >
-                <div className="home-tx-card__media" style={{ background: `radial-gradient(circle at 30% 20%, ${t.tone}33, transparent 55%), #0B132B` }}>
-                  <span className="home-tx-card__badge">{t.badge}</span>
-                  <div className="home-tx-card__img">
-                    <Image src={t.image} alt={t.name} fill sizes="(max-width:900px) 100vw, 480px" quality={70} loading="lazy" style={{ objectFit: 'contain' }} />
+          <div ref={stackRef} className="vw-tx-stack-root">
+            <div className="vw-tx-steps-stack">
+              {treatments.map((t, i) => {
+                const isLast = i === treatments.length - 1
+                return (
+                  <div
+                    key={t.id}
+                    className={`vw-tx-step ${isLast ? 'vw-tx-step--last' : 'vw-tx-step--sticky'}`}
+                    style={{ zIndex: i + 1 }}
+                  >
+                    <article className="vw-tx-step-card">
+                      <div
+                        className="vw-tx-step-media"
+                        style={{
+                          background: `radial-gradient(circle at 30% 20%, ${t.tone}40, transparent 55%), #0B132B`,
+                        }}
+                      >
+                        <span className="vw-tx-step-badge">{t.badge}</span>
+                        <div className="vw-tx-step-media__frame">
+                          <Image
+                            src={t.image}
+                            alt={`${t.name} ${t.nameItalic}`}
+                            fill
+                            sizes="(max-width:992px) 92vw, 520px"
+                            quality={72}
+                            priority={i === 0}
+                            style={{ objectFit: 'contain' }}
+                          />
+                        </div>
+                        <div className="vw-tx-step-chips">
+                          {t.bullets.map((chip) => (
+                            <span key={chip} className="vw-tx-step-chip">
+                              {chip}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="vw-tx-step-copy">
+                        <p className="vw-tx-step-label">
+                          Treatment {t.n} · {t.mechanism}
+                        </p>
+                        <h3 className="vw-tx-step-title">
+                          {t.name} <em>{t.nameItalic}</em>
+                        </h3>
+                        <p className="vw-tx-step-body">{t.desc}</p>
+
+                        <div className="vw-tx-step-callout">
+                          <p className="vw-tx-step-callout__value">
+                            FROM {t.price}
+                            <span>/mo</span>
+                          </p>
+                          <p className="vw-tx-step-callout__label">{t.calloutLabel}</p>
+                        </div>
+
+                        <div className="vw-tx-step-actions">
+                          <Link href="/get-started" className="home-lower__btn-primary">
+                            See if I qualify <ArrowRight size={16} />
+                          </Link>
+                          <Link href={t.href} className="vw-tx-step-link">
+                            Learn more
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
                   </div>
-                </div>
-
-                <div className="home-tx-card__body">
-                  <p className="home-tx-card__mech">{t.mechanism}</p>
-                  <h3>{t.name}</h3>
-                  <p className="home-tx-card__desc">{t.desc}</p>
-
-                  <ul>
-                    {t.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-
-                  <div className="home-tx-card__footer">
-                    <div className="home-tx-card__price">
-                      <span>From</span>
-                      <strong>{t.price}</strong>
-                      <span>/mo</span>
-                    </div>
-                    <Link href={t.href} className="home-lower__btn-primary">
-                      Check eligibility <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
