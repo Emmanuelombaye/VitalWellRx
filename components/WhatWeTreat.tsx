@@ -4,17 +4,15 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ClipboardList, Stethoscope, Truck, MessageCircle } from 'lucide-react'
 
 const treatments = [
   {
     id: 'tirzepatide',
-    badge: 'Best Seller',
+    badge: 'Provider-guided',
     name: 'Personalized Tirzepatide+',
     mechanism: 'Dual GIP / GLP-1',
-    stat: '22%',
-    statLabel: 'avg. weight reduction in clinical studies',
-    desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways to regulate appetite, reduce food noise, and support stronger weight-loss outcomes.',
+    desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation when prescribed as part of a personalized plan.',
     bullets: ['Weekly injection', 'Provider review in 24h', 'Free expedited shipping'],
     price: '$340',
     image: '/vial-tirzepatide.webp',
@@ -23,12 +21,10 @@ const treatments = [
   },
   {
     id: 'semaglutide',
-    badge: 'Proven GLP-1',
+    badge: 'Provider-guided',
     name: 'Personalized Semaglutide+',
     mechanism: 'GLP-1 receptor agonist',
-    stat: '15%',
-    statLabel: 'avg. weight reduction in clinical studies',
-    desc: 'A weekly GLP-1 injection designed for steady, sustainable weight loss by helping regulate blood sugar, improve satiety, and quiet hunger signals.',
+    desc: 'A weekly GLP-1 injection that may support satiety and appetite regulation when prescribed by a licensed U.S. provider.',
     bullets: ['Weekly injection', 'Provider review in 24h', 'Free expedited shipping'],
     price: '$310',
     image: '/vial-semaglutide.webp',
@@ -55,30 +51,26 @@ const steps = [
   },
 ]
 
-const reviews = [
+const carePillars = [
   {
-    title: 'I switched to VitalWellRx and they have helped me so much.',
-    body: 'I’m down significant weight and was able to get my life back. Support has been incredible every step of the way.',
-    name: 'Alex M.',
-    tag: 'Tirzepatide+',
+    title: 'Clinical intake',
+    body: 'Share your history, goals, and eligibility details in a short online questionnaire — the foundation for every care decision.',
+    Icon: ClipboardList,
   },
   {
-    title: 'I’ve lost over 40 pounds and am continuing with strong results.',
-    body: 'I’ve already referred several people because of how positive my Semaglutide+ experience has been.',
-    name: 'Jordan R.',
-    tag: 'Semaglutide+',
+    title: 'Licensed provider review',
+    body: 'A U.S.-licensed clinician reviews your intake and determines whether a prescription is appropriate for you.',
+    Icon: Stethoscope,
   },
   {
-    title: 'The process was easy, clear, and fast.',
-    body: 'I got my medication quickly, food noise is way down, and it’s been easy to make good choices. Great on Tirzepatide+.',
-    name: 'Sam K.',
-    tag: 'Tirzepatide+',
+    title: 'Partner pharmacy',
+    body: 'If prescribed, medication is prepared by a licensed U.S. pharmacy and shipped in temperature-controlled packaging.',
+    Icon: Truck,
   },
   {
-    title: 'Customer service is responsive and kind.',
-    body: 'Shipments arrive on time with tracking. I’ve been using Semaglutide+ for months and the support never drops.',
-    name: 'Taylor H.',
-    tag: 'Semaglutide+',
+    title: 'Ongoing care',
+    body: 'Stay connected through your patient portal for dose questions, plan updates, and follow-up support as experiences vary.',
+    Icon: MessageCircle,
   },
 ]
 
@@ -121,7 +113,7 @@ export default function WhatWeTreat() {
               <em>Built around your goals.</em>
             </h2>
             <p className="home-lower__sub">
-              Clinically guided Tirzepatide+ and Semaglutide+ — provider reviewed, pharmacy fulfilled, delivered to your door.
+              Provider-guided Tirzepatide+ and Semaglutide+ — reviewed by licensed clinicians, fulfilled by partner pharmacies, delivered to your door.
             </p>
           </div>
 
@@ -146,11 +138,6 @@ export default function WhatWeTreat() {
                   <p className="home-tx-card__mech">{t.mechanism}</p>
                   <h3>{t.name}</h3>
                   <p className="home-tx-card__desc">{t.desc}</p>
-
-                  <div className="home-tx-card__stat">
-                    <strong style={{ color: t.tone }}>{t.stat}</strong>
-                    <span>{t.statLabel}</span>
-                  </div>
 
                   <ul>
                     {t.bullets.map((b) => (
@@ -212,20 +199,20 @@ export default function WhatWeTreat() {
         </div>
       </section>
 
-      {/* ── Social proof ── */}
+      {/* ── Care process pillars ── */}
       <section className="home-lower__love">
         <div className="home-lower__shell">
           <div className="home-lower__head">
-            <p className="home-lower__eyebrow">20,000+ patients</p>
+            <p className="home-lower__eyebrow">How care works</p>
             <h2>
-              What people love about <em>VitalWellRx</em>
+              Intake to pharmacy — <em>built for clarity</em>
             </h2>
           </div>
 
           <div className="home-lower__reviews" role="list">
-            {reviews.map((r, i) => (
+            {carePillars.map(({ title, body, Icon }, i) => (
               <motion.article
-                key={r.name}
+                key={title}
                 className="home-review-card"
                 role="listitem"
                 initial={{ opacity: 0, y: 20 }}
@@ -233,17 +220,15 @@ export default function WhatWeTreat() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06, duration: 0.45 }}
               >
-                <div className="home-review-card__stars">★★★★★</div>
-                <h3>{r.title}</h3>
-                <p>{r.body}</p>
-                <div className="home-review-card__meta">
-                  <strong>{r.name}</strong>
-                  <span>{r.tag}</span>
+                <div className="home-review-card__stars" aria-hidden>
+                  <Icon size={18} strokeWidth={2.25} />
                 </div>
+                <h3>{title}</h3>
+                <p>{body}</p>
               </motion.article>
             ))}
           </div>
-          <p className="home-lower__disclaimer">Individual patient experiences and results may vary.</p>
+          <p className="home-lower__disclaimer">Individual experiences vary. Treatment is prescribed only when clinically appropriate.</p>
         </div>
       </section>
 
@@ -294,7 +279,7 @@ export default function WhatWeTreat() {
             <p>Licensed providers. Tirzepatide+ &amp; Semaglutide+. Fully online.</p>
             <div className="home-lower__cta-actions">
               <Link href="/get-started" className="home-lower__btn-primary">
-                Get Started Today
+                Start medical intake
               </Link>
               <Link href="/treatments/weight-loss" className="home-lower__btn-secondary">
                 Compare treatments

@@ -290,9 +290,9 @@ export default function Dashboard() {
                   <MessageSquare size={20} className="text-gold" /> Physician Telehealth Chat
                 </h4>
                 <div style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '0.75rem', marginBottom: '1rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary-gold)', marginBottom: '4px' }}>Dr. Marcus Vance, MD (Medical Director)</div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary-gold)', marginBottom: '4px' }}>Licensed Provider</div>
                   <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.5 }}>
-                    "Your blood panel looks excellent. I have authorized your Week 4 titration dose increase. Keep up the high protein intake."
+                    Demo message only — your care team will reach out here after a real clinical review when available.
                   </p>
                 </div>
                 <button className="btn-primary" style={{ width: '100%', padding: '0.75rem' }}>Send Message to Provider</button>
@@ -303,7 +303,7 @@ export default function Dashboard() {
                   <PieChart size={20} className="text-gold" /> Blood Panel Diagnostics
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1rem' }}>
-                  {['Free Testosterone: 26.4 pg/mL (Optimal)', 'Fasting Glucose: 88 mg/dL (Normal)', 'HbA1c: 5.2% (Optimal)', 'hs-CRP: 0.6 mg/L (Low Inflammation)'].map((lab, idx) => (
+                  {['Intake status: Awaiting provider review', 'Prescription: Only if clinically appropriate', 'Pharmacy: Partner U.S. fulfillment if prescribed', 'Support: Message care team after enrollment'].map((lab, idx) => (
                     <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'white', padding: '0.5rem', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '0.5rem' }}>
                       <span>{lab.split(':')[0]}</span>
                       <span style={{ color: 'var(--primary-gold)', fontWeight: 700 }}>{lab.split(':')[1]}</span>
@@ -311,7 +311,7 @@ export default function Dashboard() {
                   ))}
                 </div>
                 <button style={{ width: '100%', padding: '0.75rem', backgroundColor: 'transparent', border: '1px solid var(--primary-gold)', color: 'var(--primary-gold)', borderRadius: '99px', fontWeight: 700, cursor: 'pointer' }}>
-                  Download Full PDF Blood Work
+                  View care checklist
                 </button>
               </div>
             </div>

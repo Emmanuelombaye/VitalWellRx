@@ -4,24 +4,19 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
-import { ArrowRight, ShieldCheck, Truck, Lock, Sparkles, Check, Star } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Truck, Lock, Sparkles, Check } from 'lucide-react'
 
 const products = [
   {
     id: 'tirzepatide',
     label: 'Tirzepatide+',
-    badge: 'Best Seller',
+    badge: 'Provider-guided',
     title: 'Personalized Tirzepatide+',
     mechanism: 'Dual GIP / GLP-1',
-    tagline: 'Stronger appetite control. Deeper metabolic reset.',
-    desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways to regulate appetite, quiet food noise, and support clinical-grade weight-loss outcomes.',
+    tagline: 'Dual-pathway weekly support, when prescribed.',
+    desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation and metabolic goals as part of a provider-guided plan.',
     price: '$340',
     period: '/mo',
-    stat: '22%',
-    statLabel: 'avg. weight reduction*',
-    enrolled: '1,000+ enrolled this week',
-    rating: '4.9',
-    reviews: '800+',
     image: '/vial-tirzepatide.webp',
     cutout: '/cutout-duo-tirzepatide.webp',
     href: '/treatments/weight-loss',
@@ -38,18 +33,13 @@ const products = [
   {
     id: 'semaglutide',
     label: 'Semaglutide+',
-    badge: 'Proven GLP-1',
+    badge: 'Provider-guided',
     title: 'Personalized Semaglutide+',
     mechanism: 'GLP-1 receptor agonist',
-    tagline: 'Steady results. Sustainable habit change.',
-    desc: 'A weekly GLP-1 injection designed for sustainable weight loss by helping regulate blood sugar, improve satiety, and reduce constant hunger signals.',
+    tagline: 'Weekly GLP-1 pathway support, when prescribed.',
+    desc: 'A weekly GLP-1 injection that may support satiety, appetite regulation, and sustainable habit change when prescribed as part of a personalized care plan.',
     price: '$310',
     period: '/mo',
-    stat: '15%',
-    statLabel: 'avg. weight reduction*',
-    enrolled: '750+ enrolled this week',
-    rating: '4.8',
-    reviews: '620+',
     image: '/vial-semaglutide.webp',
     cutout: '/cutout-duo-semaglutide.webp',
     href: '/treatments/odt-tablets',
@@ -182,7 +172,7 @@ export default function ShopPage() {
               </MagneticButton>
             </div>
             <div className="shop-hero__trust">
-              <div><Star size={14} fill="currentColor" /> 4.9 average rating</div>
+              <div><ShieldCheck size={14} /> Provider-guided protocols</div>
               <div><ShieldCheck size={14} /> Licensed U.S. providers</div>
               <div><Truck size={14} /> Free expedited shipping</div>
             </div>
@@ -262,7 +252,7 @@ export default function ShopPage() {
                       <span>{p.period}</span>
                     </div>
                     <div className="shop-shelf-card__rating">
-                      <Star size={13} fill="currentColor" /> {p.rating}
+                      Charged only if prescribed
                     </div>
                   </div>
                   <div className="shop-shelf-card__actions">
@@ -353,16 +343,16 @@ export default function ShopPage() {
 
                 <div className="shop-product__meta">
                   <div>
-                    <strong style={{ color: active.tone }}>{active.stat}</strong>
-                    <span>{active.statLabel}</span>
-                  </div>
-                  <div>
-                    <strong>{active.rating}/5</strong>
-                    <span>{active.reviews} reviews</span>
+                    <strong style={{ color: active.tone }}>Rx</strong>
+                    <span>if prescribed</span>
                   </div>
                   <div>
                     <strong>24h</strong>
                     <span>provider review</span>
+                  </div>
+                  <div>
+                    <strong>US</strong>
+                    <span>pharmacy fulfillment</span>
                   </div>
                 </div>
 
@@ -393,7 +383,7 @@ export default function ShopPage() {
                       Full details
                     </Link>
                   </div>
-                  <p className="shop-product__enrolled">{active.enrolled}</p>
+                  <p className="shop-product__enrolled">Charged only if a licensed provider prescribes treatment.</p>
                 </div>
               </div>
             </motion.div>

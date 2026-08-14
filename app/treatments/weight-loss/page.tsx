@@ -15,32 +15,32 @@ import {
 } from '@/data/treatments/full'
 
 const clinicalBullets = [
-  'Curbs food noise and cravings within 48 hours',
-  'Protects lean skeletal muscle during caloric reduction',
-  'Improves insulin resistance and glucose disposal',
-  'Ongoing monthly physician blood panel monitoring',
+  'May help quiet food noise and cravings as your body adjusts',
+  'Provider-guided protocols designed with metabolic health in mind',
+  'May support insulin sensitivity and glucose regulation when appropriate',
+  'Ongoing monthly physician blood panel monitoring when indicated',
 ]
 
 const roadmap = [
   {
     phase: 'Weeks 1–2',
     title: 'Initiation & Adaptation',
-    desc: 'Low starter dose to assess tolerance. Craving reduction begins within 48 hours.',
+    desc: 'Low starter dose to assess tolerance. Some people notice appetite changes early; experiences vary.',
   },
   {
     phase: 'Weeks 3–6',
-    title: 'Steady Reduction',
-    desc: 'Gradual dose titration. Fat loss accelerates while maintaining high energy levels.',
+    title: 'Steady Titration',
+    desc: 'Gradual dose titration under provider review. Energy and appetite responses differ by individual.',
   },
   {
     phase: 'Weeks 7–12',
-    title: 'Peak Metabolic Velocity',
-    desc: 'Target weight loss range achieved. Significant reduction in waist circumference.',
+    title: 'Ongoing Metabolic Support',
+    desc: 'Provider continues to calibrate dosing. Progress and body composition changes are not guaranteed.',
   },
   {
     phase: 'Month 4+',
     title: 'Maintenance Protocol',
-    desc: 'Dose stabilization or gradual tapering to lock in your new baseline weight permanently.',
+    desc: 'Dose stabilization or gradual adjustments to support a sustainable baseline — guided by clinical judgment.',
   },
 ]
 
@@ -59,7 +59,7 @@ export default function MedicalWeightLoss() {
             & Metabolic Optimization.
           </>
         }
-        subtitle="Reset your body set-point with doctor-guided Tirzepatide and GLP-1 protocols. Average clinical weight loss of up to 22.5% without restrictive dieting or muscle loss."
+        subtitle="Reset your approach to metabolic health with doctor-guided Tirzepatide and GLP-1 protocols. Treatment may support weight-management goals when prescribed — without promising specific outcomes."
         ctaLabel="Check Eligibility"
       />
 
@@ -71,11 +71,11 @@ export default function MedicalWeightLoss() {
             <div>
               <SectionEyebrow>Clinical Data</SectionEyebrow>
               <h2 className="h2" style={{ marginTop: '0.5rem' }}>
-                Proven <span className="text-gold">Fat Loss Curve</span>
+                Provider-guided <span className="text-gold">metabolic care</span>
               </h2>
               <p className="text-muted" style={{ fontSize: '1.1rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                Clinical studies demonstrate sustained, steady weight reduction over a 12 to 24 week timeline. Dual
-                GIP/GLP-1 receptors preserve lean muscle mass while accelerating fat loss.
+                Dual GIP/GLP-1 and GLP-1 pathways may support appetite regulation over a structured
+                titration timeline. Individual responses vary; outcomes are not guaranteed.
               </p>
               <CheckList items={clinicalBullets} />
             </div>
@@ -99,21 +99,21 @@ export default function MedicalWeightLoss() {
                       textTransform: 'uppercase',
                     }}
                   >
-                    Clinical Weight Reduction Trial
+                    Clinical Weight Reduction Pathway
                   </div>
-                  <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white' }}>12-Week Weight Loss Curve</div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white' }}>12-Week Titration Curve</div>
                 </div>
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.35rem',
-                    color: '#10B981',
+                    color: '#D4AF37',
                     fontWeight: 800,
                     fontSize: '0.875rem',
                   }}
                 >
-                  <TrendingDown size={18} /> -22.5% Average
+                  <TrendingDown size={18} /> Provider-guided
                 </div>
               </div>
 
@@ -148,8 +148,8 @@ export default function MedicalWeightLoss() {
                 }}
               >
                 <span>Week 1 (Baseline)</span>
-                <span>Week 6 (-12%)</span>
-                <span>Week 12 (-22.5%)</span>
+                <span>Week 6 (Titration)</span>
+                <span>Week 12 (Ongoing)</span>
               </div>
             </div>
           </div>

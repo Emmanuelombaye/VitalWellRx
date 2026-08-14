@@ -24,7 +24,7 @@ export default function Home() {
     <main>
       {/* Announcement Bar */}
       <div style={{ backgroundColor: 'var(--foreground)', color: 'var(--primary-navy)', padding: '10px', textAlign: 'center', fontWeight: 600, fontSize: '0.875rem' }}>
-        No insurance needed. Precision care, customized just for you. <Link href="/get-started" style={{ textDecoration: 'underline', marginLeft: '8px' }}>Start today →</Link>
+        No insurance needed. Precision care, customized just for you. <Link href="/get-started" style={{ textDecoration: 'underline', marginLeft: '8px' }}>Start medical intake →</Link>
       </div>
 
       {/* Hero Section */}
@@ -77,7 +77,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p variants={itemVariants} style={{ fontSize: '1.25rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.9)', maxWidth: '540px' }}>
-            Clinically-proven, MD overseen, longevity protocols and metabolic treatments, delivered directly to your door. No hidden fees, ever.
+            Provider-gated metabolic treatments that may support longevity and weight-management goals — reviewed by licensed U.S. clinicians and delivered to your door. No hidden fees, ever.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex gap-4" style={{ marginTop: '0.5rem', width: '100%', justifyContent: 'flex-start' }}>
@@ -93,7 +93,7 @@ export default function Home() {
         <div className="marquee-content">
           {[...Array(2)].map((_, i) => (
             <div key={i} style={{ display: 'flex' }}>
-              <div className="marquee-item"><HeartPulse size={16} /> 30,000+ PATIENTS NATIONWIDE</div>
+              <div className="marquee-item"><HeartPulse size={16} /> LICENSED U.S. PROVIDER REVIEW</div>
               <div className="marquee-item"><Stethoscope size={16} /> BOARD-CERTIFIED PHYSICIANS</div>
               <div className="marquee-item"><BadgeCheck size={16} /> U.S. LICENSED PHARMACIES</div>
               <div className="marquee-item"><Clock size={16} /> 24-48 HOUR MEDICAL REVIEW</div>

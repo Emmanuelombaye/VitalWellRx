@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Star } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 const treatments = [
   {
@@ -12,17 +12,14 @@ const treatments = [
     label: 'Tirzepatide',
     tone: '#D4AF37',
     toneSoft: 'rgba(212, 175, 55, 0.22)',
-    badge: 'Best Seller',
+    badge: 'Provider-guided',
     title: 'Personalized Tirzepatide+',
-    resultStat: '22%',
+    mechanismLabel: 'Dual GIP / GLP-1',
     description:
-      'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways to regulate appetite, reduce food noise, and support stronger weight-loss outcomes than GLP-1 alone.',
+      'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation and metabolic goals when prescribed as part of a provider-guided plan.',
     detail: 'Available as Dual GIP / GLP-1 (Tirzepatide).',
     price: '$340',
     period: '/mo',
-    enrolled: '1,000+ Patients enrolled in last 7 days',
-    rating: '4.9/5',
-    reviews: '800+ Reviews',
     productImage: '/vial-tirzepatide.webp',
     cutoutImage: '/cutout-duo-tirzepatide.webp',
     href: '/treatments/weight-loss',
@@ -32,17 +29,14 @@ const treatments = [
     label: 'Semaglutide',
     tone: '#0F766E',
     toneSoft: 'rgba(15, 118, 110, 0.14)',
-    badge: 'Proven GLP-1',
+    badge: 'Provider-guided',
     title: 'Personalized Semaglutide+',
-    resultStat: '15%',
+    mechanismLabel: 'GLP-1 pathway',
     description:
-      'A weekly GLP-1 injection designed to support steady, sustainable weight loss by helping regulate blood sugar, improve satiety, and quiet constant hunger signals.',
+      'A weekly GLP-1 injection that may support satiety, appetite regulation, and sustainable habit change when prescribed by a licensed U.S. provider.',
     detail: 'Available as GLP-1 (Semaglutide).',
     price: '$310',
     period: '/mo',
-    enrolled: '750+ Patients enrolled in last 7 days',
-    rating: '4.8/5',
-    reviews: '620+ Reviews',
     productImage: '/vial-semaglutide.webp',
     cutoutImage: '/cutout-duo-semaglutide.webp',
     href: '/treatments/odt-tablets',
@@ -165,17 +159,17 @@ export default function GoalTreatments() {
                   left: '42%',
                   top: '8%',
                   transform: 'translateX(-50%)',
-                  fontSize: 'clamp(5.5rem, 15vw, 10rem)',
+                  fontSize: 'clamp(2.25rem, 5vw, 3.5rem)',
                   fontWeight: 800,
-                  color: 'rgba(11,19,43,0.07)',
-                  letterSpacing: '-0.05em',
-                  lineHeight: 0.85,
+                  color: 'rgba(11,19,43,0.1)',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
                   whiteSpace: 'nowrap',
                   userSelect: 'none',
                   zIndex: 0,
                 }}
               >
-                ↓{active.resultStat}
+                {active.mechanismLabel}
               </div>
 
               <motion.div
@@ -251,10 +245,6 @@ export default function GoalTreatments() {
                     {active.badge}
                   </span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.75rem', fontWeight: 700, color: '#475569' }}>
-                  <Star size={13} fill="#D4AF37" color="#D4AF37" />
-                  {active.rating} · {active.reviews}
-                </div>
               </div>
 
               <div className="goal-product-top">
@@ -271,12 +261,12 @@ export default function GoalTreatments() {
                 </div>
                 <div className="goal-product-meta">
                   <div className="goal-product-enrolled">
-                    {active.enrolled}
+                    Provider-guided protocols
                   </div>
                   <div className="goal-product-price">
                     FROM {active.price}{active.period}
                     <span>
-                      lowest cash price
+                      charged only if prescribed
                     </span>
                   </div>
                 </div>

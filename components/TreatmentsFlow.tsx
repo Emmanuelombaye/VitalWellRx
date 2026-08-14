@@ -1,17 +1,17 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, Check, ChevronDown, Star } from 'lucide-react'
+import { ArrowRight, Check, ChevronDown, ClipboardList, Stethoscope, Truck } from 'lucide-react'
 import { Reveal } from './Reveal'
 
 const products = [
   {
     id: 'semaglutide',
     name: 'GLP-1 (Semaglutide+)',
-    short: 'Gradual, effective results.',
+    short: 'Weekly GLP-1 pathway support',
     thumb: '/treatments/sema-thumb.webp',
     vial: '/treatments/vial-semaglutide.webp',
     price: 310,
@@ -20,7 +20,7 @@ const products = [
   {
     id: 'tirzepatide',
     name: 'GLP-1 + GIP (Tirzepatide+)',
-    short: 'Faster results. Dual-action support.',
+    short: 'Dual-pathway weekly support',
     thumb: '/treatments/tirz-thumb.webp',
     vial: '/treatments/vial-tirzepatide.webp',
     price: 340,
@@ -35,12 +35,22 @@ const includes = [
   'Access to Patient Portal',
 ]
 
-const stories = [
-  { src: '/treatments/lisa.avif', name: 'Lisa C.', lbs: 75, when: 'in 10 Months' },
-  { src: '/treatments/blaze.webp', name: 'Blaze B.', lbs: 50, when: 'in 6 Months' },
-  { src: '/treatments/crystal.webp', name: 'Crystal G.', lbs: 50, when: 'in 6 Months' },
-  { src: '/treatments/jamilyn.avif', name: 'JamiLyn O.', lbs: 36, when: 'in 14 Weeks' },
-  { src: '/treatments/kim.webp', name: 'Kim B.', lbs: 8, when: 'in 6 Weeks' },
+const processSteps = [
+  {
+    title: 'Clinical intake',
+    body: 'Complete a short medical questionnaire covering history, medications, and goals.',
+    Icon: ClipboardList,
+  },
+  {
+    title: 'Licensed provider review',
+    body: 'A U.S.-licensed clinician reviews your intake and decides if a prescription is appropriate.',
+    Icon: Stethoscope,
+  },
+  {
+    title: 'Partner pharmacy fulfillment',
+    body: 'If prescribed, medication is prepared by a licensed U.S. pharmacy and shipped to your door.',
+    Icon: Truck,
+  },
 ]
 
 const signals = [
@@ -50,11 +60,11 @@ const signals = [
   },
   {
     title: 'Slows down how fast food leaves your stomach.',
-    body: 'Treatment reduces the rate at which your stomach empties after a meal. The physical sensation of fullness lasts longer — and hunger returns more slowly.',
+    body: 'Treatment may reduce the rate at which your stomach empties after a meal. The physical sensation of fullness can last longer — and hunger may return more slowly.',
   },
   {
     title: 'Recalibrates your hunger system — not shuts it down.',
-    body: 'With structured dosing reviewed by your provider, therapy helps restore a more balanced hormonal response to food — so the process feels steadier, not like a fight you’re constantly losing.',
+    body: 'With structured dosing reviewed by your provider, therapy may help restore a more balanced hormonal response to food — so the process feels steadier, not like a fight you’re constantly losing.',
   },
 ]
 
@@ -62,28 +72,28 @@ const weeks = [
   {
     label: 'Week 1 → 4',
     title: 'Your body is adjusting',
-    body: 'You start on a low dose — intentionally. Treatment is introduced gradually so your body can adapt. Some patients notice appetite changes early. Others take a few more weeks. Both are normal.',
+    body: 'You start on a low dose — intentionally. Treatment is introduced gradually so your body can adapt. Some people notice appetite changes early. Others take longer. Experiences vary and are not guaranteed.',
   },
   {
     label: 'Week 4 → 12',
     title: 'The protocol starts to settle',
-    body: 'Most patients begin to feel the treatment working more consistently. Food noise and cravings quiet. Fullness arrives earlier and stays longer. Your dose may be reviewed and adjusted.',
+    body: 'As dosing continues under provider review, some people notice quieter food noise or earlier fullness. Others need more time or a dose adjustment. Individual responses vary and are not guaranteed.',
   },
   {
     label: 'Month 3+',
     title: 'Calibrated to you',
-    body: 'With how your body has responded, your provider can fine-tune your plan with real precision. The focus shifts from adjustment to consistency — and maintainable progress becomes the rhythm.',
+    body: 'With how your body has responded, your provider can fine-tune your plan. The focus may shift from adjustment to consistency — always guided by clinical judgment, not outcome guarantees.',
   },
 ]
 
 const faqs = [
   {
     q: 'What is GLP-1 weight loss treatment?',
-    a: 'GLP-1 treatment is a class of prescription medication — including Semaglutide+ and Tirzepatide+ — that works with your body’s natural appetite signals, helping you feel full sooner, stay satisfied longer, and reduce constant food noise. Every protocol is reviewed by a licensed provider.',
+    a: 'GLP-1 treatment is a class of prescription medication — including Semaglutide+ and Tirzepatide+ — that works with your body’s natural appetite signals and may help you feel full sooner, stay satisfied longer, and reduce constant food noise. Every protocol is reviewed by a licensed provider.',
   },
   {
     q: 'What’s the difference between Semaglutide+ and Tirzepatide+?',
-    a: 'Semaglutide+ is a GLP-1 receptor agonist. Tirzepatide+ is a dual GIP and GLP-1 receptor agonist. Both support appetite regulation and long-term weight management through different pathways. Your provider reviews your history and goals to determine what’s appropriate.',
+    a: 'Semaglutide+ is a GLP-1 receptor agonist. Tirzepatide+ is a dual GIP and GLP-1 receptor agonist. Both may support appetite regulation and long-term weight management through different pathways. Your provider reviews your history and goals to determine what’s appropriate.',
   },
   {
     q: 'Who is GLP-1 treatment for?',
@@ -106,10 +116,8 @@ const faqs = [
 export default function TreatmentsFlow() {
   const [activeId, setActiveId] = useState<(typeof products)[number]['id']>('semaglutide')
   const [openFaq, setOpenFaq] = useState<number | null>(0)
-  const [weight, setWeight] = useState(220)
 
   const active = products.find((p) => p.id === activeId) ?? products[0]
-  const projected = useMemo(() => Math.max(8, Math.round(weight * (activeId === 'tirzepatide' ? 0.2 : 0.15))), [weight, activeId])
 
   return (
     <div className="tx-page">
@@ -140,9 +148,9 @@ export default function TreatmentsFlow() {
             <Reveal className="tx-panel__media">
               <div className="tx-media-card">
                 <div className="tx-media-card__top">
-                  <p className="tx-media-card__eyebrow">1000+ bought in past week</p>
+                  <p className="tx-media-card__eyebrow">Provider-guided protocols</p>
                   <div className="tx-media-card__pills">
-                    <span>Most Popular</span>
+                    <span>Provider-guided</span>
                     <span className="is-stock">In Stock</span>
                   </div>
                 </div>
@@ -181,7 +189,7 @@ export default function TreatmentsFlow() {
 
             <Reveal delayMs={100} className="tx-panel__copy">
               <p className="tx-panel__desc">
-                A weekly treatment designed to support appetite suppression, metabolic optimization, and long-term weight management through GLP-1 receptor activation — with Tirzepatide+ adding dual GIP support.
+                A weekly treatment that may support appetite regulation through GLP-1 receptor activation — with Tirzepatide+ adding dual GIP support when prescribed as appropriate.
               </p>
 
               <div className="tx-pickers" role="tablist" aria-label="Choose medication">
@@ -246,79 +254,27 @@ export default function TreatmentsFlow() {
           <Reveal>
             <div className="tx-results__head">
               <h2 className="tx-section-title">
-                Our patients’ incredible results — <em>built to last</em>!
+                How care works — <em>step by step</em>
               </h2>
               <p className="tx-results__sub">
-                Real patients. Real progress. Provider-guided Semaglutide+ and Tirzepatide+ outcomes.
+                Intake, licensed provider review, then pharmacy fulfillment when prescribed. No fabricated before-and-after claims.
               </p>
             </div>
           </Reveal>
-        </div>
 
-        <div className="tx-results__marquee" aria-label="Patient before and after results">
-          <div className="tx-results__track">
-            {[...stories, ...stories].map((s, i) => (
-              <article key={`${s.name}-${i}`} className="tx-result-card">
-                <div className="tx-result-card__media">
-                  <Image
-                    src={s.src}
-                    alt={`${s.name} before and after weight loss`}
-                    fill
-                    sizes="(max-width:768px) 85vw, 380px"
-                    quality={60}
-                    loading="lazy"
-                    className="tx-result-card__photo"
-                  />
-
-                  <div className="tx-result-card__split" aria-hidden>
-                    <span className="tx-result-card__tag is-before">Before</span>
-                    <span className="tx-result-card__tag is-after">After</span>
-                  </div>
-                  <div className="tx-result-card__seam" aria-hidden />
-
-                  <div className="tx-result-card__stat">
-                    <em>Lost</em>
-                    <strong>{s.lbs}</strong>
-                    <span>lbs</span>
-                    <small>{s.when}</small>
-                  </div>
-
-                  <div className="tx-result-card__person">
-                    <span>{s.name}</span>
-                    <em>
-                      <Check size={12} strokeWidth={3} /> Verified GLP-1 Patient
-                    </em>
-                  </div>
-                </div>
-              </article>
+          <div className="tx-science__grid" style={{ marginTop: '2rem' }}>
+            {processSteps.map(({ title, body, Icon }, i) => (
+              <Reveal key={title} delayMs={i * 80}>
+                <article className="tx-signal" style={{ color: 'inherit' }}>
+                  <span aria-hidden>
+                    <Icon size={22} strokeWidth={2} />
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
-        </div>
-
-        <div className="tx-shell">
-          <Reveal delayMs={80}>
-            <div className="tx-trust">
-              <div className="tx-trust__item">
-                <div className="tx-trust__stars" aria-hidden>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} size={14} fill="currentColor" />
-                  ))}
-                </div>
-                <div>
-                  <strong>TrustScore 4.9</strong>
-                  <span>1,200+ reviews</span>
-                </div>
-              </div>
-              <div className="tx-trust__divider" aria-hidden />
-              <div className="tx-trust__item">
-                <div className="tx-trust__g" aria-hidden>G</div>
-                <div>
-                  <strong>Google Rating 4.8</strong>
-                  <span>100+ reviews</span>
-                </div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -351,47 +307,35 @@ export default function TreatmentsFlow() {
         <div className="tx-shell tx-potential__grid">
           <Reveal>
             <h2 className="tx-section-title">
-              Let’s see your potential with <em>GLP-1s</em>
+              Ready to start your <em>medical intake</em>?
             </h2>
-            <p className="tx-potential__sub">Personalized Semaglutide+ & Tirzepatide+ treatments</p>
-
-            <label className="tx-slider">
-              <span>Current weight: <strong>{weight} lbs</strong></span>
-              <input
-                type="range"
-                min={140}
-                max={400}
-                value={weight}
-                onChange={(e) => setWeight(Number(e.target.value))}
-              />
-            </label>
-
-            <div className="tx-potential__result">
-              <span>You could lose up to</span>
-              <strong>{projected} lbs</strong>
-              <em>*Based on typical patient outcomes in 6-month plans. Results may vary.</em>
-            </div>
+            <p className="tx-potential__sub">
+              Personalized Semaglutide+ &amp; Tirzepatide+ — reviewed by a licensed provider before any prescription.
+            </p>
+            <p style={{ marginTop: '1.25rem', maxWidth: '36rem', lineHeight: 1.6, color: '#475569' }}>
+              Complete a short clinical intake. A U.S.-licensed provider reviews your history and goals. If treatment is appropriate, a partner pharmacy fulfills your prescription. Charged only if prescribed.
+            </p>
           </Reveal>
 
           <Reveal delayMs={100}>
             <div className="tx-potential__card">
-              <h3>A clinically studied approach to weight management.</h3>
+              <h3>A provider-guided approach to weight management.</h3>
               <p>
-                GLP-1 medications work with your body’s natural hunger signals to regulate appetite and support steady weight loss over time.
+                GLP-1 medications work with your body’s natural hunger signals and may support appetite regulation when prescribed as part of a personalized plan. Experiences vary.
               </p>
               <ul>
                 <li>
-                  <strong>Semaglutide+</strong> acts on a single GLP-1 pathway — a clinically studied foundation for gradual, sustainable progress.
+                  <strong>Semaglutide+</strong> acts on a single GLP-1 pathway — a foundation that may support gradual, sustainable progress when appropriate.
                 </li>
                 <li>
-                  <strong>Tirzepatide+</strong> acts on two pathways — GLP-1 and GIP — for stronger appetite regulation and a broader metabolic response.
+                  <strong>Tirzepatide+</strong> acts on two pathways — GLP-1 and GIP — and may support broader metabolic response when prescribed.
                 </li>
               </ul>
               <p className="tx-potential__note">
                 Your dosing protocol is reviewed and prescribed by a licensed provider, adjusted as you progress.
               </p>
               <Link href="/get-started" className="tx-cta">
-                See if I qualify <ArrowRight size={18} />
+                Start medical intake <ArrowRight size={18} />
               </Link>
             </div>
           </Reveal>
@@ -405,7 +349,7 @@ export default function TreatmentsFlow() {
               What to expect, week by week with your <em>GLP-1 treatment</em>
             </h2>
             <p className="tx-weeks__lead">
-              No guesswork. Here’s how the first months typically look. Individual experiences vary.
+              Here’s how the first months often look. Individual experiences vary and outcomes are not guaranteed.
             </p>
           </Reveal>
 
@@ -463,7 +407,7 @@ export default function TreatmentsFlow() {
           <Reveal delayMs={120}>
             <div className="tx-faq__cta">
               <Link href="/get-started" className="tx-cta">
-                See if I qualify <ArrowRight size={18} />
+                Start medical intake <ArrowRight size={18} />
               </Link>
             </div>
           </Reveal>

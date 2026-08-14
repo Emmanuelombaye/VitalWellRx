@@ -10,38 +10,38 @@ const stories = [
   {
     step: '01',
     img: '/images/result-1.webp',
-    title: 'Tirzepatide+ Progress',
-    timeline: 'Month 3 · Dual GIP/GLP-1',
-    quote: 'My provider adjusted my Tirzepatide+ dosing based on how I responded — not a template.',
-    patient: 'Alex R.',
-    metric: 'Tirzepatide+',
+    title: 'Clinical intake',
+    timeline: 'Start · Questionnaire',
+    quote: 'Share your history, metrics, and goals so a licensed clinician can evaluate fit.',
+    label: 'Step one',
+    metric: 'Intake',
   },
   {
     step: '02',
     img: '/images/result-2.webp',
-    title: 'Semaglutide+ Steady Loss',
-    timeline: 'Month 2 · GLP-1 Protocol',
-    quote: 'Clear instructions and direct communication with my care team on Semaglutide+.',
-    patient: 'Morgan S.',
-    metric: 'Semaglutide+',
+    title: 'Provider review',
+    timeline: 'Typically within 24h',
+    quote: 'A U.S.-licensed provider decides if Tirzepatide+ or Semaglutide+ is clinically appropriate.',
+    label: 'Not automatic',
+    metric: 'Clinical review',
   },
   {
     step: '03',
     img: '/images/result-3.webp',
-    title: 'Discreet Delivery',
-    timeline: 'Month 1 · Fulfillment',
-    quote: 'Fulfillment was calm, cold-chain shipped, and completely discreet.',
-    patient: 'Blaze B.',
-    metric: 'Pharmacy Direct',
+    title: 'Pharmacy fulfillment',
+    timeline: 'If prescribed',
+    quote: 'Partner U.S. pharmacies prepare and ship discreetly when treatment is approved.',
+    label: 'If prescribed',
+    metric: 'Fulfillment',
   },
   {
     step: '04',
     img: '/images/closing-cta-lifestyle.webp',
-    title: 'Ongoing GLP-1 Care',
-    timeline: 'Month 6 · Optimization',
-    quote: 'Ongoing check-ins kept my Tirzepatide+ goals on track long term.',
-    patient: 'Taylor H.',
-    metric: 'Ongoing Support',
+    title: 'Ongoing care',
+    timeline: 'After enrollment',
+    quote: 'Messaging and follow-up support continue as your provider guides the plan.',
+    label: 'Care team',
+    metric: 'Support',
   },
 ]
 
@@ -53,12 +53,12 @@ export function HowItWorksFlow() {
       <section className="hiw-story">
         <Reveal>
           <div className="hiw-story__head">
-            <span className="hiw-story__eyebrow">Patient Care Milestones</span>
+            <span className="hiw-story__eyebrow">Care milestones</span>
             <h2 className="hiw-story__title">
-              Every treatment has a <em>story</em>
+              Every plan starts with a <em>provider review</em>
             </h2>
             <p className="hiw-story__sub">
-              Provider-directed care, clear compounding language, and accountable follow-through.
+              Intake → clinical review → pharmacy fulfillment when appropriate → ongoing support.
             </p>
           </div>
         </Reveal>
@@ -84,8 +84,8 @@ export function HowItWorksFlow() {
                 <p className="hiw-story-card__timeline">{story.timeline}</p>
                 <p className="hiw-story-card__quote">&ldquo;{story.quote}&rdquo;</p>
                 <div className="hiw-story-card__footer">
-                  <strong>{story.patient}</strong>
-                  <span>Verified Patient</span>
+                  <strong>{story.label}</strong>
+                  <span>VitalWellRx process</span>
                 </div>
               </div>
             </Reveal>

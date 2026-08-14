@@ -9,7 +9,7 @@ export const products: Product[] = [
     dosage: '10 mg/mL Compounded Vial',
     price: '$340',
     period: '/month',
-    desc: 'Once-weekly subcutaneous Dual GIP/GLP-1 receptor agonist for up to 22.5% body fat reduction.',
+    desc: 'Once-weekly subcutaneous Dual GIP/GLP-1 receptor agonist that may support appetite regulation and metabolic goals when prescribed.',
     image: '/shop_tirzepatide.webp',
     href: '/treatments/weight-loss',
     tags: ['Fat Loss', 'Appetite Control', '503A Compounded'],

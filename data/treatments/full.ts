@@ -3,7 +3,7 @@ import type { FaqItem, StatItem } from '@/types'
 export const weightLossFaqs: FaqItem[] = [
   {
     q: 'How does Tirzepatide differ from standard GLP-1 medications like Semaglutide?',
-    a: 'Tirzepatide is a dual GIP (glucose-dependent insulinotropic polypeptide) and GLP-1 (glucagon-like peptide-1) receptor agonist. By targeting two distinct metabolic pathways instead of one, clinical trials have shown up to 22.5% average body weight loss compared to 15% with single-action GLP-1s.',
+    a: 'Tirzepatide is a dual GIP (glucose-dependent insulinotropic polypeptide) and GLP-1 (glucagon-like peptide-1) receptor agonist. By targeting two distinct metabolic pathways instead of one, it may support appetite regulation and weight-management goals differently than single-action GLP-1s. Individual responses vary; a licensed provider determines what is appropriate.',
   },
   {
     q: 'Do I need insurance to participate in this medical weight loss program?',
@@ -15,13 +15,13 @@ export const weightLossFaqs: FaqItem[] = [
   },
   {
     q: 'How quickly can I expect to see results?',
-    a: 'Most patients notice appetite suppression within 24 to 48 hours of their first dose, with measurable weight loss typically starting in Weeks 1–2 as your dosage is safely titrated by your physician.',
+    a: 'Experiences vary. Some people notice appetite changes within the first days or weeks; others take longer. Measurable progress is not guaranteed. Your provider titrates dosing based on tolerance and clinical judgment.',
   },
 ]
 
 export const weightLossStats: StatItem[] = [
-  { val: 'up to 22.5%', label: 'Average Body Weight Loss' },
-  { val: '24-48 hrs', label: 'Appetite Control Onset' },
+  { val: 'Provider-guided', label: 'Licensed Clinical Review' },
+  { val: '24-48 hrs', label: 'Typical Intake Review Window' },
   { val: '100%', label: 'Physician-Guided Care' },
   { val: '50 States', label: 'Licensed US Coverage' },
 ]

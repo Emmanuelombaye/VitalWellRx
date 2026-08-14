@@ -98,7 +98,7 @@ export default function WhyVitalWell() {
               </p>
             </div>
             <div className="why-vw-card__chart" aria-hidden>
-              <span className="why-vw-card__chart-stat">-30.5 lbs</span>
+              <span className="why-vw-card__chart-stat">Provider-guided</span>
               <svg viewBox="0 0 220 90" className="why-vw-card__chart-svg" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="whyChartGlow" x1="0" y1="0" x2="1" y2="0">
