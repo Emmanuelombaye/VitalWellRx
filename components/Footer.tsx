@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ShieldCheck, Lock, Award, HeartPulse, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react'
-import { site, trustBadges } from '@/data/site'
+import { Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { site, trustBadges, contact } from '@/data/site'
+import { legalLinks } from '@/data/legal'
 
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#060d1e', borderTop: '1px solid rgba(212,175,55,0.2)', color: 'white', padding: '5rem 0 2.5rem' }}>
       <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
+
         {/* Top Banner CTA */}
         <div style={{ backgroundColor: 'rgba(212,175,55,0.08)', borderRadius: '1.5rem', border: '1px solid rgba(212,175,55,0.3)', padding: '2.5rem', marginBottom: '4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem' }}>
           <div>
@@ -22,7 +23,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* 4 Main Columns Grid */}
+        {/* Main Columns Grid */}
         <div className="footer-main-grid">
           {/* Brand & Overview */}
           <div>
@@ -32,7 +33,7 @@ export default function Footer() {
               </div>
             </Link>
             <p style={{ color: '#94A3B8', fontSize: '0.925rem', lineHeight: 1.7, maxWidth: '320px', marginBottom: '1.5rem' }}>
-              {site.name} delivers physician-guided Tirzepatide+ and Semaglutide+ weight-loss care — licensed providers, pharmacy fulfillment, and discreet delivery to your door.
+              {site.legalName} d/b/a {site.dba}. Licensed clinical care. Clear pricing. Qualified U.S. pharmacy fulfillment.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--primary-gold)', fontWeight: 700 }}>
               {trustBadges.map((badge) => (
@@ -43,73 +44,79 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Treatments & Protocols */}
+          {/* Care / Treatments */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 800, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.5rem' }}>
-              Treatments
+              Care
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <Link href="/treatments/weight-loss" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Tirzepatide+</Link>
               <Link href="/treatments/odt-tablets" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Semaglutide+</Link>
               <Link href="/treatments" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>All treatments</Link>
+              <Link href="/how-it-works" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>How it works</Link>
               <Link href="/shop" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Shop</Link>
             </div>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Legal — Nexa/Pax pattern */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 800, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.5rem' }}>
-              Navigation
+              Legal
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Link href="/shop" style={{ color: 'var(--primary-gold)', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}>Shop</Link>
-              <Link href="/about" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>About VitalWellRx</Link>
-              <Link href="/how-it-works" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>How it works</Link>
-              <Link href="/treatments" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Treatments</Link>
-              <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Get started</Link>
-              <Link href="/dashboard" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Patient portal</Link>
+              {legalLinks.map((item) => (
+                <Link key={item.href} href={item.href} style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Security & Compliance */}
+          {/* Support */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 800, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.5rem' }}>
-              Compliance & Security
+              Support
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94A3B8', fontSize: '0.85rem' }}>
-                <ShieldCheck size={16} className="text-gold" /> HIPAA Privacy Standard
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94A3B8', fontSize: '0.85rem' }}>
-                <Lock size={16} className="text-gold" /> 256-Bit SSL Encrypted
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94A3B8', fontSize: '0.85rem' }}>
-                <Award size={16} className="text-gold" /> 503A Licensed Pharmacy
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94A3B8', fontSize: '0.85rem' }}>
-                <HeartPulse size={16} className="text-gold" /> 50 State Telehealth
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <Link href="/about" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>About VitalWellRx</Link>
+              <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Check Eligibility</Link>
+              <Link href="/dashboard" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Patient portal</Link>
+              <Link href="/contact" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Contact</Link>
+              <a href={`mailto:${contact.email}`} style={{ color: 'var(--primary-gold)', fontSize: '0.875rem', textDecoration: 'none', fontWeight: 600 }}>
+                {contact.email}
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Medical Disclaimer Panel */}
-        <div style={{ backgroundColor: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '1rem', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '2.5rem' }}>
-          <p style={{ color: '#64748B', fontSize: '0.75rem', lineHeight: 1.6 }}>
-            <strong>Medical Disclaimer:</strong> Information provided on VitalWellRx is for informational and educational purposes only and does not substitute professional medical advice. Prescriptions are subject to online clinical review and physician approval. Compounded medications are compounded in 503A/503B FDA-regulated licensed compounding pharmacies based on individual patient prescriptions. VitalWellRx is not an emergency medical provider. If you are experiencing a medical emergency, please call 911 immediately.
+        {/* Bottom fine print — Nexa/Pax style */}
+        <div className="footer-bottom-block">
+          <p className="footer-bottom-copy">
+            {site.legalName} d/b/a {site.dba} · © {new Date().getFullYear()} {site.dba}. All rights reserved.
           </p>
-        </div>
-
-        {/* Bottom Rights & Badges */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          <p style={{ color: '#64748B', fontSize: '0.8125rem' }}>
-            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
+          <nav className="footer-legal-links" aria-label="Legal">
+            {legalLinks.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="footer-legal-note">
+            VitaWellRx® is a telehealth platform that connects eligible patients with independent US-licensed providers and
+            licensed pharmacy partners. VitaWellRx® is not a pharmacy and does not itself practice medicine. Prescription
+            products are provided only if clinically appropriate after review by a US-licensed provider. Individual results
+            may vary.
           </p>
-          <div style={{ display: 'flex', gap: '1.5rem', color: '#64748B', fontSize: '0.8125rem' }}>
-            <Link href="/privacy" style={{ color: '#64748B', textDecoration: 'none' }}>Privacy Policy</Link>
-            <Link href="/terms" style={{ color: '#64748B', textDecoration: 'none' }}>Terms of Service</Link>
-            <Link href="/contact" style={{ color: '#64748B', textDecoration: 'none' }}>Support</Link>
-          </div>
+          <p className="footer-legal-note">
+            <strong>Service availability:</strong> Services may not be available in all states. Availability may vary by
+            treatment, provider licensure, pharmacy fulfillment, and patient eligibility.
+          </p>
+          <p className="footer-legal-note">
+            <strong>Pharmacy &amp; fulfillment:</strong> If prescription treatment is clinically appropriate, medication may
+            be fulfilled through a licensed dispensing pharmacy pursuant to a patient-specific prescription. Compounded
+            medications are not FDA-approved as finished branded products. Product imagery is illustrative; actual packaging
+            and labeling may differ. *Timing not guaranteed.
+          </p>
         </div>
       </div>
     </footer>

@@ -54,6 +54,7 @@ export interface NavLink {
 
 export interface SiteContact {
   email: string
+  privacyEmail?: string
   phone: string
   phoneDisplay: string
   address: string

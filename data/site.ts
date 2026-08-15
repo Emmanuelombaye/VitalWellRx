@@ -2,16 +2,18 @@ import type { SiteContact } from '@/types'
 
 export const site = {
   name: 'VitalWellRx',
-  legalName: 'VitalWellRx Medical PC',
+  legalName: 'VitaWell RX LLC',
+  dba: 'VitaWellRx®',
   tagline: 'Telehealth & Longevity Protocols',
 } as const
 
 export const contact: SiteContact = {
-  email: 'care@vitalwellrx.com',
-  phone: '1-800-VITAL-RX',
-  phoneDisplay: '1-800-VITAL-RX',
-  address: 'Miami, FL',
-  city: 'Miami, FL',
+  email: 'support@vitawellrx.com',
+  privacyEmail: 'privacy@vitawellrx.com',
+  phone: '7866512127',
+  phoneDisplay: '(786) 651-2127',
+  address: '10225 SW 59th Street, Cooper City, FL 33328',
+  city: 'Cooper City, FL',
 }
 
 export const trustBadges = [
