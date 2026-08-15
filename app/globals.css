@@ -285,7 +285,8 @@ a {
 
 .goal-product-vial {
   position: relative;
-  height: 168px;
+  height: 180px;
+  overflow: visible;
 }
 
 .goal-product-enrolled {
@@ -356,7 +357,7 @@ a {
   }
 
   .goal-product-vial {
-    height: 140px;
+    height: 168px;
   }
 
   .goal-product-ctas {
@@ -688,6 +689,7 @@ a {
 
 .hiw-step-media__img {
   object-fit: cover;
+  object-position: center center;
 }
 
 .hiw-step-chips {
@@ -1440,7 +1442,14 @@ a {
 .vw-tx-step-media__frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
+}
+
+.vw-tx-step-media__frame img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  padding: 1.5rem 1.1rem 3.6rem !important;
+  box-sizing: border-box !important;
 }
 
 .vw-tx-step-badge {
@@ -2413,9 +2422,10 @@ a {
 }
 
 .about-vials-stage__hero {
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
   z-index: 1;
+  padding: 1.25rem !important;
 }
 
 .about-vials-stage__glow {
@@ -4971,7 +4981,7 @@ a {
 
 .med-team__photo-img {
   object-fit: cover !important;
-  object-position: center 20% !important;
+  object-position: center center !important;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -5581,34 +5591,36 @@ a {
 }
 
 .why-vw-card--support {
-  padding-bottom: 0.85rem;
+  padding-bottom: 1.15rem;
 }
 
 .why-vw-card__portal {
   position: relative;
   margin-top: auto;
-  min-height: 250px;
+  min-height: 300px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  padding: 1.5rem 0 0.35rem;
 }
 
 .why-vw-card__phone {
-  width: min(62%, 170px);
-  border-radius: 22px 22px 0 0;
-  overflow: hidden;
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 0;
-  background: #0B132B;
+  width: min(82%, 210px);
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
 }
 
 .why-vw-card__phone img {
   width: 100%;
   height: auto;
+  max-height: 260px;
   display: block;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.4));
 }
 
 .why-vw-card__float {
@@ -5627,7 +5639,8 @@ a {
   font-weight: 600;
   color: #F8FAFC;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
-  white-space: nowrap;
+  white-space: normal;
+  line-height: 1.25;
 }
 
 .why-vw-card__float svg {
@@ -5648,7 +5661,7 @@ a {
 }
 
 .why-vw-card__float--c {
-  bottom: 18%;
+  bottom: 22%;
   left: 50%;
   translate: -50% 0;
   animation: whyFloatY 4.8s ease-in-out infinite;
@@ -5815,11 +5828,11 @@ a {
   }
 
   .med-team__hero {
-    min-height: 210px;
+    min-height: 240px;
   }
 
   .med-team__photo {
-    min-height: 210px;
+    min-height: 240px;
   }
 
   .med-team__role {
@@ -5842,7 +5855,44 @@ a {
   .why-vw-card {
     flex: 0 0 min(88vw, 340px);
     scroll-snap-align: start;
-    min-height: 420px;
+    min-height: 440px;
+  }
+
+  .why-vw-card--support {
+    min-height: 500px;
+  }
+
+  .why-vw-card__portal {
+    min-height: 280px;
+    padding-bottom: 0.25rem;
+  }
+
+  .why-vw-card__phone {
+    width: min(78%, 200px);
+  }
+
+  .why-vw-card__phone img {
+    max-height: 240px;
+  }
+
+  .why-vw-card__float {
+    font-size: 0.68rem;
+    padding: 0.45rem 0.6rem;
+    white-space: normal;
+    max-width: calc(100% - 0.5rem);
+  }
+
+  .med-team__photo,
+  .med-team__hero {
+    min-height: 240px;
+  }
+
+  .vw-tx-step-media__frame {
+    aspect-ratio: 1 / 1;
+  }
+
+  .vw-tx-step-media__frame img {
+    padding: 1.25rem 0.9rem 3.4rem !important;
   }
 
   .shop-shelf__grid {

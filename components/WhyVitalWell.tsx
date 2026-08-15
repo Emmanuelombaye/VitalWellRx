@@ -194,7 +194,8 @@ export default function WhyVitalWell() {
                   height={360}
                   quality={70}
                   loading="lazy"
-                  sizes="(max-width:900px) 55vw, 180px"
+                  sizes="(max-width:900px) 70vw, 230px"
+                  style={{ objectFit: 'contain', objectPosition: 'bottom center', width: '100%', height: 'auto' }}
                 />
               </div>
               {supportPills.map(({ label, Icon, pos }, i) => (

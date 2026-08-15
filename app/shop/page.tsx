@@ -324,7 +324,7 @@ export default function ShopPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <Image src={active.cutout} alt="" fill sizes="(max-width:900px) 100vw, 50vw" quality={70} loading="lazy" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+                  <Image src={active.cutout} alt="" fill sizes="(max-width:900px) 100vw, 50vw" quality={70} loading="lazy" style={{ objectFit: 'contain', objectPosition: 'center bottom' }} />
                 </motion.div>
                 <motion.div
                   className="shop-product__vial"

@@ -256,7 +256,7 @@ export default function GoalTreatments() {
                     sizes="(max-width:900px) 45vw, 240px"
                     quality={60}
                     loading="lazy"
-                    style={{ objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }}
+                    style={{ objectFit: 'contain', objectPosition: 'center center', mixBlendMode: 'multiply' }}
                   />
                 </div>
                 <div className="goal-product-meta">
