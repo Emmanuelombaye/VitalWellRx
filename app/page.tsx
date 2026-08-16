@@ -37,26 +37,26 @@ export default function Home() {
         padding: '4rem 6%',
         overflow: 'hidden'
       }}>
-        {/* Single First Hero Background Image */}
+        {/* Lifestyle hero background */}
         <div className="home-hero__bg" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image
-            src="/hero_bg.webp"
-            alt="VitalWellRx Hero Background"
+            src="/images/closing-cta-lifestyle.webp"
+            alt="Couple living an active, wellness-focused lifestyle"
             fill
-            quality={60}
+            quality={70}
             priority
             sizes="100vw"
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            className="home-hero__img"
+            style={{ objectFit: 'cover', objectPosition: 'center 22%' }}
           />
         </div>
 
-        {/* Dark Gradient Overlay Optimized for Left-Aligned Text */}
-        <div className="home-hero__shade" style={{
+        {/* Dark gradient overlay — left text contrast, lifestyle visible on right */}
+        <div className="home-hero__shade" aria-hidden style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(90deg, rgba(11,19,43,0.95) 0%, rgba(11,19,43,0.75) 55%, rgba(11,19,43,0.25) 100%)',
           zIndex: 1
-        }}></div>
+        }} />
 
         {/* Left-Aligned Hero Content */}
         <motion.div

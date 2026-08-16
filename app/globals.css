@@ -380,6 +380,22 @@ a {
   }
 }
 
+/* ===== Home hero (lifestyle) ===== */
+.home-hero__img {
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.home-hero__shade {
+  background: linear-gradient(
+    90deg,
+    rgba(11, 19, 43, 0.92) 0%,
+    rgba(11, 19, 43, 0.72) 42%,
+    rgba(11, 19, 43, 0.28) 68%,
+    rgba(11, 19, 43, 0.12) 100%
+  );
+}
+
 /* ===== Responsive Breakpoints for Mobile Displays ===== */
 @media (max-width: 1024px) {
   .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
@@ -503,13 +519,22 @@ a {
     overflow: hidden;
   }
 
+  .home-hero__img {
+    object-position: 42% 12% !important;
+  }
+
   .home-hero__shade {
-    background: linear-gradient(180deg, rgba(11,19,43,0.45) 0%, rgba(11,19,43,0.55) 40%, rgba(11,19,43,0.88) 100%) !important;
+    background: linear-gradient(
+      180deg,
+      rgba(11, 19, 43, 0.35) 0%,
+      rgba(11, 19, 43, 0.5) 38%,
+      rgba(11, 19, 43, 0.88) 100%
+    ) !important;
   }
 
   .home-hero__copy {
     max-width: 100% !important;
-    min-height: min(70vh, 560px);
+    min-height: min(72vh, 580px);
     padding: 2rem 1.15rem 1.5rem !important;
     text-align: center !important;
     align-items: center !important;
