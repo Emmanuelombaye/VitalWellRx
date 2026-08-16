@@ -13,8 +13,8 @@ const stories = [
     title: 'Clinical intake',
     timeline: 'Start · Questionnaire',
     quote: 'Share your history, metrics, and goals so a licensed clinician can evaluate fit.',
-    label: 'Step one',
     metric: 'Intake',
+    focus: 'center top',
   },
   {
     step: '02',
@@ -22,8 +22,8 @@ const stories = [
     title: 'Provider review',
     timeline: 'Typically within 24h',
     quote: 'A U.S.-licensed provider decides if Tirzepatide+ or Semaglutide+ is clinically appropriate.',
-    label: 'Not automatic',
     metric: 'Clinical review',
+    focus: 'center top',
   },
   {
     step: '03',
@@ -31,8 +31,8 @@ const stories = [
     title: 'Pharmacy fulfillment',
     timeline: 'If prescribed',
     quote: 'Partner U.S. pharmacies prepare and ship discreetly when treatment is approved.',
-    label: 'If prescribed',
     metric: 'Fulfillment',
+    focus: 'center top',
   },
   {
     step: '04',
@@ -40,8 +40,8 @@ const stories = [
     title: 'Ongoing care',
     timeline: 'After enrollment',
     quote: 'Messaging and follow-up support continue as your provider guides the plan.',
-    label: 'Care team',
     metric: 'Support',
+    focus: 'center 20%',
   },
 ]
 
@@ -71,10 +71,11 @@ export function HowItWorksFlow() {
                   src={story.img}
                   alt={story.title}
                   fill
-                  sizes="300px"
-                  quality={70}
+                  sizes="(max-width:768px) 85vw, (max-width:1100px) 45vw, 260px"
+                  quality={72}
                   loading="lazy"
-                  style={{ objectFit: 'cover' }}
+                  className="hiw-story-card__img"
+                  style={{ objectFit: 'cover', objectPosition: story.focus }}
                 />
                 <span className="hiw-story-card__phase">Phase {story.step}</span>
               </div>
@@ -82,11 +83,7 @@ export function HowItWorksFlow() {
                 <span className="hiw-story-card__metric">{story.metric}</span>
                 <h3>{story.title}</h3>
                 <p className="hiw-story-card__timeline">{story.timeline}</p>
-                <p className="hiw-story-card__quote">&ldquo;{story.quote}&rdquo;</p>
-                <div className="hiw-story-card__footer">
-                  <strong>{story.label}</strong>
-                  <span>VitalWellRx process</span>
-                </div>
+                <p className="hiw-story-card__copy">{story.quote}</p>
               </div>
             </Reveal>
           ))}
