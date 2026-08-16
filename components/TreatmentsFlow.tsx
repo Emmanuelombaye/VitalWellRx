@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, Check, ChevronDown, ClipboardList, Stethoscope, Truck } from 'lucide-react'
+import { ArrowRight, Check, ChevronDown } from 'lucide-react'
 import { Reveal } from './Reveal'
 
 const products = [
@@ -35,21 +35,27 @@ const includes = [
   'Patient Center access',
 ]
 
-const processSteps = [
+const journey = [
   {
-    title: 'Clinical intake',
-    body: 'Complete a short medical questionnaire covering history, medications, and goals.',
-    Icon: ClipboardList,
+    step: '01',
+    title: 'Complete your intake',
+    body: 'Answer a short medical questionnaire so a licensed provider can determine if Tirzepatide+ or Semaglutide+ may be appropriate.',
+    image: '/images/how-step2.webp',
+    focus: '62% 28%',
   },
   {
-    title: 'Licensed provider review',
-    body: 'A U.S.-licensed clinician reviews your intake and decides if a prescription is appropriate.',
-    Icon: Stethoscope,
+    step: '02',
+    title: 'Provider review',
+    body: 'A licensed U.S. clinician reviews your history within 24 hours — treatment is never automatic checkout.',
+    image: '/images/how-step3.webp',
+    focus: 'center 18%',
   },
   {
-    title: 'Partner pharmacy fulfillment',
-    body: 'If prescribed, medication is prepared by a licensed U.S. pharmacy and shipped to your door.',
-    Icon: Truck,
+    step: '03',
+    title: 'Start treatment',
+    body: 'If prescribed, a partner U.S. pharmacy prepares and ships discreetly in temperature-controlled packaging.',
+    image: '/images/how-step4.webp',
+    focus: 'center 55%',
   },
 ]
 
@@ -57,14 +63,17 @@ const signals = [
   {
     title: 'Targets the hormone that tells your brain you’re full.',
     body: 'After you eat, your body releases GLP-1 — a signal that travels to your brain and says: enough. These medications mimic that signal for a clearer, more consistent message to stop eating.',
+    image: '/images/why-1.jpg',
   },
   {
     title: 'Slows down how fast food leaves your stomach.',
     body: 'Treatment may reduce the rate at which your stomach empties after a meal. The physical sensation of fullness can last longer — and hunger may return more slowly.',
+    image: '/images/why-2.jpg',
   },
   {
     title: 'Recalibrates your hunger system — not shuts it down.',
-    body: 'With structured dosing reviewed by your provider, therapy may help restore a more balanced hormonal response to food — so the process feels steadier, not like a fight you’re constantly losing.',
+    body: 'With structured dosing reviewed by your provider, therapy may help restore a more balanced hormonal response to food — so the process feels steadier over time.',
+    image: '/images/why-3.jpg',
   },
 ]
 
@@ -73,16 +82,43 @@ const weeks = [
     label: 'Week 1 → 4',
     title: 'Your body is adjusting',
     body: 'You start on a low dose — intentionally. Treatment is introduced gradually so your body can adapt. Some people notice appetite changes early. Others take longer. Experiences vary and are not guaranteed.',
+    image: '/images/how-step2.webp',
+    focus: '70% 20%',
   },
   {
     label: 'Week 4 → 12',
     title: 'The protocol starts to settle',
     body: 'As dosing continues under provider review, some people notice quieter food noise or earlier fullness. Others need more time or a dose adjustment. Individual responses vary and are not guaranteed.',
+    image: '/images/how-step5.webp',
+    focus: 'center 22%',
   },
   {
     label: 'Month 3+',
     title: 'Calibrated to you',
     body: 'With how your body has responded, your provider can fine-tune your plan. The focus may shift from adjustment to consistency — always guided by clinical judgment, not outcome guarantees.',
+    image: '/images/closing-cta-lifestyle.webp',
+    focus: 'center 28%',
+  },
+]
+
+const whyCards = [
+  {
+    title: 'Transparent & trusted',
+    body: 'From sourcing standards to doorstep delivery, we prioritize clear information and licensed U.S. pharmacy partners.',
+    image: '/images/how-step4.webp',
+    focus: 'center 60%',
+  },
+  {
+    title: 'Tailored personalized care',
+    body: 'Plans are guided by licensed provider review of your health history and goals — not one-size-fits-all checkout.',
+    image: '/images/how-step3.webp',
+    focus: 'center 15%',
+  },
+  {
+    title: 'Ongoing support within reach',
+    body: 'Your patient portal, care team, and treatment details stay available as your provider guides adjustments over time.',
+    image: '/images/how-step5.webp',
+    focus: 'center 20%',
   },
 ]
 
@@ -134,7 +170,7 @@ export default function TreatmentsFlow() {
               <button type="button" className="tx-cat is-active" role="tab" aria-selected>
                 <span>Weight Loss</span>
                 <span className="tx-cat__img">
-                  <Image src="/cutout-duo-tirzepatide.webp" alt="" width={72} height={72} quality={70} loading="lazy" />
+                  <Image src="/shop/vial-tirzepatide-duo.webp" alt="" width={72} height={72} quality={70} loading="lazy" />
                 </span>
               </button>
             </div>
@@ -170,7 +206,7 @@ export default function TreatmentsFlow() {
                         }}
                         transition={{ type: 'spring', stiffness: 280, damping: 22 }}
                       >
-                        <Image src={p.vial} alt={p.name} width={200} height={280} priority={p.id === 'semaglutide'} quality={70} />
+                        <Image src={p.vial} alt={p.name} width={220} height={300} priority={p.id === 'semaglutide'} quality={85} />
                       </motion.button>
                     ))}
                   </div>
@@ -249,28 +285,39 @@ export default function TreatmentsFlow() {
         </div>
       </section>
 
-      <section className="tx-results">
+      <section className="tx-journey">
         <div className="tx-shell">
           <Reveal>
             <div className="tx-results__head">
+              <p className="tx-kicker">How it works</p>
               <h2 className="tx-section-title">
-                How care works — <em>step by step</em>
+                From onboarding through treatment — <em>guided every step</em>
               </h2>
               <p className="tx-results__sub">
-                Intake, licensed provider review, then pharmacy fulfillment when prescribed. No fabricated before-and-after claims.
+                Intake, licensed provider review, then pharmacy fulfillment when prescribed.
               </p>
             </div>
           </Reveal>
 
-          <div className="tx-science__grid" style={{ marginTop: '2rem' }}>
-            {processSteps.map(({ title, body, Icon }, i) => (
-              <Reveal key={title} delayMs={i * 80}>
-                <article className="tx-signal" style={{ color: 'inherit' }}>
-                  <span aria-hidden>
-                    <Icon size={22} strokeWidth={2} />
-                  </span>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
+          <div className="tx-photo-grid">
+            {journey.map((item, i) => (
+              <Reveal key={item.title} delayMs={i * 80} className="tx-photo-card">
+                <article>
+                  <div className="tx-photo-card__media">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width:900px) 85vw, 33vw"
+                      quality={78}
+                      style={{ objectFit: 'cover', objectPosition: item.focus }}
+                    />
+                    <span className="tx-photo-card__step">{item.step}</span>
+                  </div>
+                  <div className="tx-photo-card__body">
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -278,7 +325,7 @@ export default function TreatmentsFlow() {
         </div>
       </section>
 
-      <section className="tx-science">
+      <section className="tx-science tx-science--photo">
         <div className="tx-shell">
           <Reveal>
             <h2 className="tx-section-title tx-section-title--light">
@@ -289,13 +336,25 @@ export default function TreatmentsFlow() {
             </p>
           </Reveal>
 
-          <div className="tx-science__grid">
+          <div className="tx-photo-grid tx-photo-grid--dark">
             {signals.map((s, i) => (
-              <Reveal key={s.title} delayMs={i * 80}>
-                <article className="tx-signal">
-                  <span>0{i + 1}</span>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
+              <Reveal key={s.title} delayMs={i * 80} className="tx-photo-card tx-photo-card--dark">
+                <article>
+                  <div className="tx-photo-card__media">
+                    <Image
+                      src={s.image}
+                      alt=""
+                      fill
+                      sizes="(max-width:900px) 85vw, 33vw"
+                      quality={72}
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <span className="tx-photo-card__step">0{i + 1}</span>
+                  </div>
+                  <div className="tx-photo-card__body">
+                    <h3>{s.title}</h3>
+                    <p>{s.body}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -303,41 +362,37 @@ export default function TreatmentsFlow() {
         </div>
       </section>
 
-      <section className="tx-potential">
-        <div className="tx-shell tx-potential__grid">
-          <Reveal>
-            <h2 className="tx-section-title">
-              Ready to start your <em>medical intake</em>?
-            </h2>
-            <p className="tx-potential__sub">
-              Personalized Semaglutide+ &amp; Tirzepatide+ — reviewed by a licensed provider before any prescription.
-            </p>
-            <p style={{ marginTop: '1.25rem', maxWidth: '36rem', lineHeight: 1.6, color: '#475569' }}>
-              Complete a short clinical intake. A U.S.-licensed provider reviews your history and goals. If treatment is appropriate, a partner pharmacy fulfills your prescription. Charged only if prescribed.
-            </p>
+      <section className="tx-split">
+        <div className="tx-shell tx-split__grid">
+          <Reveal className="tx-split__media">
+            <Image
+              src="/images/physician-1.webp"
+              alt="Licensed clinician supporting VitalWellRx care"
+              fill
+              sizes="(max-width:960px) 100vw, 50vw"
+              quality={78}
+              style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
+            />
           </Reveal>
-
-          <Reveal delayMs={100}>
-            <div className="tx-potential__card">
-              <h3>A provider-guided approach to weight management.</h3>
-              <p>
-                GLP-1 medications work with your body’s natural hunger signals and may support appetite regulation when prescribed as part of a personalized plan. Experiences vary.
-              </p>
-              <ul>
-                <li>
-                  <strong>Semaglutide+</strong> acts on a single GLP-1 pathway — a foundation that may support gradual, sustainable progress when appropriate.
-                </li>
-                <li>
-                  <strong>Tirzepatide+</strong> acts on two pathways — GLP-1 and GIP — and may support broader metabolic response when prescribed.
-                </li>
-              </ul>
-              <p className="tx-potential__note">
-                Your dosing protocol is reviewed and prescribed by a licensed provider, adjusted as you progress.
-              </p>
-              <Link href="/get-started" className="tx-cta">
-                Start medical intake <ArrowRight size={18} />
-              </Link>
-            </div>
+          <Reveal delayMs={100} className="tx-split__copy">
+            <p className="tx-kicker">Provider-guided care</p>
+            <h2 className="tx-section-title" style={{ textAlign: 'left' }}>
+              A clinical approach to <em>weight management</em>
+            </h2>
+            <p>
+              GLP-1 medications work with your body’s natural hunger signals and may support appetite regulation when prescribed as part of a personalized plan. Experiences vary.
+            </p>
+            <ul>
+              <li>
+                <strong>Semaglutide+</strong> acts on a single GLP-1 pathway — a foundation that may support gradual, sustainable progress when appropriate.
+              </li>
+              <li>
+                <strong>Tirzepatide+</strong> acts on two pathways — GLP-1 and GIP — and may support broader metabolic response when prescribed.
+              </li>
+            </ul>
+            <Link href="/get-started" className="tx-cta">
+              Start medical intake <ArrowRight size={18} />
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -353,13 +408,57 @@ export default function TreatmentsFlow() {
             </p>
           </Reveal>
 
-          <div className="tx-weeks__grid">
+          <div className="tx-photo-grid">
             {weeks.map((w, i) => (
-              <Reveal key={w.label} delayMs={i * 90}>
-                <article className="tx-week">
-                  <span>{w.label}</span>
-                  <h3>{w.title}</h3>
-                  <p>{w.body}</p>
+              <Reveal key={w.label} delayMs={i * 90} className="tx-photo-card">
+                <article>
+                  <div className="tx-photo-card__media">
+                    <Image
+                      src={w.image}
+                      alt={w.title}
+                      fill
+                      sizes="(max-width:900px) 85vw, 33vw"
+                      quality={78}
+                      style={{ objectFit: 'cover', objectPosition: w.focus }}
+                    />
+                    <span className="tx-photo-card__label">{w.label}</span>
+                  </div>
+                  <div className="tx-photo-card__body">
+                    <h3>{w.title}</h3>
+                    <p>{w.body}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="tx-why">
+        <div className="tx-shell">
+          <Reveal>
+            <h2 className="tx-section-title">
+              Why <em>VitalWellRx</em>?
+            </h2>
+          </Reveal>
+          <div className="tx-photo-grid">
+            {whyCards.map((card, i) => (
+              <Reveal key={card.title} delayMs={i * 80} className="tx-photo-card">
+                <article>
+                  <div className="tx-photo-card__media tx-photo-card__media--tall">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width:900px) 85vw, 33vw"
+                      quality={78}
+                      style={{ objectFit: 'cover', objectPosition: card.focus }}
+                    />
+                  </div>
+                  <div className="tx-photo-card__body">
+                    <h3>{card.title}</h3>
+                    <p>{card.body}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}
