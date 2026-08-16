@@ -12,10 +12,10 @@ const products = [
     id: 'semaglutide',
     name: 'GLP-1 (Semaglutide+)',
     label: 'Semaglutide+',
-    short: 'Weekly GLP-1 pathway support',
-    title: 'Personalized Semaglutide+',
+    short: 'Once-weekly GLP-1 option',
+    title: 'Semaglutide+',
     mechanism: 'GLP-1 receptor agonist',
-    desc: 'A weekly GLP-1 injection that may support satiety, appetite regulation, and sustainable habit change when prescribed as part of a personalized care plan.',
+    desc: 'A compounded weekly GLP-1 medication that may be prescribed after clinical review to support appetite regulation as part of a supervised weight-management plan. Individual response varies.',
     thumb: '/treatments/sema-thumb.webp',
     vial: '/shop/vial-semaglutide-duo.webp',
     price: 310,
@@ -27,10 +27,10 @@ const products = [
     id: 'tirzepatide',
     name: 'GLP-1 + GIP (Tirzepatide+)',
     label: 'Tirzepatide+',
-    short: 'Dual-pathway weekly support',
-    title: 'Personalized Tirzepatide+',
-    mechanism: 'Dual GIP / GLP-1',
-    desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation and metabolic goals when prescribed as part of a provider-guided plan.',
+    short: 'Once-weekly dual agonist option',
+    title: 'Tirzepatide+',
+    mechanism: 'Dual GIP / GLP-1 receptor agonist',
+    desc: 'A compounded weekly dual agonist that acts on GIP and GLP-1 pathways and may be prescribed after clinical review when a provider determines it is appropriate. Individual response varies.',
     thumb: '/treatments/tirz-thumb.webp',
     vial: '/shop/vial-tirzepatide-duo.webp',
     price: 340,
@@ -41,31 +41,31 @@ const products = [
 ] as const
 
 const includes = [
-  'Licensed provider review',
-  'Pharmacy shipping if prescribed',
-  'Ongoing care support',
-  'Patient Center access',
+  'Licensed U.S. clinician review',
+  'Fulfillment only if prescribed',
+  'Follow-up messaging access',
+  'Secure patient portal',
 ]
 
 const journey = [
   {
     step: '01',
-    title: 'Complete your intake',
-    body: 'Answer a short medical questionnaire so a licensed provider can determine if Tirzepatide+ or Semaglutide+ may be appropriate.',
+    title: 'Submit a clinical intake',
+    body: 'Share medical history, medications, and goals in a structured questionnaire used for eligibility screening.',
     image: '/images/how-step2.webp',
     focus: '62% 28%',
   },
   {
     step: '02',
-    title: 'Provider review',
-    body: 'A licensed U.S. clinician reviews your history within 24 hours — treatment is never automatic checkout.',
+    title: 'Clinical evaluation',
+    body: 'A licensed U.S. provider reviews your intake—typically within 24 hours—and decides whether treatment is medically appropriate. Checkout does not equal a prescription.',
     image: '/images/how-step3.webp',
     focus: 'center 18%',
   },
   {
     step: '03',
-    title: 'Start treatment',
-    body: 'If prescribed, a partner U.S. pharmacy prepares and ships discreetly in temperature-controlled packaging.',
+    title: 'Pharmacy fulfillment',
+    body: 'If prescribed, a licensed U.S. partner pharmacy compounds and ships medication in temperature-controlled packaging. Shipping timelines are estimates, not guarantees.',
     image: '/images/how-step4.webp',
     focus: 'center 55%',
   },
@@ -73,20 +73,20 @@ const journey = [
 
 const signals = [
   {
-    title: 'Targets the hormone that tells your brain you’re full.',
-    body: 'After you eat, your body releases GLP-1 — a signal that travels to your brain and says: enough. These medications mimic that signal for a clearer, more consistent message to stop eating.',
+    title: 'Acts on GLP-1 pathways involved in satiety.',
+    body: 'GLP-1 receptor agonists engage receptors that help regulate appetite and post-meal satiety. Effects depend on dose, tolerability, and clinical context—not every patient responds the same way.',
     image: '/images/unique/unique-signal-1.webp',
     focus: 'center 22%',
   },
   {
-    title: 'Slows down how fast food leaves your stomach.',
-    body: 'Treatment may reduce the rate at which your stomach empties after a meal. The physical sensation of fullness can last longer — and hunger may return more slowly.',
+    title: 'May slow gastric emptying after meals.',
+    body: 'Some patients experience delayed gastric emptying, which can prolong fullness. Gastrointestinal effects are among the more commonly reported adverse reactions during initiation and titration.',
     image: '/images/unique/unique-signal-2.webp',
     focus: 'center 18%',
   },
   {
-    title: 'Recalibrates your hunger system — not shuts it down.',
-    body: 'With structured dosing reviewed by your provider, therapy may help restore a more balanced hormonal response to food — so the process feels steadier over time.',
+    title: 'Dosing is titrated under clinician oversight.',
+    body: 'Protocols generally begin at a lower dose and may increase based on tolerability and clinical judgment. Adjustments are provider-directed; outcomes are not guaranteed.',
     image: '/images/unique/unique-signal-3.webp',
     focus: 'center 30%',
   },
@@ -94,23 +94,23 @@ const signals = [
 
 const weeks = [
   {
-    label: 'Week 1 → 4',
-    title: 'Your body is adjusting',
-    body: 'You start on a low dose — intentionally. Treatment is introduced gradually so your body can adapt. Some people notice appetite changes early. Others take longer. Experiences vary and are not guaranteed.',
+    label: 'Weeks 1–4',
+    title: 'Initiation and tolerability',
+    body: 'Treatment typically begins at a lower dose so tolerability can be assessed. Early appetite or digestive changes may occur for some patients; others notice little at first. This phase is about safe initiation—not predicted weight change.',
     image: '/images/unique/unique-week-1.webp',
     focus: 'center 28%',
   },
   {
-    label: 'Week 4 → 12',
-    title: 'The protocol starts to settle',
-    body: 'As dosing continues under provider review, some people notice quieter food noise or earlier fullness. Others need more time or a dose adjustment. Individual responses vary and are not guaranteed.',
+    label: 'Weeks 4–12',
+    title: 'Titration and monitoring',
+    body: 'If clinically appropriate, your provider may adjust dosing while monitoring response and side effects. Appetite changes are individual. Any progress—or lack of progress—should be reviewed clinically, not assumed.',
     image: '/images/unique/unique-week-2.webp',
     focus: 'center 18%',
   },
   {
-    label: 'Month 3+',
-    title: 'Calibrated to you',
-    body: 'With how your body has responded, your provider can fine-tune your plan. The focus may shift from adjustment to consistency — always guided by clinical judgment, not outcome guarantees.',
+    label: 'Month 3 and beyond',
+    title: 'Ongoing clinical management',
+    body: 'Continued care may include dose review, side-effect management, and plan updates based on your response and medical history. Long-term results vary and are not promised.',
     image: '/images/unique/unique-week-3.webp',
     focus: 'center 32%',
   },
@@ -118,20 +118,20 @@ const weeks = [
 
 const whyCards = [
   {
-    title: 'Transparent & trusted',
-    body: 'From sourcing standards to doorstep delivery, we prioritize clear information and licensed U.S. pharmacy partners.',
+    title: 'Licensed clinical review first',
+    body: 'Medication is considered only after a U.S.-licensed clinician reviews your intake. There is no automatic prescription at checkout.',
     image: '/images/unique/unique-why-1.webp',
     focus: 'center 22%',
   },
   {
-    title: 'Tailored personalized care',
-    body: 'Plans are guided by licensed provider review of your health history and goals — not one-size-fits-all checkout.',
+    title: 'U.S. pharmacy compounding partners',
+    body: 'When prescribed, compounded medication is prepared by licensed U.S. pharmacies. Compounded products are not FDA-approved.',
     image: '/images/unique/unique-why-2.webp',
     focus: 'center 18%',
   },
   {
-    title: 'Ongoing support within reach',
-    body: 'Your patient portal, care team, and treatment details stay available as your provider guides adjustments over time.',
+    title: 'Documented follow-up access',
+    body: 'Patients can use the portal to message about tolerability, titration questions, and plan changes as directed by their care team.',
     image: '/images/unique/unique-why-3.webp',
     focus: 'center 28%',
   },
@@ -139,28 +139,28 @@ const whyCards = [
 
 const faqs = [
   {
-    q: 'What is GLP-1 weight loss treatment?',
-    a: 'GLP-1 treatment is a class of prescription medication — including Semaglutide+ and Tirzepatide+ — that works with your body’s natural appetite signals and may help you feel full sooner, stay satisfied longer, and reduce constant food noise. Every protocol is reviewed by a licensed provider.',
+    q: 'What are Semaglutide+ and Tirzepatide+?',
+    a: 'They are compounded prescription medications that contain GLP-1–related active ingredients used in weight-management care when a licensed clinician determines treatment is appropriate. Compounded medications are not FDA-approved. Individual response varies.',
   },
   {
-    q: 'What’s the difference between Semaglutide+ and Tirzepatide+?',
-    a: 'Semaglutide+ is a GLP-1 receptor agonist. Tirzepatide+ is a dual GIP and GLP-1 receptor agonist. Both may support appetite regulation and long-term weight management through different pathways. Your provider reviews your history and goals to determine what’s appropriate.',
+    q: 'How do Semaglutide+ and Tirzepatide+ differ?',
+    a: 'Semaglutide+ is formulated as a GLP-1 receptor agonist. Tirzepatide+ is formulated as a dual GIP and GLP-1 receptor agonist. A licensed provider decides which option—if either—is clinically appropriate based on your history and evaluation.',
   },
   {
-    q: 'Who is GLP-1 treatment for?',
-    a: 'It may be considered for adults working toward provider-guided weight management who meet clinical criteria. Eligibility is determined by a licensed provider. Treatment isn’t right for everyone — every plan begins with a provider review, not a checkout.',
+    q: 'Who may be considered for treatment?',
+    a: 'Adults seeking medically supervised weight management who meet clinical criteria may be considered. Eligibility is determined solely by a licensed provider after intake review. Treatment is not appropriate for everyone.',
   },
   {
-    q: 'How does the prescription process work?',
-    a: 'Complete a quick clinical intake, share your medical history, and connect with a licensed provider. If approved, medication is prepared by a partner pharmacy and shipped directly. Your provider stays involved as dosing is titrated over time.',
+    q: 'How does the clinical process work?',
+    a: 'You complete an online intake, a licensed U.S. provider reviews it, and if a prescription is issued, a partner pharmacy may prepare and ship the medication. You are generally charged only if treatment is prescribed. Follow-up and titration remain under clinician guidance.',
   },
   {
-    q: 'What should I know about side effects?',
-    a: 'Side effects vary. Common effects may include nausea, constipation, diarrhea, appetite changes, or digestive discomfort while your body adjusts. Your provider explains what to watch for and can adjust your protocol if needed.',
+    q: 'What side effects should I discuss with a provider?',
+    a: 'Commonly reported effects can include nausea, constipation, diarrhea, vomiting, abdominal discomfort, and changes in appetite—especially during dose increases. Seek urgent care for severe or concerning symptoms. Your provider can advise on monitoring and adjustments.',
   },
   {
     q: 'Are compounded medications FDA-approved?',
-    a: 'No. VitalWellRx provides compounded medications containing the same active pharmaceutical ingredients as brand-name drugs. They are prepared by licensed U.S. pharmacies and are not FDA-approved.',
+    a: 'No. Compounded medications from VitalWellRx partner pharmacies are not FDA-approved. They are prepared by licensed U.S. pharmacies when prescribed. Discuss risks, alternatives, and expectations with your clinician.',
   },
 ]
 
@@ -176,7 +176,7 @@ export default function TreatmentsFlow() {
         <div className="tx-shell">
           <Reveal>
             <h1 className="tx-hero__title">
-              Explore our treatments below and choose what’s best <em>for you</em>.
+              Clinician-reviewed options for medically supervised <em>weight management</em>
             </h1>
           </Reveal>
 
@@ -204,10 +204,10 @@ export default function TreatmentsFlow() {
                 }}
               >
                 <div className="tx-media-card__top">
-                  <p className="tx-media-card__eyebrow">Provider-guided protocols</p>
+                  <p className="tx-media-card__eyebrow">Prescription care pathway</p>
                   <div className="tx-media-card__pills">
-                    <span>Provider-guided</span>
-                    <span className="is-stock">In Stock</span>
+                    <span>Clinician review required</span>
+                    <span className="is-stock">Available for evaluation</span>
                   </div>
                 </div>
                 <AnimatePresence mode="wait">
@@ -313,7 +313,7 @@ export default function TreatmentsFlow() {
               <div className="tx-guarantee">
                 <div className="tx-guarantee__mark">VW</div>
                 <p>
-                  Provider-guided care, medications from U.S. licensed pharmacies, and only charged if treatment is prescribed — with flexibility to change or cancel anytime.
+                  Evaluated by a licensed U.S. clinician. If prescribed, medication is prepared by a licensed U.S. pharmacy. You are typically charged only when a prescription is issued. Cancel or change plans subject to program terms.
                 </p>
               </div>
 
@@ -323,7 +323,7 @@ export default function TreatmentsFlow() {
                   <strong className="tx-cta-row__price">${active.price}<span>/mo</span></strong>
                 </div>
                 <Link href="/get-started" className="tx-cta">
-                  See if I qualify <ArrowRight size={18} />
+                  Begin clinical intake <ArrowRight size={18} />
                 </Link>
               </div>
             </Reveal>
@@ -335,12 +335,12 @@ export default function TreatmentsFlow() {
         <div className="tx-shell">
           <Reveal>
             <div className="tx-results__head">
-              <p className="tx-kicker">How it works</p>
+              <p className="tx-kicker">Care pathway</p>
               <h2 className="tx-section-title">
-                From onboarding through treatment — <em>guided every step</em>
+                How VitalWellRx evaluates and, when appropriate, <em>fulfills treatment</em>
               </h2>
               <p className="tx-results__sub">
-                Intake, licensed provider review, then pharmacy fulfillment when prescribed.
+                Intake screening → licensed clinician review → pharmacy fulfillment only if prescribed.
               </p>
             </div>
           </Reveal>
@@ -376,10 +376,10 @@ export default function TreatmentsFlow() {
         <div className="tx-shell">
           <Reveal>
             <h2 className="tx-section-title tx-section-title--light">
-              Your body isn’t working against you. It just needs the <em>right signal</em>.
+              How these medications may work in <em>clinical practice</em>
             </h2>
             <p className="tx-science__lead">
-              GLP-1 medications don’t fight your hunger — they work through the same hormonal system your body already uses to regulate it.
+              Semaglutide+ and Tirzepatide+ engage incretin-related pathways involved in appetite and glycemic regulation. Suitability, dosing, and monitoring are determined by a licensed clinician.
             </p>
           </Reveal>
 
@@ -424,23 +424,23 @@ export default function TreatmentsFlow() {
             />
           </Reveal>
           <Reveal delayMs={100} className="tx-split__copy">
-            <p className="tx-kicker">Provider-guided care</p>
+            <p className="tx-kicker">Clinical oversight</p>
             <h2 className="tx-section-title" style={{ textAlign: 'left' }}>
-              A clinical approach to <em>weight management</em>
+              Weight management under <em>licensed medical review</em>
             </h2>
             <p>
-              GLP-1 medications work with your body’s natural hunger signals and may support appetite regulation when prescribed as part of a personalized plan. Experiences vary.
+              These options are considered only after intake review. A clinician determines whether a GLP-1–related therapy is appropriate, how dosing should proceed, and when to modify or discontinue care. Results are not guaranteed.
             </p>
             <ul>
               <li>
-                <strong>Semaglutide+</strong> acts on a single GLP-1 pathway — a foundation that may support gradual, sustainable progress when appropriate.
+                <strong>Semaglutide+</strong> — compounded GLP-1 receptor agonist option that may be prescribed when clinically indicated.
               </li>
               <li>
-                <strong>Tirzepatide+</strong> acts on two pathways — GLP-1 and GIP — and may support broader metabolic response when prescribed.
+                <strong>Tirzepatide+</strong> — compounded dual GIP/GLP-1 agonist option that may be prescribed when clinically indicated.
               </li>
             </ul>
             <Link href="/get-started" className="tx-cta">
-              Start medical intake <ArrowRight size={18} />
+              Start clinical intake <ArrowRight size={18} />
             </Link>
           </Reveal>
         </div>
@@ -450,10 +450,10 @@ export default function TreatmentsFlow() {
         <div className="tx-shell">
           <Reveal>
             <h2 className="tx-section-title">
-              What to expect, week by week with your <em>GLP-1 treatment</em>
+              Typical clinical phases during <em>titration</em>
             </h2>
             <p className="tx-weeks__lead">
-              Here’s how the first months often look. Individual experiences vary and outcomes are not guaranteed.
+              Timelines below are general education only. Your clinician sets dosing and follow-up based on your case. Outcomes are not guaranteed.
             </p>
           </Reveal>
 
@@ -488,7 +488,7 @@ export default function TreatmentsFlow() {
         <div className="tx-shell">
           <Reveal>
             <h2 className="tx-section-title">
-              Why <em>VitalWellRx</em>?
+              Clinical standards at <em>VitalWellRx</em>
             </h2>
           </Reveal>
           <div className="tx-photo-grid">
@@ -521,7 +521,7 @@ export default function TreatmentsFlow() {
         <div className="tx-shell tx-faq__inner">
           <Reveal>
             <h2 className="tx-section-title">
-              What most patients want to know <em>before they begin</em>.
+              Clinical questions before <em>starting an intake</em>
             </h2>
           </Reveal>
 
