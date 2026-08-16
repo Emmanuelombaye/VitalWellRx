@@ -239,7 +239,7 @@ export default function TreatmentsFlow() {
                         height={680}
                         sizes="(max-width:960px) 80vw, 420px"
                         priority
-                        quality={88}
+                        quality={75}
                         className="tx-media-card__hero-img"
                       />
                     </motion.div>
@@ -355,7 +355,8 @@ export default function TreatmentsFlow() {
                       alt={item.title}
                       fill
                       sizes="(max-width:900px) 85vw, 33vw"
-                      quality={78}
+                      quality={65}
+                      loading="lazy"
                       style={{ objectFit: 'cover', objectPosition: item.focus }}
                     />
                     <span className="tx-photo-card__step">{item.step}</span>
@@ -392,7 +393,8 @@ export default function TreatmentsFlow() {
                       alt=""
                       fill
                       sizes="(max-width:900px) 85vw, 33vw"
-                      quality={78}
+                      quality={65}
+                      loading="lazy"
                       style={{ objectFit: 'cover', objectPosition: s.focus }}
                     />
                     <span className="tx-photo-card__step">0{i + 1}</span>
@@ -416,7 +418,8 @@ export default function TreatmentsFlow() {
               alt="Licensed clinician supporting VitalWellRx care"
               fill
               sizes="(max-width:960px) 100vw, 50vw"
-              quality={78}
+              quality={70}
+              loading="lazy"
               style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
             />
           </Reveal>
@@ -464,7 +467,8 @@ export default function TreatmentsFlow() {
                       alt={w.title}
                       fill
                       sizes="(max-width:900px) 85vw, 33vw"
-                      quality={78}
+                      quality={65}
+                      loading="lazy"
                       style={{ objectFit: 'cover', objectPosition: w.focus }}
                     />
                     <span className="tx-photo-card__label">{w.label}</span>
@@ -497,7 +501,8 @@ export default function TreatmentsFlow() {
                       alt={card.title}
                       fill
                       sizes="(max-width:900px) 85vw, 33vw"
-                      quality={78}
+                      quality={65}
+                      loading="lazy"
                       style={{ objectFit: 'cover', objectPosition: card.focus }}
                     />
                   </div>

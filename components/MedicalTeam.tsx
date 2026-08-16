@@ -100,7 +100,8 @@ export default function MedicalTeam() {
                     alt={image.alt}
                     fill
                     sizes="(max-width:700px) 86vw, (max-width:1100px) 45vw, 280px"
-                    quality={78}
+                    quality={65}
+                    loading="lazy"
                     className="med-team__media-img"
                     style={{ objectFit: 'cover', objectPosition: image.focus }}
                   />
