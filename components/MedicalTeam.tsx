@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ClipboardList, Stethoscope, Truck, MessageCircle, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 const pillars = [
   {
@@ -12,10 +12,10 @@ const pillars = [
     role: 'Your starting point',
     specialties: ['Health history', 'Goals & eligibility'],
     bio: 'A structured online questionnaire captures your medical history, medications, and goals so a licensed provider can assess whether treatment may be appropriate.',
-    Icon: ClipboardList,
     image: {
-      src: '/step1_profile.webp',
-      alt: 'Patient completing a secure clinical intake on a tablet',
+      src: '/images/how-step2.webp',
+      alt: 'Patient completing a secure clinical intake on a phone',
+      focus: '62% 28%',
     },
   },
   {
@@ -24,10 +24,10 @@ const pillars = [
     role: 'Clinical decision',
     specialties: ['U.S.-licensed clinicians', 'Rx when appropriate'],
     bio: 'A licensed U.S. provider reviews your intake and determines if a Semaglutide+ or Tirzepatide+ prescription is clinically appropriate — not automatic checkout.',
-    Icon: Stethoscope,
     image: {
-      src: '/step2_doctor.webp',
-      alt: 'Licensed clinician reviewing a patient intake',
+      src: '/images/how-step3.webp',
+      alt: 'Licensed clinician reviewing a patient intake on a laptop',
+      focus: 'center 18%',
     },
   },
   {
@@ -36,10 +36,10 @@ const pillars = [
     role: 'Fulfillment quality',
     specialties: ['Licensed U.S. pharmacies', 'Cold-pack shipping'],
     bio: 'If prescribed, medication is prepared by a licensed U.S. pharmacy partner and shipped in discreet, temperature-controlled packaging.',
-    Icon: Truck,
     image: {
-      src: '/step3_shipping.webp',
-      alt: 'Temperature-controlled pharmacy shipment prepared for delivery',
+      src: '/images/how-step4.webp',
+      alt: 'Discreet cold-pack pharmacy shipment delivered to a doorstep',
+      focus: 'center 55%',
     },
   },
   {
@@ -48,10 +48,10 @@ const pillars = [
     role: 'Support that continues',
     specialties: ['Patient portal', 'Dose & plan updates'],
     bio: 'Stay connected for questions, titration check-ins, and plan changes. Experiences vary — your care team helps you navigate adjustments over time.',
-    Icon: MessageCircle,
     image: {
-      src: '/step4_dashboard.webp',
-      alt: 'Patient portal for ongoing care and plan updates',
+      src: '/images/how-step5.webp',
+      alt: 'Patient using the VitalWellRx portal for ongoing care support',
+      focus: 'center 22%',
     },
   },
 ]
@@ -84,7 +84,7 @@ export default function MedicalTeam() {
         </motion.div>
 
         <ol className="med-team__grid">
-          {pillars.map(({ n, title, role, specialties, bio, Icon, image }, i) => (
+          {pillars.map(({ n, title, role, specialties, bio, image }, i) => (
             <motion.li
               key={title}
               className="med-team__card"
@@ -94,38 +94,30 @@ export default function MedicalTeam() {
               transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <article>
-                <div className="med-team__hero">
-                  <div className="med-team__photo">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(max-width:700px) 90vw, (max-width:1100px) 45vw, 280px"
-                      quality={72}
-                      className="med-team__photo-img"
-                    />
-                    <div className="med-team__photo-shade" aria-hidden="true" />
-                    <span className="med-team__step" aria-hidden="true">
-                      {n}
-                    </span>
-                    <span className="med-team__icon" aria-hidden="true">
-                      <Icon size={22} strokeWidth={1.75} />
-                    </span>
-                  </div>
-
-                  <div className="med-team__role">
-                    <h3>{role}</h3>
-                    <ul>
-                      {specialties.map((s) => (
-                        <li key={s}>{s}</li>
-                      ))}
-                    </ul>
-                  </div>
+                <div className="med-team__media">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width:700px) 86vw, (max-width:1100px) 45vw, 280px"
+                    quality={78}
+                    className="med-team__media-img"
+                    style={{ objectFit: 'cover', objectPosition: image.focus }}
+                  />
+                  <span className="med-team__step" aria-hidden="true">
+                    {n}
+                  </span>
                 </div>
 
-                <div className="med-team__bio">
-                  <h4>{title}</h4>
-                  <p>{bio}</p>
+                <div className="med-team__body">
+                  <p className="med-team__role">{role}</p>
+                  <h3>{title}</h3>
+                  <ul className="med-team__points">
+                    {specialties.map((s) => (
+                      <li key={s}>{s}</li>
+                    ))}
+                  </ul>
+                  <p className="med-team__bio">{bio}</p>
                 </div>
               </article>
             </motion.li>

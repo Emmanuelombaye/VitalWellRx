@@ -17,8 +17,7 @@ const products = [
     desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation and metabolic goals as part of a provider-guided plan.',
     price: '$340',
     period: '/mo',
-    image: '/vial-tirzepatide.webp',
-    cutout: '/cutout-duo-tirzepatide.webp',
+    image: '/shop/vial-tirzepatide-duo.webp',
     href: '/treatments/weight-loss',
     tone: '#D4AF37',
     toneSoft: 'rgba(212,175,55,0.18)',
@@ -40,8 +39,7 @@ const products = [
     desc: 'A weekly GLP-1 injection that may support satiety, appetite regulation, and sustainable habit change when prescribed as part of a personalized care plan.',
     price: '$310',
     period: '/mo',
-    image: '/vial-semaglutide.webp',
-    cutout: '/cutout-duo-semaglutide.webp',
+    image: '/shop/vial-semaglutide-duo.webp',
     href: '/treatments',
     tone: '#2DD4BF',
     toneSoft: 'rgba(45,212,191,0.14)',
@@ -316,23 +314,37 @@ export default function ShopPage() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="shop-product__visual" style={{ background: `radial-gradient(circle at 30% 20%, ${active.toneSoft}, transparent 55%), #0B132B` }}>
-                <span className="shop-product__badge">{active.badge}</span>
-                <motion.div
-                  className="shop-product__cutout"
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Image src={active.cutout} alt="" fill sizes="(max-width:900px) 100vw, 50vw" quality={70} loading="lazy" style={{ objectFit: 'contain', objectPosition: 'center bottom' }} />
-                </motion.div>
-                <motion.div
-                  className="shop-product__vial"
-                  animate={{ y: [0, -10, 0], rotate: [-2, 2, -2] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <Image src={active.image} alt={active.title} fill sizes="220px" quality={70} loading="lazy" style={{ objectFit: 'contain' }} />
-                </motion.div>
+              <div className="shop-product__media">
+                <div className="shop-product__media-top">
+                  <p>Provider-guided protocols</p>
+                  <div className="shop-product__media-pills">
+                    <span>{active.badge}</span>
+                    <span className="is-stock">In stock</span>
+                  </div>
+                </div>
+                <h3 className="shop-product__media-title">{active.title}</h3>
+                <div className="shop-product__art">
+                  <motion.div
+                    className="shop-product__bottle"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Image
+                      src={active.image}
+                      alt={`${active.title} vials`}
+                      width={720}
+                      height={960}
+                      sizes="(max-width:960px) 80vw, 460px"
+                      quality={88}
+                      priority
+                      className="shop-product__bottle-img"
+                    />
+                  </motion.div>
+                  <div className="shop-product__price-chip">
+                    <strong>FROM</strong>
+                    <span>{active.price}{active.period}</span>
+                  </div>
+                </div>
               </div>
 
               <div className="shop-product__info">
