@@ -98,21 +98,21 @@ const weeks = [
     title: 'Your body is adjusting',
     body: 'You start on a low dose — intentionally. Treatment is introduced gradually so your body can adapt. Some people notice appetite changes early. Others take longer. Experiences vary and are not guaranteed.',
     image: '/images/unique/unique-week-1.webp',
-    focus: 'center 22%',
+    focus: 'center 28%',
   },
   {
     label: 'Week 4 → 12',
     title: 'The protocol starts to settle',
     body: 'As dosing continues under provider review, some people notice quieter food noise or earlier fullness. Others need more time or a dose adjustment. Individual responses vary and are not guaranteed.',
     image: '/images/unique/unique-week-2.webp',
-    focus: 'center 25%',
+    focus: 'center 18%',
   },
   {
     label: 'Month 3+',
     title: 'Calibrated to you',
     body: 'With how your body has responded, your provider can fine-tune your plan. The focus may shift from adjustment to consistency — always guided by clinical judgment, not outcome guarantees.',
     image: '/images/unique/unique-week-3.webp',
-    focus: 'center 20%',
+    focus: 'center 32%',
   },
 ]
 
