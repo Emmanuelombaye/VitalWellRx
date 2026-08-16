@@ -11,20 +11,32 @@ const products = [
   {
     id: 'semaglutide',
     name: 'GLP-1 (Semaglutide+)',
+    label: 'Semaglutide+',
     short: 'Weekly GLP-1 pathway support',
+    title: 'Personalized Semaglutide+',
+    mechanism: 'GLP-1 receptor agonist',
+    desc: 'A weekly GLP-1 injection that may support satiety, appetite regulation, and sustainable habit change when prescribed as part of a personalized care plan.',
     thumb: '/treatments/sema-thumb.webp',
-    vial: '/treatments/vial-semaglutide.webp',
+    vial: '/shop/vial-semaglutide-duo.webp',
     price: 310,
     href: '/treatments',
+    tone: '#2DD4BF',
+    toneSoft: 'rgba(45,212,191,0.22)',
   },
   {
     id: 'tirzepatide',
     name: 'GLP-1 + GIP (Tirzepatide+)',
+    label: 'Tirzepatide+',
     short: 'Dual-pathway weekly support',
+    title: 'Personalized Tirzepatide+',
+    mechanism: 'Dual GIP / GLP-1',
+    desc: 'A weekly dual-agonist injection that targets both GIP and GLP-1 pathways and may support appetite regulation and metabolic goals when prescribed as part of a provider-guided plan.',
     thumb: '/treatments/tirz-thumb.webp',
-    vial: '/treatments/vial-tirzepatide.webp',
+    vial: '/shop/vial-tirzepatide-duo.webp',
     price: 340,
     href: '/treatments/weight-loss',
+    tone: '#D4AF37',
+    toneSoft: 'rgba(212,175,55,0.28)',
   },
 ] as const
 
@@ -170,7 +182,7 @@ export default function TreatmentsFlow() {
               <button type="button" className="tx-cat is-active" role="tab" aria-selected>
                 <span>Weight Loss</span>
                 <span className="tx-cat__img">
-                  <Image src="/shop/vial-tirzepatide-duo.webp" alt="" width={72} height={72} quality={70} loading="lazy" />
+                  <Image src={active.vial} alt="" width={72} height={72} quality={70} />
                 </span>
               </button>
             </div>
@@ -182,7 +194,12 @@ export default function TreatmentsFlow() {
         <div className="tx-shell">
           <div className="tx-panel">
             <Reveal className="tx-panel__media">
-              <div className="tx-media-card">
+              <div
+                className="tx-media-card"
+                style={{
+                  background: `radial-gradient(circle at 70% 20%, ${active.toneSoft}, transparent 45%), linear-gradient(160deg, #ebe4d4 0%, #d9e2f0 55%, #cfd9ea 100%)`,
+                }}
+              >
                 <div className="tx-media-card__top">
                   <p className="tx-media-card__eyebrow">Provider-guided protocols</p>
                   <div className="tx-media-card__pills">
@@ -190,26 +207,40 @@ export default function TreatmentsFlow() {
                     <span className="is-stock">In Stock</span>
                   </div>
                 </div>
-                <h2 className="tx-media-card__title">Personalized GLP‑1 Injections</h2>
+                <AnimatePresence mode="wait">
+                  <motion.h2
+                    key={`${active.id}-title`}
+                    className="tx-media-card__title"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28 }}
+                  >
+                    {active.title}
+                  </motion.h2>
+                </AnimatePresence>
                 <div className="tx-media-card__art">
-                  <div className="tx-media-card__duo">
-                    {products.map((p) => (
-                      <motion.button
-                        key={p.id}
-                        type="button"
-                        className={`tx-media-card__vial ${p.id === activeId ? 'is-active' : ''}`}
-                        onClick={() => setActiveId(p.id)}
-                        animate={{
-                          scale: p.id === activeId ? 1 : 0.9,
-                          opacity: p.id === activeId ? 1 : 0.72,
-                          y: p.id === activeId ? -6 : 8,
-                        }}
-                        transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-                      >
-                        <Image src={p.vial} alt={p.name} width={220} height={300} priority={p.id === 'semaglutide'} quality={85} />
-                      </motion.button>
-                    ))}
-                  </div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={active.id}
+                      className="tx-media-card__hero-vial"
+                      initial={{ opacity: 0, scale: 0.92, y: 18 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.94, y: -12 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <Image
+                        src={active.vial}
+                        alt={`${active.title} vials`}
+                        width={520}
+                        height={680}
+                        sizes="(max-width:960px) 80vw, 420px"
+                        priority
+                        quality={88}
+                        className="tx-media-card__hero-img"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
                   <motion.div
                     key={active.price}
                     initial={{ scale: 0.85, rotate: -8, opacity: 0 }}
@@ -224,9 +255,20 @@ export default function TreatmentsFlow() {
             </Reveal>
 
             <Reveal delayMs={100} className="tx-panel__copy">
-              <p className="tx-panel__desc">
-                A weekly treatment that may support appetite regulation through GLP-1 receptor activation — with Tirzepatide+ adding dual GIP support when prescribed as appropriate.
-              </p>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.28 }}
+                >
+                  <p className="tx-panel__mech" style={{ color: active.tone }}>
+                    {active.mechanism}
+                  </p>
+                  <p className="tx-panel__desc">{active.desc}</p>
+                </motion.div>
+              </AnimatePresence>
 
               <div className="tx-pickers" role="tablist" aria-label="Choose medication">
                 {products.map((p) => {
@@ -238,10 +280,11 @@ export default function TreatmentsFlow() {
                       role="tab"
                       aria-selected={selected}
                       className={`tx-picker ${selected ? 'is-active' : ''}`}
+                      style={selected ? { borderColor: '#0b132b', boxShadow: `0 0 0 4px ${p.toneSoft}` } : undefined}
                       onClick={() => setActiveId(p.id)}
                     >
                       <span className="tx-picker__thumb">
-                        <Image src={p.thumb} alt="" width={48} height={48} />
+                        <Image src={p.vial} alt="" width={48} height={48} />
                       </span>
                       <span className="tx-picker__text">
                         <strong>{p.name}</strong>

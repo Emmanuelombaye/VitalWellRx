@@ -4125,9 +4125,28 @@ a {
 .tx-media-card__art {
   position: relative;
   margin-top: 1.25rem;
-  min-height: 320px;
+  min-height: 340px;
   display: grid;
   place-items: end center;
+  flex: 1;
+}
+
+@media (min-width: 960px) {
+  .tx-media-card__art {
+    min-height: 380px;
+  }
+}
+
+.tx-media-card__hero-vial {
+  width: min(92%, 440px);
+  filter: drop-shadow(0 22px 30px rgba(11, 19, 43, 0.22));
+  z-index: 1;
+}
+
+.tx-media-card__hero-img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
 }
 
 .tx-media-card__duo {
@@ -4178,6 +4197,14 @@ a {
   font-weight: 900;
 }
 
+.tx-panel__mech {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .tx-panel__desc {
   margin: 0;
   font-size: 1.05rem;
@@ -4226,7 +4253,8 @@ a {
 .tx-picker__thumb img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f8fafc;
 }
 
 .tx-picker__text {
