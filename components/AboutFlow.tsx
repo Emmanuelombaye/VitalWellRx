@@ -45,7 +45,7 @@ const carePillars = [
     title: 'A partner in your health',
     body: 'Our providers are licensed clinicians with experience in metabolic and weight health. Before anyone starts Tirzepatide+ or Semaglutide+, they review your full health history, your goals, and whether treatment is clinically appropriate.',
     bullets: ['Licensed U.S. clinicians', '24-hour Clinical Review', 'Message provider anytime'],
-    image: '/images/physician-1.webp',
+    image: '/images/unique/unique-about-md.webp',
     imageAlt: 'Licensed VitalWellRx provider',
     media: 'image' as const,
   },

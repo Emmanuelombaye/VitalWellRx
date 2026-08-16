@@ -36,7 +36,7 @@ const stories = [
   },
   {
     step: '04',
-    img: '/images/closing-cta-lifestyle.webp',
+    img: '/images/unique/unique-hiw-04.webp',
     title: 'Ongoing care',
     timeline: 'After enrollment',
     quote: 'Messaging and follow-up support continue as your provider guides the plan.',
@@ -126,7 +126,7 @@ export function HowItWorksFlow() {
         <div className="hiw-priority__card">
           <div className="hiw-priority__media">
             <Image
-              src="/images/physician-1.webp"
+              src="/images/unique/unique-hiw-clinician.webp"
               alt="VitalWellRx care team support"
               fill
               sizes="(max-width: 992px) 100vw, 50vw"

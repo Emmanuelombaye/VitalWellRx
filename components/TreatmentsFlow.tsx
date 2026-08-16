@@ -75,17 +75,20 @@ const signals = [
   {
     title: 'Targets the hormone that tells your brain you’re full.',
     body: 'After you eat, your body releases GLP-1 — a signal that travels to your brain and says: enough. These medications mimic that signal for a clearer, more consistent message to stop eating.',
-    image: '/images/why-1.jpg',
+    image: '/images/unique/unique-signal-1.webp',
+    focus: 'center 22%',
   },
   {
     title: 'Slows down how fast food leaves your stomach.',
     body: 'Treatment may reduce the rate at which your stomach empties after a meal. The physical sensation of fullness can last longer — and hunger may return more slowly.',
-    image: '/images/why-2.jpg',
+    image: '/images/unique/unique-signal-2.webp',
+    focus: 'center 18%',
   },
   {
     title: 'Recalibrates your hunger system — not shuts it down.',
     body: 'With structured dosing reviewed by your provider, therapy may help restore a more balanced hormonal response to food — so the process feels steadier over time.',
-    image: '/images/why-3.jpg',
+    image: '/images/unique/unique-signal-3.webp',
+    focus: 'center 30%',
   },
 ]
 
@@ -94,22 +97,22 @@ const weeks = [
     label: 'Week 1 → 4',
     title: 'Your body is adjusting',
     body: 'You start on a low dose — intentionally. Treatment is introduced gradually so your body can adapt. Some people notice appetite changes early. Others take longer. Experiences vary and are not guaranteed.',
-    image: '/images/how-step2.webp',
-    focus: '70% 20%',
+    image: '/images/unique/unique-week-1.webp',
+    focus: 'center 22%',
   },
   {
     label: 'Week 4 → 12',
     title: 'The protocol starts to settle',
     body: 'As dosing continues under provider review, some people notice quieter food noise or earlier fullness. Others need more time or a dose adjustment. Individual responses vary and are not guaranteed.',
-    image: '/images/how-step5.webp',
-    focus: 'center 22%',
+    image: '/images/unique/unique-week-2.webp',
+    focus: 'center 25%',
   },
   {
     label: 'Month 3+',
     title: 'Calibrated to you',
     body: 'With how your body has responded, your provider can fine-tune your plan. The focus may shift from adjustment to consistency — always guided by clinical judgment, not outcome guarantees.',
-    image: '/images/closing-cta-lifestyle.webp',
-    focus: 'center 28%',
+    image: '/images/unique/unique-week-3.webp',
+    focus: 'center 20%',
   },
 ]
 
@@ -117,20 +120,20 @@ const whyCards = [
   {
     title: 'Transparent & trusted',
     body: 'From sourcing standards to doorstep delivery, we prioritize clear information and licensed U.S. pharmacy partners.',
-    image: '/images/how-step4.webp',
-    focus: 'center 60%',
+    image: '/images/unique/unique-why-1.webp',
+    focus: 'center 22%',
   },
   {
     title: 'Tailored personalized care',
     body: 'Plans are guided by licensed provider review of your health history and goals — not one-size-fits-all checkout.',
-    image: '/images/how-step3.webp',
-    focus: 'center 15%',
+    image: '/images/unique/unique-why-2.webp',
+    focus: 'center 18%',
   },
   {
     title: 'Ongoing support within reach',
     body: 'Your patient portal, care team, and treatment details stay available as your provider guides adjustments over time.',
-    image: '/images/how-step5.webp',
-    focus: 'center 20%',
+    image: '/images/unique/unique-why-3.webp',
+    focus: 'center 28%',
   },
 ]
 
@@ -389,8 +392,8 @@ export default function TreatmentsFlow() {
                       alt=""
                       fill
                       sizes="(max-width:900px) 85vw, 33vw"
-                      quality={72}
-                      style={{ objectFit: 'cover' }}
+                      quality={78}
+                      style={{ objectFit: 'cover', objectPosition: s.focus }}
                     />
                     <span className="tx-photo-card__step">0{i + 1}</span>
                   </div>

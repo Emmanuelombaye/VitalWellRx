@@ -13,9 +13,9 @@ const pillars = [
     specialties: ['Health history', 'Goals & eligibility'],
     bio: 'A structured online questionnaire captures your medical history, medications, and goals so a licensed provider can assess whether treatment may be appropriate.',
     image: {
-      src: '/images/how-step2.webp',
+      src: '/images/unique/unique-home-01.webp',
       alt: 'Patient completing a secure clinical intake on a phone',
-      focus: '62% 28%',
+      focus: 'center 18%',
     },
   },
   {
@@ -25,9 +25,9 @@ const pillars = [
     specialties: ['U.S.-licensed clinicians', 'Rx when appropriate'],
     bio: 'A licensed U.S. provider reviews your intake and determines if a Semaglutide+ or Tirzepatide+ prescription is clinically appropriate — not automatic checkout.',
     image: {
-      src: '/images/how-step3.webp',
-      alt: 'Licensed clinician reviewing a patient intake on a laptop',
-      focus: 'center 18%',
+      src: '/images/unique/unique-home-02.webp',
+      alt: 'Licensed clinician reviewing a patient intake',
+      focus: 'center 15%',
     },
   },
   {
@@ -37,7 +37,7 @@ const pillars = [
     specialties: ['Licensed U.S. pharmacies', 'Cold-pack shipping'],
     bio: 'If prescribed, medication is prepared by a licensed U.S. pharmacy partner and shipped in discreet, temperature-controlled packaging.',
     image: {
-      src: '/images/how-step4.webp',
+      src: '/images/unique/unique-home-03.webp',
       alt: 'Discreet cold-pack pharmacy shipment delivered to a doorstep',
       focus: 'center 55%',
     },
@@ -49,8 +49,8 @@ const pillars = [
     specialties: ['Patient portal', 'Dose & plan updates'],
     bio: 'Stay connected for questions, titration check-ins, and plan changes. Experiences vary — your care team helps you navigate adjustments over time.',
     image: {
-      src: '/images/how-step5.webp',
-      alt: 'Patient using the VitalWellRx portal for ongoing care support',
+      src: '/images/unique/unique-home-04.webp',
+      alt: 'Patient continuing care with at-home treatment support',
       focus: 'center 22%',
     },
   },
