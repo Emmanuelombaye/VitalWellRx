@@ -4,57 +4,57 @@ export const globalFaqs: GlobalFaqItem[] = [
   {
     id: 'doctor-intake',
     category: 'intake',
-    question: 'How does the 1-on-1 doctor consultation work?',
+    question: 'How does provider review work?',
     answer:
-      'After completing your online medical intake, a U.S. board-certified physician reviews your health history, symptoms, and diagnostic biomarker labs. If medically appropriate, your prescription protocol is written and transmitted directly to our partner 503A compounding pharmacy.',
+      'After you complete the online medical intake, a U.S.-licensed provider reviews your health history and submitted information. If clinically appropriate, a prescription may be issued and fulfilled by a licensed partner pharmacy. Treatment is not guaranteed.',
   },
   {
     id: 'insurance-requirement',
     category: 'pricing',
     question: 'Do I need health insurance to use VitalWellRx?',
     answer:
-      'No health insurance is needed. All VitalWellRx prescription protocols are flat-rate transparent pricing ($89–$349/month) that includes your physician consultation, compounded medication, supplies, and overnight shipping with zero hidden fees.',
+      'No health insurance is required. Pricing for Tirzepatide+ and Semaglutide+ is shown on product pages before you begin. Where stated, you are charged only if a licensed provider prescribes treatment.',
   },
   {
     id: '503a-pharmacy-definition',
     category: 'pharmacy',
-    question: 'What is a 503A Compounding Pharmacy?',
+    question: 'What is a 503A compounding pharmacy?',
     answer:
-      '503A compounding pharmacies are state-licensed facilities governed by strict USP <795> and USP <797> sterile preparation standards. They prepare customized, bioidentical, and high-purity prescription formulations specifically tailored for individual patient prescriptions.',
+      '503A compounding pharmacies are state-licensed pharmacies that prepare patient-specific compounded medications pursuant to a valid prescription. VitalWellRx is not a pharmacy and does not compound or dispense medications.',
   },
   {
     id: 'cold-pack-shipping',
     category: 'shipping',
-    question: 'How are temperature-sensitive medications shipped to my door?',
+    question: 'How is medication shipped if prescribed?',
     answer:
-      'All peptide vials, GLP-1 injectables, and bioidentical hormones are packed inside insulated, temperature-monitored cold-packs and shipped via express overnight courier to preserve complete cold-chain stability from pharmacy lab to your doorstep.',
+      'If prescribed, a licensed pharmacy may ship medication via expedited courier in discreet packaging. Temperature-controlled packaging may be used when appropriate. Timing is not guaranteed. See Shipping & Fulfillment for details.',
   },
   {
-    id: 'sublingual-odt-absorption',
+    id: 'what-we-offer',
     category: 'pharmacy',
-    question: 'How do Sublingual GLP-1 ODT tablets work without injections?',
+    question: 'What treatments does VitalWellRx currently offer?',
     answer:
-      'Sublingual Oral Dissolving Tablets (ODT) dissolve under the tongue within 90 seconds. Formulated with advanced mucosal permeability enhancers, the active molecules absorb directly through sublingual capillary tissue into systemic circulation, bypassing gastrointestinal degradation.',
+      'VitalWellRx currently focuses on personalized weight-care protocols: Tirzepatide+ (dual GIP/GLP-1) and Semaglutide+ (GLP-1). Both require licensed provider review and are available only if prescribed.',
   },
   {
-    id: 'lab-work-requirement',
-    category: 'intake',
-    question: 'What if I do not have recent blood lab work for TRT or BHRT?',
+    id: 'fda-approval',
+    category: 'pharmacy',
+    question: 'Are compounded medications FDA-approved?',
     answer:
-      'If your protocol requires diagnostic biomarker baseline labs (such as Testosterone, Estradiol, or CMP), our physician team immediately issues a convenient local LabCorp or Quest Diagnostics lab requisition order, or you can upload existing labs taken within the last 6 months.',
+      'No. Compounded medications prepared by licensed U.S. pharmacies are not FDA-approved as finished branded products and are not reviewed by the FDA for safety, effectiveness, or quality in the same manner as FDA-approved drugs. Product imagery is illustrative.',
   },
   {
     id: 'subscription-cancellation',
     category: 'pricing',
-    question: 'Are there any contract lock-ins or cancellation penalties?',
+    question: 'Can I cancel or pause?',
     answer:
-      'None at all. You have full control over your care. You can adjust your dosage protocol, pause refills, or cancel your month-to-month plan anytime directly inside your patient portal with a single click.',
+      'Plans are generally month-to-month. You may request to cancel or pause future refills through the patient portal or by contacting support. Cancellation does not automatically refund prior fulfilled shipments.',
   },
   {
     id: 'shipping-locations',
     category: 'shipping',
-    question: 'Which U.S. states do you ship prescription protocols to?',
+    question: 'Where is VitalWellRx available?',
     answer:
-      'VitalWellRx partners with licensed 503A compounding pharmacies to deliver prescription protocols to patients across all 50 U.S. states with discrete, climate-controlled packaging.',
+      'Availability varies by state, provider licensure, pharmacy fulfillment, and clinical eligibility. Completing intake does not guarantee treatment. See States We Serve for details.',
   },
 ]

@@ -4,7 +4,7 @@ export const site = {
   name: 'VitalWellRx',
   legalName: 'VitaWell RX LLC',
   dba: 'VitaWellRx®',
-  tagline: 'Telehealth & Longevity Protocols',
+  tagline: 'Provider-guided weight-care telehealth',
 } as const
 
 export const contact: SiteContact = {
@@ -17,6 +17,6 @@ export const contact: SiteContact = {
 }
 
 export const trustBadges = [
-  '100% Board-Certified US Doctors',
-  'FDA-Regulated 503A Pharmacies',
+  'U.S.-licensed provider review',
+  'Licensed pharmacy fulfillment when prescribed',
 ] as const

@@ -26,7 +26,7 @@ const products = [
       'Once-weekly subcutaneous injection',
       'Licensed U.S. provider review in 24h',
       '503A compounded pharmacy fulfillment',
-      'Free expedited cold-pack shipping',
+      'Discreet pharmacy shipping when prescribed',
       'Cancel or pause anytime',
     ],
   },
@@ -42,14 +42,14 @@ const products = [
     period: '/mo',
     image: '/vial-semaglutide.webp',
     cutout: '/cutout-duo-semaglutide.webp',
-    href: '/treatments/odt-tablets',
+    href: '/treatments',
     tone: '#2DD4BF',
     toneSoft: 'rgba(45,212,191,0.14)',
     features: [
       'Once-weekly GLP-1 injection',
       'Licensed U.S. provider review in 24h',
       '503A compounded pharmacy fulfillment',
-      'Free expedited cold-pack shipping',
+      'Discreet pharmacy shipping when prescribed',
       'Cancel or pause anytime',
     ],
   },
@@ -156,12 +156,12 @@ export default function ShopPage() {
               <Sparkles size={14} /> Shop · 2 protocols in stock
             </span>
             <h1>
-              Your pharmacy shelf,
+              Your care options,
               <br />
               <em>simplified.</em>
             </h1>
             <p>
-              Browse Tirzepatide+ and Semaglutide+ like a real shop — clear pricing, physician review included, shipped discreetly once approved.
+              Browse Tirzepatide+ and Semaglutide+ with clear pricing. Licensed U.S. provider review required. Medication ships only if prescribed.
             </p>
             <div className="shop-hero__actions">
               <MagneticButton href="#shop-shelf">
@@ -174,7 +174,7 @@ export default function ShopPage() {
             <div className="shop-hero__trust">
               <div><ShieldCheck size={14} /> Provider-guided protocols</div>
               <div><ShieldCheck size={14} /> Licensed U.S. providers</div>
-              <div><Truck size={14} /> Free expedited shipping</div>
+              <div><Truck size={14} /> Shipping if prescribed</div>
             </div>
           </motion.div>
 
@@ -433,8 +433,8 @@ export default function ShopPage() {
       <section className="shop-trust">
         <div className="shop-shell shop-trust__grid">
           {[
-            { icon: <ShieldCheck size={22} />, title: 'Physician included', body: 'Board-certified review before every Rx.' },
-            { icon: <Truck size={22} />, title: 'Cold-pack shipping', body: 'Free expedited, discreet delivery.' },
+            { icon: <ShieldCheck size={22} />, title: 'Provider review', body: 'Licensed U.S. provider review before any Rx.' },
+            { icon: <Truck size={22} />, title: 'Pharmacy shipping', body: 'Discreet delivery when prescribed. Timing not guaranteed.' },
             { icon: <Lock size={22} />, title: 'No surprise fees', body: 'Clear monthly pricing. Cancel anytime.' },
           ].map((item, i) => (
             <motion.div

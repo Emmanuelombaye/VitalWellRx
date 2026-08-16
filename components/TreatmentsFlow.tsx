@@ -15,7 +15,7 @@ const products = [
     thumb: '/treatments/sema-thumb.webp',
     vial: '/treatments/vial-semaglutide.webp',
     price: 310,
-    href: '/treatments/odt-tablets',
+    href: '/treatments',
   },
   {
     id: 'tirzepatide',
@@ -29,10 +29,10 @@ const products = [
 ] as const
 
 const includes = [
-  'Free Medical Consultation',
-  'Free Expedited Shipping',
-  '24/7 Dedicated Support',
-  'Access to Patient Portal',
+  'Licensed provider review',
+  'Pharmacy shipping if prescribed',
+  'Ongoing care support',
+  'Patient Center access',
 ]
 
 const processSteps = [

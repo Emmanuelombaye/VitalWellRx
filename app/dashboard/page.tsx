@@ -150,7 +150,7 @@ export default function Dashboard() {
                   Enroll in a Treatment Protocol to Unlock Your Portal
                 </h2>
                 <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', marginTop: '0.35rem', maxWidth: '700px' }}>
-                  To access 1-on-1 board-certified physician consultation messaging, digital prescription refills, and real-time blood lab tracking, please select a treatment protocol below to complete your checkout.
+                  To access secure provider messaging, refill coordination, and care follow-up, please select a treatment protocol below to complete your checkout.
                 </p>
               </div>
             </div>

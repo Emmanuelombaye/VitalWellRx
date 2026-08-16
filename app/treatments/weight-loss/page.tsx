@@ -1,6 +1,6 @@
 'use client'
 
-import { Pill, Activity, TrendingDown } from 'lucide-react'
+import { Activity, TrendingDown } from 'lucide-react'
 import Image from 'next/image'
 import TreatmentHero from '@/components/treatments/TreatmentHero'
 import StatsBar from '@/components/treatments/StatsBar'
@@ -186,8 +186,8 @@ export default function MedicalWeightLoss() {
               }}
             >
               <Image
-                src="/supplement_bottle.webp"
-                alt="Cere Vitality & Tirzepatide Compounds"
+                src="/gen_weight1.webp"
+                alt="Illustrative weight-care medication imagery"
                 fill
                 style={{ objectFit: 'cover' }}
               />
@@ -214,14 +214,14 @@ export default function MedicalWeightLoss() {
                     marginBottom: '0.35rem',
                   }}
                 >
-                  <Pill size={16} /> Sublingual ODT Dissolving Tablets
+                  <Activity size={16} /> Dual GIP / GLP-1
                 </div>
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-                  Oral Dissolving Tirzepatide / GLP-1
+                  Tirzepatide injectable protocol
                 </h3>
                 <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  Perfect for patients who prefer a needle-free experience. Placed under the tongue, sublingual
-                  formulations absorb directly into the bloodstream for maximum bioavailability.
+                  A weekly dual-agonist option that may support appetite regulation when prescribed as part of a
+                  provider-guided plan. Individual responses vary. Treatment is not guaranteed.
                 </p>
               </div>
 
@@ -238,21 +238,21 @@ export default function MedicalWeightLoss() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    color: 'var(--primary-navy)',
+                    color: 'var(--primary-gold)',
                     fontWeight: 800,
                     fontSize: '0.8rem',
                     textTransform: 'uppercase',
                     marginBottom: '0.35rem',
                   }}
                 >
-                  <Activity size={16} /> Weekly Micro-Injections
+                  <TrendingDown size={16} /> GLP-1 pathway
                 </div>
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-                  Subcutaneous Injectable Compounds
+                  Semaglutide injectable protocol
                 </h3>
                 <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  Once-weekly painless micro-injections using ultra-fine insulin needles. Delivers steady, long-acting
-                  therapeutic plasma concentration across 7 full days.
+                  A weekly GLP-1 option that may support satiety when prescribed. Product imagery is illustrative;
+                  actual pharmacy packaging may differ.
                 </p>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function MedicalWeightLoss() {
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <SectionEyebrow>Treatment Progression</SectionEyebrow>
             <h2 className="h2" style={{ marginTop: '0.5rem' }}>
-              Your 90-Day <span className="text-gold">Transformation Roadmap</span>
+              Your care <span className="text-gold">roadmap</span>
             </h2>
           </div>
 
@@ -294,11 +294,11 @@ export default function MedicalWeightLoss() {
       </section>
 
       <FeaturedPricing
-        badge="Doctor-Guided Complete Program"
+        badge="Provider-guided weight-care plan"
         price="$340"
-        description="No medical insurance required. No surprise co-pays or shipping fees."
+        description="No medical insurance required. Charged only if prescribed. Shipping timing not guaranteed."
         includes={weightLossIncludes}
-        ctaLabel="Start 5-Minute Questionnaire"
+        ctaLabel="Start medical intake"
       />
 
       <TreatmentFaq faqs={weightLossFaqs} variant="animated" />

@@ -77,9 +77,10 @@ export default function TermsPage() {
       <article>
         <h2>5. Nationwide Availability and Service Limitations</h2>
         <p>
-          Access to at least some Services is offered in all 50 U.S. states through affiliated or contracted healthcare
-          providers and pharmacy partners, subject to applicable law, provider licensure, pharmacy authorization, patient
-          eligibility, clinical appropriateness, and operational availability.
+          Access to Services may be offered through affiliated or contracted healthcare providers and pharmacy partners
+          where legally permitted, subject to applicable law, provider licensure, pharmacy authorization, patient
+          eligibility, clinical appropriateness, and operational availability. Availability is not guaranteed in every
+          jurisdiction.
         </p>
         <p>
           Nationwide availability does not mean that every provider, treatment category, medication, dosage form,

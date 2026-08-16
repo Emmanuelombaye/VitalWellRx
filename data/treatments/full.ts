@@ -7,11 +7,11 @@ export const weightLossFaqs: FaqItem[] = [
   },
   {
     q: 'Do I need insurance to participate in this medical weight loss program?',
-    a: 'No. VitalWellRx operates on a flat-rate cash model. Your monthly subscription covers your physician consultation, prescription compounding, medication supply, and free discreet shipping directly to your door.',
+    a: 'No. VitalWellRx uses a cash-pay model. If prescribed, your plan typically covers provider review, medication supply from a licensed partner pharmacy, and shipping. Charged only if prescribed.',
   },
   {
-    q: 'Are the medications compounded at accredited U.S. pharmacies?',
-    a: 'Yes, 100%. All VitalWellRx medications are compounded at FDA-regulated 503A/503B U.S. licensed pharmacies adhering to strict cGMP sterility and potency standards.',
+    q: 'Are the medications compounded at licensed U.S. pharmacies?',
+    a: 'When prescribed, compounded medications are prepared by licensed U.S. partner pharmacies. Compounded medications are not FDA-approved as finished branded products. Product imagery is illustrative.',
   },
   {
     q: 'How quickly can I expect to see results?',
@@ -22,16 +22,16 @@ export const weightLossFaqs: FaqItem[] = [
 export const weightLossStats: StatItem[] = [
   { val: 'Provider-guided', label: 'Licensed Clinical Review' },
   { val: '24-48 hrs', label: 'Typical Intake Review Window' },
-  { val: '100%', label: 'Physician-Guided Care' },
-  { val: '50 States', label: 'Licensed US Coverage' },
+  { val: 'Cash-pay', label: 'No Insurance Required' },
+  { val: 'State-based', label: 'Availability Varies' },
 ]
 
 export const weightLossIncludes = [
-  'Compounded Tirzepatide or GLP-1 medication (monthly supply)',
-  'Initial medical review & 1-on-1 provider intake consultation',
-  'All injection supplies (needles, alcohol prep pads) or ODT tablets',
-  'Ongoing dose adjustments & unlimited messaging via Member Portal',
-  'Free overnight temperature-controlled discreet delivery',
+  'Compounded Tirzepatide or Semaglutide medication when prescribed (monthly supply)',
+  'Initial medical review & provider intake consultation',
+  'All injection supplies (needles, alcohol prep pads) when applicable',
+  'Ongoing dose adjustments & secure messaging as clinically indicated',
+  'Discreet pharmacy shipping when prescribed (timing not guaranteed)',
 ]
 
 export const mensHormoneFaqs: FaqItem[] = [

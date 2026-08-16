@@ -24,7 +24,7 @@ export default function Home() {
     <main>
       {/* Announcement Bar */}
       <div style={{ backgroundColor: 'var(--foreground)', color: 'var(--primary-navy)', padding: '10px', textAlign: 'center', fontWeight: 600, fontSize: '0.875rem' }}>
-        No insurance needed. Precision care, customized just for you. <Link href="/get-started" style={{ textDecoration: 'underline', marginLeft: '8px' }}>Start medical intake →</Link>
+        No insurance needed. Provider-guided weight care when prescribed. <Link href="/get-started" style={{ textDecoration: 'underline', marginLeft: '8px' }}>Start medical intake →</Link>
       </div>
 
       {/* Hero Section */}
@@ -94,7 +94,7 @@ export default function Home() {
           {[...Array(2)].map((_, i) => (
             <div key={i} style={{ display: 'flex' }}>
               <div className="marquee-item"><HeartPulse size={16} /> LICENSED U.S. PROVIDER REVIEW</div>
-              <div className="marquee-item"><Stethoscope size={16} /> BOARD-CERTIFIED PHYSICIANS</div>
+              <div className="marquee-item"><Stethoscope size={16} /> U.S.-LICENSED PROVIDER REVIEW</div>
               <div className="marquee-item"><BadgeCheck size={16} /> U.S. LICENSED PHARMACIES</div>
               <div className="marquee-item"><Clock size={16} /> 24-48 HOUR MEDICAL REVIEW</div>
               <div className="marquee-item"><ShieldCheck size={16} /> ZERO HIDDEN FEES</div>

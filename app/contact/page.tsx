@@ -40,7 +40,7 @@ export default function Contact() {
               {[
                 { icon: <Mail size={24} />, label: 'Email Us', value: contact.email, sub: 'We respond within 24 hours' },
                 { icon: <Phone size={24} />, label: 'Call Us', value: contact.phoneDisplay, sub: 'Mon – Fri, 8am – 8pm EST' },
-                { icon: <MapPin size={24} />, label: 'Headquarters', value: contact.city, sub: 'Telehealth available in all 50 states' },
+                { icon: <MapPin size={24} />, label: 'Headquarters', value: contact.city, sub: 'Availability varies by state — see States We Serve' },
                 { icon: <Clock size={24} />, label: 'Response Time', value: '24–48 Hours', sub: 'For medical reviews' },
               ].map((item, i) => (
                 <div key={i} className="glass-card" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '1.5rem' }}>

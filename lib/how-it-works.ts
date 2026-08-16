@@ -44,20 +44,20 @@ export const howSteps: HowStep[] = [
       src: '/hiw-step2.webp',
       alt: 'Licensed provider reviewing patient intake',
     },
-    chips: ['Licensed providers', 'Review within 24h', 'No office visit'],
+    chips: ['Licensed providers', 'Typically within 24h', 'No office visit'],
   },
   {
     n: '04',
     title: 'Receive your',
     titleItalic: 'medication',
-    body: 'Once approved, your Tirzepatide+ or Semaglutide+ prescription is sent to our licensed partner pharmacy and fulfilled to your exact plan. Medication ships via expedited delivery — securely packaged and delivered to your door.',
+    body: 'Once approved, your Tirzepatide+ or Semaglutide+ prescription may be sent to a licensed partner pharmacy for fulfillment. If prescribed, medication ships in discreet packaging. Delivery timing is not guaranteed.',
     image: {
       src: '/hiw-step3.webp',
       alt: 'Medication delivered to your door',
     },
-    chips: ['Licensed pharmacy', 'Expedited shipping', 'Discreet packaging'],
+    chips: ['Licensed pharmacy', 'Shipping if prescribed', 'Discreet packaging'],
     callout: {
-      value: 'Free expedited',
+      value: 'If prescribed',
       label: 'Includes insulation to help medication stay fresh in transit.',
     },
   },
@@ -78,17 +78,17 @@ export const howWhy = [
   {
     image: { src: '/images/why-1.jpg', alt: 'Quality sourcing verified' },
     title: 'Transparent & Trusted',
-    body: 'From ingredient sourcing to doorstep delivery, we prioritize pharmaceutical-grade quality and complete transparency.',
+    body: 'From sourcing to delivery, we prioritize pharmaceutical-grade quality standards and clear information about how care works.',
   },
   {
     image: { src: '/images/why-2.jpg', alt: 'Personalized medical care' },
     title: 'Tailored Personalized Care',
-    body: 'We create tailored plans based on your health goals, ensuring the best path to your success.',
+    body: 'Plans are guided by licensed provider review of your health history and goals — not one-size-fits-all marketing promises.',
   },
   {
     image: { src: '/images/why-3.jpg', alt: 'Science-backed results' },
-    title: 'Science-backed Results',
-    body: 'Clinically guided care designed to support long-term health, performance, and overall wellbeing.',
+    title: 'Clinically Guided Care',
+    body: 'Care is designed to support weight-management goals under clinical judgment. Individual outcomes vary and are not guaranteed.',
   },
 ] as const
 
@@ -103,11 +103,11 @@ export const howFaqs = [
   },
   {
     q: 'What treatments do you offer?',
-    a: 'How It Works covers our two personalized weight-loss protocols: Tirzepatide+ (dual GIP/GLP-1) and Semaglutide+ (GLP-1) — prescribed by licensed U.S. providers and fulfilled by FDA-regulated pharmacies.',
+    a: 'How It Works covers our two personalized weight-loss protocols: Tirzepatide+ (dual GIP/GLP-1) and Semaglutide+ (GLP-1) — prescribed by licensed U.S. providers when clinically appropriate and fulfilled by licensed U.S. pharmacy partners.',
   },
   {
     q: 'How fast is shipping?',
-    a: 'Once approved and prescribed, your medication ships with free expedited delivery in discreet, temperature-controlled packaging.',
+    a: 'If approved and prescribed, a licensed pharmacy may ship your medication in discreet packaging. Temperature-controlled packaging may be used when appropriate. Timing is not guaranteed.',
   },
   {
     q: 'Can I cancel anytime?',

@@ -39,7 +39,7 @@ const treatments = [
     period: '/mo',
     productImage: '/vial-semaglutide.webp',
     cutoutImage: '/cutout-duo-semaglutide.webp',
-    href: '/treatments/odt-tablets',
+    href: '/treatments',
   },
 ]
 

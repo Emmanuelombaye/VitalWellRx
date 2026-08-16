@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
       { source: '/treatments/fertility-mens', destination: '/treatments', permanent: false },
       { source: '/treatments/cjc-ipamorelin', destination: '/treatments', permanent: false },
       { source: '/treatments/ghk-cu', destination: '/treatments', permanent: false },
+      { source: '/treatments/odt-tablets', destination: '/treatments', permanent: false },
+      { source: '/shipping-fulfillment', destination: '/shipping', permanent: false },
     ]
   },
 }

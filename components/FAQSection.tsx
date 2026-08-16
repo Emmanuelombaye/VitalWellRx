@@ -32,7 +32,7 @@ export default function FAQSection() {
             Everything You Need To Know <span className="text-gold">About Care.</span>
           </h2>
           <p className="text-muted" style={{ fontSize: '1.15rem', maxWidth: '650px', margin: '0.75rem auto 0', lineHeight: 1.6 }}>
-            Clear answers about board-certified telehealth consultations, 503A pharmacy compounding, sublingual ODT absorption, and doorstep shipping.
+            Clear answers about licensed provider review, partner pharmacy fulfillment, shipping, and pricing for Tirzepatide+ and Semaglutide+.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function FAQSection() {
             <Search size={20} style={{ position: 'absolute', left: '1.25rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary-gold)' }} />
             <input
               type="text"
-              placeholder="Search questions (e.g., insurance, cold-pack shipping, ODT tablets, labs)..."
+              placeholder="Search questions (e.g., insurance, shipping, provider review)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
@@ -65,10 +65,10 @@ export default function FAQSection() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             {[
               { id: 'all', label: 'All Questions' },
-              { id: 'intake', label: '🩺 Doctor Consultation & Labs' },
-              { id: 'pharmacy', label: '🧪 503A Pharmacy & ODT' },
-              { id: 'pricing', label: '💳 Flat Pricing & Plans' },
-              { id: 'shipping', label: '📦 Cold-Pack Shipping' },
+              { id: 'intake', label: 'Provider review' },
+              { id: 'pharmacy', label: 'Pharmacy & compounding' },
+              { id: 'pricing', label: 'Pricing & plans' },
+              { id: 'shipping', label: 'Shipping' },
             ].map(tab => (
               <button
                 key={tab.id}
