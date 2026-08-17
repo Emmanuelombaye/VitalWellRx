@@ -1,24 +1,22 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, Lock, HeartPulse, ShieldAlert } from 'lucide-react'
 import Link from 'next/link'
 import {
   INTAKE_PHASES,
+  SCREENING_CONDITIONS,
   US_STATES,
   emptyClinicalIntake,
-  getActiveScreeningQuestions,
-  isScreeningComplete,
   isValidAdultDob,
   isValidEmail,
   isValidPhone,
   isValidZip,
-  questionIsDisqualified,
-  screeningHasDisqualifier,
   type ClinicalIntake,
   type IntakePhaseId,
 } from '../../lib/intake'
+import { site } from '../../data/site'
 
 const TREATMENTS = [
   {
@@ -65,33 +63,87 @@ export default function GetStarted() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [couponInput, setCouponInput] = useState('')
+  const [appliedCoupon, setAppliedCoupon] = useState<{
+    code: string
+    discountAmountCents?: number
+    finalAmountCents?: number
+  } | null>(null)
+  const [couponBusy, setCouponBusy] = useState(false)
+  const [couponMessage, setCouponMessage] = useState('')
   const [intake, setIntake] = useState<ClinicalIntake>(() => emptyClinicalIntake())
 
-  const phaseIndex = Math.max(0, FLOW.indexOf(step))
-  const progressSteps = FLOW.length - 1
-  const progressPercent = step === 'disqualified' ? 100 : Math.min((phaseIndex / progressSteps) * 100, 100)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (new URLSearchParams(window.location.search).get('canceled') === '1') {
+      setError('Checkout was canceled. Your intake is still here — continue when you are ready.')
+    }
+  }, [])
 
-  const screeningQuestions = useMemo(
-    () => getActiveScreeningQuestions(intake),
-    [intake],
-  )
+  const phaseIndex = Math.max(0, FLOW.indexOf(step))
+  const progressSteps = Math.max(1, FLOW.length - 1)
+  const progressPercent = step === 'disqualified' ? 100 : Math.min((phaseIndex / progressSteps) * 100, 100)
+  const intakeStepNumber = INTAKE_PHASES.findIndex((phase) => phase.id === step) + 1
 
   const updateIntake = <K extends keyof ClinicalIntake>(key: K, value: ClinicalIntake[K]) => {
     setIntake((prev) => ({ ...prev, [key]: value }))
     setError('')
   }
 
-  const setAnswer = (id: string, value: string) => {
-    setIntake((prev) => ({ ...prev, answers: { ...prev.answers, [id]: value } }))
-    setError('')
+  const applyCoupon = async () => {
+    const code = couponInput.trim()
+    if (!code) {
+      setCouponMessage('Enter a promo code.')
+      setAppliedCoupon(null)
+      return
+    }
+    if (!treatment) {
+      setCouponMessage('Select a care program first.')
+      return
+    }
+
+    setCouponBusy(true)
+    setCouponMessage('')
+    try {
+      const res = await fetch('/api/checkout/coupon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, programSlug: treatment }),
+      })
+      const data = (await res.json().catch(() => ({}))) as {
+        valid?: boolean
+        code?: string
+        discountAmountCents?: number
+        finalAmountCents?: number
+        error?: string
+      }
+      if (!res.ok || data.valid !== true) {
+        setAppliedCoupon(null)
+        setCouponMessage(data.error || 'This code is not valid for this order.')
+        return
+      }
+      setAppliedCoupon({
+        code: data.code || code,
+        discountAmountCents: data.discountAmountCents,
+        finalAmountCents: data.finalAmountCents,
+      })
+      setCouponMessage('Promo code applied.')
+    } catch {
+      setAppliedCoupon(null)
+      setCouponMessage('We could not check this code right now. Please try again.')
+    } finally {
+      setCouponBusy(false)
+    }
+  }
+
+  const clearCoupon = () => {
+    setAppliedCoupon(null)
+    setCouponMessage('')
   }
 
   const goBack = () => {
     setError('')
-    if (step === 'disqualified') {
-      setStep('screening')
-      return
-    }
     const idx = FLOW.indexOf(step)
     if (idx > 0) setStep(FLOW[idx - 1])
   }
@@ -104,32 +156,32 @@ export default function GetStarted() {
 
   const continueFromTreatment = (id: string) => {
     setTreatment(id)
-    setStep('metrics')
+    setStep('patient')
   }
 
-  const continueMetrics = () => {
-    if (!intake.height.trim() || !intake.weight.trim() || !intake.sexAtBirth || !isValidAdultDob(intake.dob)) {
-      setError('Enter height, weight, sex at birth, and a valid date of birth (18+).')
+  const continuePatient = () => {
+    if (!email.trim() || !firstName.trim() || !lastName.trim() || !phone.trim() || !intake.dob || !intake.sexAtBirth) {
+      setError('Please complete all required patient information fields.')
+      return
+    }
+    if (!isValidEmail(email)) {
+      setError('Enter a valid email address.')
+      return
+    }
+    if (!isValidPhone(phone)) {
+      setError('Enter a valid phone number.')
+      return
+    }
+    if (!isValidAdultDob(intake.dob)) {
+      setError('You must be 18 or older to continue.')
       return
     }
     goNext()
   }
 
   const continueScreening = () => {
-    if (screeningHasDisqualifier(intake)) {
-      setStep('disqualified')
-      return
-    }
-    if (!isScreeningComplete(intake)) {
-      setError('Answer every required screening question to continue.')
-      return
-    }
-    goNext()
-  }
-
-  const continuePatient = () => {
-    if (!firstName.trim() || !lastName.trim() || !isValidEmail(email) || !isValidPhone(phone)) {
-      setError('Enter your full name, a valid email, and a phone number.')
+    if (intake.conditionsApply !== 'yes' && intake.conditionsApply !== 'no') {
+      setError('Please answer the medical screening question to continue.')
       return
     }
     goNext()
@@ -143,13 +195,68 @@ export default function GetStarted() {
     goNext()
   }
 
-  const submitConsent = () => {
+  const submitConsent = async () => {
     if (!intake.consentTelehealth || !intake.consentReview) {
       setError('Please accept both agreements to submit your intake.')
       return
     }
-    // Mock provider-review handoff — no real EHR submit in this repo
-    setStep('success')
+    if (!treatment || (treatment !== 'semaglutide' && treatment !== 'tirzepatide')) {
+      setError('Select a care program to continue.')
+      return
+    }
+
+    setSubmitting(true)
+    setError('')
+
+    try {
+      localStorage.setItem('vitalwell_intake_email_v1', email.trim())
+    } catch {
+      /* ignore private-mode storage failures */
+    }
+
+    try {
+      const res = await fetch('/api/checkout/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          programSlug: treatment,
+          patientInfo: {
+            firstName: firstName.trim(),
+            lastName: lastName.trim(),
+            email: email.trim(),
+            phone: phone.replace(/\D/g, ''),
+            dob: intake.dob,
+            state: intake.state,
+          },
+          intakeAnswers: {
+            program: TREATMENTS.find((t) => t.id === treatment)?.title || treatment,
+            programSlug: treatment,
+            sexAssignedAtBirth: intake.sexAtBirth,
+            shippingStreet: intake.address1,
+            shippingApartment: intake.address2,
+            shippingCity: intake.city,
+            shippingState: intake.state,
+            shippingZip: intake.zip,
+            conditionsApply: intake.conditionsApply,
+            screeningConditions: SCREENING_CONDITIONS.join('; '),
+            consentTermsAndTelehealth: intake.consentTelehealth,
+            authorizeClinicianReview: intake.consentReview,
+            source: 'vitalwell-get-started',
+          },
+          ...(appliedCoupon?.code ? { couponCode: appliedCoupon.code } : {}),
+        }),
+      })
+      const data = (await res.json().catch(() => ({}))) as { error?: string; checkoutUrl?: string }
+      if (!res.ok || !data.checkoutUrl) {
+        setError(data.error || 'We could not start checkout. Please try again.')
+        return
+      }
+      window.location.href = data.checkoutUrl
+    } catch {
+      setError('Network error. Check your connection and try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const showBack = step !== 'treatment' && step !== 'success'
@@ -202,12 +309,10 @@ export default function GetStarted() {
               }}
             >
               {step === 'success'
-                ? 'Provider review'
-                : step === 'disqualified'
-                  ? 'Medical review required'
-                  : step === 'treatment'
-                    ? 'Step 1 of 6'
-                    : `Step ${phaseIndex + 1} of ${progressSteps}`}
+                ? 'Checkout complete'
+                : step === 'treatment'
+                  ? 'Choose treatment'
+                  : `Step ${intakeStepNumber} of ${INTAKE_PHASES.length}`}
             </span>
             <div style={{ width: '100%', height: '6px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', overflow: 'hidden' }}>
               <div
@@ -286,35 +391,38 @@ export default function GetStarted() {
               </motion.div>
             )}
 
-            {step === 'metrics' && (
-              <motion.div key="metrics" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            {step === 'patient' && (
+              <motion.div key="patient" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>
-                    Body <span className="text-gold">metrics</span>
-                  </h2>
-                  <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-                    Used for clinical screening. Adults 18+ only.
-                  </p>
+                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>Step 1 — Patient Information</h2>
                 </div>
                 <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  <div>
+                    <label style={labelStyle}>Email Address *</label>
+                    <input style={inputStyle} type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label style={labelStyle}>Height *</label>
-                      <input style={inputStyle} placeholder="5ft 10in" value={intake.height} onChange={(e) => updateIntake('height', e.target.value)} />
+                      <label style={labelStyle}>First Name *</label>
+                      <input style={inputStyle} value={firstName} onChange={(e) => setFirstName(e.target.value)} autoComplete="given-name" />
                     </div>
                     <div>
-                      <label style={labelStyle}>Weight (lbs) *</label>
-                      <input style={inputStyle} type="number" placeholder="180" value={intake.weight} onChange={(e) => updateIntake('weight', e.target.value)} />
+                      <label style={labelStyle}>Last Name *</label>
+                      <input style={inputStyle} value={lastName} onChange={(e) => setLastName(e.target.value)} autoComplete="family-name" />
                     </div>
                   </div>
                   <div>
-                    <label style={labelStyle}>Date of birth *</label>
-                    <input style={inputStyle} type="date" value={intake.dob} onChange={(e) => updateIntake('dob', e.target.value)} />
+                    <label style={labelStyle}>Phone Number *</label>
+                    <input style={inputStyle} type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" />
                   </div>
                   <div>
-                    <label style={labelStyle}>Sex assigned at birth *</label>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
-                      {['Male', 'Female', 'Other'].map((sex) => (
+                    <label style={labelStyle}>Date of Birth *</label>
+                    <input style={inputStyle} type="date" value={intake.dob} onChange={(e) => updateIntake('dob', e.target.value)} autoComplete="bday" />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Sex Assigned at Birth *</label>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                      {['Male', 'Female'].map((sex) => (
                         <button
                           key={sex}
                           type="button"
@@ -335,124 +443,8 @@ export default function GetStarted() {
                     </div>
                   </div>
                   {error ? <p style={{ color: '#F87171', fontSize: '0.9rem' }}>{error}</p> : null}
-                  <button type="button" onClick={continueMetrics} className="btn-primary" style={{ width: '100%' }}>
-                    Continue to screening <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-                  </button>
-                </div>
-              </motion.div>
-            )}
-
-            {step === 'screening' && (
-              <motion.div key="screening" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>
-                    Clinical <span className="text-gold">screening</span>
-                  </h2>
-                  <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-                    Answer each question honestly. Completing intake does not guarantee a prescription.
-                  </p>
-                </div>
-                <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                  {screeningQuestions.map((q) => {
-                    const value = intake.answers[q.id] || ''
-                    const blocked = questionIsDisqualified(q, value)
-                    return (
-                      <div
-                        key={q.id}
-                        style={{
-                          padding: blocked ? '1rem' : 0,
-                          borderRadius: '0.75rem',
-                          border: blocked ? '1px solid rgba(248,113,113,0.45)' : 'none',
-                          backgroundColor: blocked ? 'rgba(248,113,113,0.08)' : 'transparent',
-                        }}
-                      >
-                        <p style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.5rem' }}>{q.question}</p>
-                        {q.type === 'boolean' ? (
-                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                            {(['yes', 'no'] as const).map((opt) => (
-                              <button
-                                key={opt}
-                                type="button"
-                                onClick={() => setAnswer(q.id, opt)}
-                                style={{
-                                  padding: '0.75rem',
-                                  borderRadius: '0.5rem',
-                                  border: value === opt ? '2px solid var(--primary-gold)' : '1px solid rgba(255,255,255,0.1)',
-                                  backgroundColor: value === opt ? 'rgba(212,175,55,0.15)' : 'transparent',
-                                  color: 'white',
-                                  fontWeight: 700,
-                                  cursor: 'pointer',
-                                }}
-                              >
-                                {opt === 'yes' ? 'Yes' : 'No'}
-                              </button>
-                            ))}
-                          </div>
-                        ) : q.type === 'select' ? (
-                          <select style={{ ...inputStyle, backgroundColor: 'var(--primary-navy)' }} value={value} onChange={(e) => setAnswer(q.id, e.target.value)}>
-                            <option value="">—</option>
-                            {(q.options || []).map((opt) => (
-                              <option key={opt} value={opt}>
-                                {opt}
-                              </option>
-                            ))}
-                          </select>
-                        ) : (
-                          <input
-                            style={inputStyle}
-                            type={q.type === 'number' ? 'number' : 'text'}
-                            value={value}
-                            onChange={(e) => setAnswer(q.id, e.target.value)}
-                          />
-                        )}
-                        {blocked ? (
-                          <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#F87171' }}>
-                            Medical review required — this answer may prevent treatment from continuing.
-                          </p>
-                        ) : null}
-                      </div>
-                    )
-                  })}
-                  {error ? <p style={{ color: '#F87171', fontSize: '0.9rem' }}>{error}</p> : null}
-                  <button type="button" onClick={continueScreening} className="btn-primary" style={{ width: '100%' }}>
-                    Continue <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-                  </button>
-                </div>
-              </motion.div>
-            )}
-
-            {step === 'patient' && (
-              <motion.div key="patient" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>
-                    Patient <span className="text-gold">information</span>
-                  </h2>
-                  <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-                    Used to contact you about provider review — not a treatment approval.
-                  </p>
-                </div>
-                <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label style={labelStyle}>First name *</label>
-                      <input style={inputStyle} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>Last name *</label>
-                      <input style={inputStyle} value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                    </div>
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Email *</label>
-                    <input style={inputStyle} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Phone *</label>
-                    <input style={inputStyle} type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                  </div>
-                  {error ? <p style={{ color: '#F87171', fontSize: '0.9rem' }}>{error}</p> : null}
                   <button type="button" onClick={continuePatient} className="btn-primary" style={{ width: '100%' }}>
-                    Continue to shipping <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+                    Next Step <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                   </button>
                 </div>
               </motion.div>
@@ -461,26 +453,21 @@ export default function GetStarted() {
             {step === 'shipping' && (
               <motion.div key="shipping" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>
-                    Shipping <span className="text-gold">address</span>
-                  </h2>
-                  <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-                    Where medication would ship if a licensed provider determines treatment is appropriate.
-                  </p>
+                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>Step 2 — Shipping Address</h2>
                 </div>
                 <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   <div>
-                    <label style={labelStyle}>Address line 1 *</label>
-                    <input style={inputStyle} value={intake.address1} onChange={(e) => updateIntake('address1', e.target.value)} />
+                    <label style={labelStyle}>Street Address *</label>
+                    <input style={inputStyle} value={intake.address1} onChange={(e) => updateIntake('address1', e.target.value)} autoComplete="address-line1" />
                   </div>
                   <div>
-                    <label style={labelStyle}>Address line 2</label>
-                    <input style={inputStyle} value={intake.address2} onChange={(e) => updateIntake('address2', e.target.value)} />
+                    <label style={labelStyle}>Apartment / Suite (Optional)</label>
+                    <input style={inputStyle} value={intake.address2} onChange={(e) => updateIntake('address2', e.target.value)} autoComplete="address-line2" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label style={labelStyle}>City *</label>
-                      <input style={inputStyle} value={intake.city} onChange={(e) => updateIntake('city', e.target.value)} />
+                      <input style={inputStyle} value={intake.city} onChange={(e) => updateIntake('city', e.target.value)} autoComplete="address-level2" />
                     </div>
                     <div>
                       <label style={labelStyle}>State *</label>
@@ -488,8 +475,9 @@ export default function GetStarted() {
                         style={{ ...inputStyle, backgroundColor: 'var(--primary-navy)' }}
                         value={intake.state}
                         onChange={(e) => updateIntake('state', e.target.value)}
+                        autoComplete="address-level1"
                       >
-                        <option value="">—</option>
+                        <option value="">Select</option>
                         {US_STATES.map((st) => (
                           <option key={st.value} value={st.value}>
                             {st.label}
@@ -498,13 +486,63 @@ export default function GetStarted() {
                       </select>
                     </div>
                     <div>
-                      <label style={labelStyle}>ZIP *</label>
-                      <input style={inputStyle} value={intake.zip} onChange={(e) => updateIntake('zip', e.target.value)} />
+                      <label style={labelStyle}>ZIP / Postcode *</label>
+                      <input style={inputStyle} value={intake.zip} onChange={(e) => updateIntake('zip', e.target.value)} autoComplete="postal-code" />
                     </div>
                   </div>
                   {error ? <p style={{ color: '#F87171', fontSize: '0.9rem' }}>{error}</p> : null}
                   <button type="button" onClick={continueShipping} className="btn-primary" style={{ width: '100%' }}>
-                    Continue to agreements <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+                    Next Step <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {step === 'screening' && (
+              <motion.div key="screening" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>Step 3 — Medical Screening</h2>
+                </div>
+                <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: 700 }}>Do any of the following conditions apply to you? *</p>
+                  <ul style={{ margin: 0, paddingLeft: '1.15rem', display: 'grid', gap: '0.35rem', color: '#94A3B8', fontSize: '0.92rem' }}>
+                    {SCREENING_CONDITIONS.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <div style={{ display: 'grid', gap: '0.75rem' }}>
+                    {[
+                      { value: 'yes', label: 'Yes, one or more' },
+                      { value: 'no', label: 'No, none apply' },
+                    ].map((opt) => (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => updateIntake('conditionsApply', opt.value)}
+                        style={{
+                          padding: '0.9rem 1rem',
+                          borderRadius: '0.5rem',
+                          border: intake.conditionsApply === opt.value ? '2px solid var(--primary-gold)' : '1px solid rgba(255,255,255,0.1)',
+                          backgroundColor: intake.conditionsApply === opt.value ? 'rgba(212,175,55,0.15)' : 'transparent',
+                          color: 'white',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                        }}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                  {intake.conditionsApply === 'yes' && (
+                    <p className="text-muted" style={{ fontSize: '0.9rem' }}>
+                      A licensed clinician will review your history before deciding whether treatment is appropriate.
+                      Answering yes does not automatically disqualify you.
+                    </p>
+                  )}
+                  {error ? <p style={{ color: '#F87171', fontSize: '0.9rem' }}>{error}</p> : null}
+                  <button type="button" onClick={continueScreening} className="btn-primary" style={{ width: '100%' }}>
+                    Next Step <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                   </button>
                 </div>
               </motion.div>
@@ -513,11 +551,10 @@ export default function GetStarted() {
             {step === 'consent' && (
               <motion.div key="consent" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>
-                    Review <span className="text-gold">agreements</span>
-                  </h2>
+                  <h2 style={{ fontSize: '2rem', fontWeight: 800 }}>Step 4 — Agreements &amp; Checkout</h2>
                   <p className="text-muted" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-                    Submitting does not guarantee a prescription. A licensed provider reviews your intake.
+                    You will complete payment securely with Stripe. A licensed provider still reviews your intake
+                    before any prescription is issued.
                   </p>
                 </div>
                 <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -529,7 +566,15 @@ export default function GetStarted() {
                       style={{ marginTop: '0.25rem' }}
                     />
                     <span style={{ fontSize: '0.95rem', color: '#E2E8F0', lineHeight: 1.5 }}>
-                      I agree to the Terms of Use, Medical Consent, and Telehealth Informed Consent for VitalWellRx care.
+                      I agree to the{' '}
+                      <Link href="/terms" target="_blank" rel="noreferrer">
+                        Terms of Service
+                      </Link>
+                      , Medical Consent form, and acknowledge the{' '}
+                      <Link href="/telehealth-consent" target="_blank" rel="noreferrer">
+                        Telehealth Informed Consent
+                      </Link>{' '}
+                      for specialized medical protocols. *
                     </span>
                   </label>
                   <label style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -540,17 +585,65 @@ export default function GetStarted() {
                       style={{ marginTop: '0.25rem' }}
                     />
                     <span style={{ fontSize: '0.95rem', color: '#E2E8F0', lineHeight: 1.5 }}>
-                      I authorize affiliated licensed clinicians to review my intake and prescribe only if clinically appropriate.
+                      I authorize {site.name}&apos;s affiliated clinicians to securely review my medical records and
+                      prescribe the necessary medication if I am a candidate. *
                     </span>
                   </label>
+                  <div style={{ display: 'grid', gap: '0.55rem' }}>
+                    <label htmlFor="vitalwell-coupon" style={{ ...labelStyle, marginBottom: 0 }}>
+                      Promo code <span style={{ fontWeight: 500, textTransform: 'none' }}>(optional)</span>
+                    </label>
+                    <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+                      <input
+                        id="vitalwell-coupon"
+                        type="text"
+                        value={couponInput}
+                        onChange={(e) => {
+                          setCouponInput(e.target.value)
+                          if (appliedCoupon) clearCoupon()
+                        }}
+                        placeholder="Enter code"
+                        autoComplete="off"
+                        disabled={couponBusy || submitting}
+                        style={{ ...inputStyle, flex: '1 1 180px' }}
+                      />
+                      <button
+                        type="button"
+                        className="btn-outline"
+                        onClick={applyCoupon}
+                        disabled={couponBusy || submitting || !couponInput.trim()}
+                        style={{ padding: '0.8rem 1.1rem', whiteSpace: 'nowrap' }}
+                      >
+                        {couponBusy ? 'Checking…' : 'Apply'}
+                      </button>
+                    </div>
+                    {appliedCoupon && (
+                      <p style={{ margin: 0, fontSize: '0.88rem', color: '#34D399', fontWeight: 600 }}>
+                        {appliedCoupon.code} applied
+                        {typeof appliedCoupon.discountAmountCents === 'number'
+                          ? ` — saves $${(appliedCoupon.discountAmountCents / 100).toFixed(2)}`
+                          : ''}
+                      </p>
+                    )}
+                    {couponMessage && !appliedCoupon && (
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'rgba(255,255,255,0.65)' }}>{couponMessage}</p>
+                    )}
+                  </div>
                   {error ? <p style={{ color: '#F87171', fontSize: '0.9rem' }}>{error}</p> : null}
-                  <button type="button" onClick={submitConsent} className="btn-primary" style={{ width: '100%' }}>
-                    Submit for provider review <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+                  <button
+                    type="button"
+                    onClick={submitConsent}
+                    className="btn-primary"
+                    style={{ width: '100%' }}
+                    disabled={submitting}
+                    aria-busy={submitting}
+                  >
+                    {submitting ? 'Starting secure checkout…' : 'Continue to secure checkout'}{' '}
+                    <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                   </button>
                 </div>
               </motion.div>
             )}
-
             {step === 'disqualified' && (
               <motion.div key="disqualified" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center' }}>
                 <div className="glass-card" style={{ padding: '3rem 2rem', border: '1px solid rgba(248,113,113,0.45)' }}>
