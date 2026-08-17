@@ -61,7 +61,7 @@ export default function Navbar() {
         </div>
 
         <div className="site-nav__actions">
-          <Link href="/dashboard" className="site-nav__portal hidden md:inline-flex">
+          <Link href="/get-started" className="site-nav__portal hidden md:inline-flex">
             Portal
           </Link>
           <Link href="/get-started" className="site-nav__cta hidden md:inline-flex">
@@ -115,7 +115,7 @@ export default function Navbar() {
                 </Link>
               ))}
 
-              <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)} className="site-nav__drawer-portal">
+              <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="site-nav__drawer-portal">
                 Patient Portal
               </Link>
 

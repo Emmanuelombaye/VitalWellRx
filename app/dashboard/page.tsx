@@ -1,47 +1,22 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Activity, Settings, PieChart, Bell, Home, Lock, ShieldCheck, Check, ArrowRight, CreditCard, Sparkles, Truck, CheckCircle2, MessageSquare, AlertCircle, Beaker } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Activity, Settings, PieChart, Bell, Home, Lock, Truck, CheckCircle2, MessageSquare, Beaker } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Dashboard() {
   const [hasSubscription, setHasSubscription] = useState(false)
-  const [selectedProtocol, setSelectedProtocol] = useState<string | null>(null)
-  const [isProcessing, setIsProcessing] = useState(false)
 
-  const protocols = [
-    {
-      id: 'tirzepatide',
-      name: 'Personalized Tirzepatide+',
-      badge: 'Dual GIP / GLP-1',
-      price: '$340',
-      period: '/month',
-      desc: 'Weekly dual-agonist protocol with provider review, pharmacy fulfillment, and portal support.',
-      icon: <Activity size={24} className="text-gold" />,
-    },
-    {
-      id: 'semaglutide',
-      name: 'Personalized Semaglutide+',
-      badge: 'Proven GLP-1',
-      price: '$310',
-      period: '/month',
-      desc: 'Weekly GLP-1 protocol for steady weight loss with licensed provider oversight.',
-      icon: <Sparkles size={24} className="text-gold" />,
-    },
-  ]
-
-  const handleCheckout = (protocolId: string) => {
-    setSelectedProtocol(protocolId)
-    setIsProcessing(true)
-
-    // Simulate instant secure payment processing & enrollment unlock
-    setTimeout(() => {
-      setIsProcessing(false)
-      setHasSubscription(true)
-    }, 1800)
-  }
+  useEffect(() => {
+    try {
+      const status = JSON.parse(localStorage.getItem('vitalwell_checkout_status_v1') || 'null') as { paid?: boolean } | null
+      setHasSubscription(Boolean(status?.paid))
+    } catch {
+      setHasSubscription(false)
+    }
+  }, [])
 
   return (
     <div className="flex portal-layout" style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
@@ -126,14 +101,13 @@ export default function Dashboard() {
         {/* ------------------------------------------------------------- */}
         {!hasSubscription ? (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            {/* Warning Lock Banner */}
             <div
               style={{
                 backgroundColor: 'rgba(212,175,55,0.1)',
                 border: '2px solid var(--primary-gold)',
                 borderRadius: '1.25rem',
                 padding: '2rem',
-                marginBottom: '3rem',
+                marginBottom: '2rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1.5rem',
@@ -144,82 +118,19 @@ export default function Dashboard() {
               </div>
               <div>
                 <span style={{ fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', color: 'var(--primary-gold)', letterSpacing: '1.5px' }}>
-                  Subscription Required First
+                  Checkout required first
                 </span>
                 <h2 style={{ fontSize: '1.65rem', fontWeight: 800, marginTop: '0.25rem' }}>
-                  Enroll in a Treatment Protocol to Unlock Your Portal
+                  Complete intake and payment to unlock your portal
                 </h2>
                 <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', marginTop: '0.35rem', maxWidth: '700px' }}>
-                  To access secure provider messaging, refill coordination, and care follow-up, please select a treatment protocol below to complete your checkout.
+                  Patient Portal opens after checkout. A prescription is issued only if a licensed provider decides treatment is appropriate.
                 </p>
               </div>
             </div>
-
-            {/* Protocol Enrollment Grid */}
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <CreditCard size={20} className="text-gold" /> Select Your Protocol to Unlock Member Access
-              </h3>
-
-              <div className="grid grid-cols-2 gap-6">
-                {protocols.map(p => (
-                  <div
-                    key={p.id}
-                    className="glass-card"
-                    style={{
-                      padding: '2rem',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      border: '1px solid var(--card-border)',
-                      position: 'relative',
-                    }}
-                  >
-                    <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                        <div style={{ padding: '0.75rem', backgroundColor: 'rgba(212,175,55,0.15)', borderRadius: '0.75rem' }}>
-                          {p.icon}
-                        </div>
-                        <span style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'var(--primary-gold)', padding: '4px 12px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase' }}>
-                          {p.badge}
-                        </span>
-                      </div>
-
-                      <h4 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'white', marginBottom: '0.35rem' }}>{p.name}</h4>
-                      <p className="text-muted" style={{ fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>{p.desc}</p>
-                    </div>
-
-                    <div>
-                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: '1.25rem' }}>
-                        {p.price}<span style={{ fontSize: '1rem', color: '#94A3B8', fontWeight: 600 }}>{p.period}</span>
-                      </div>
-
-                      <button
-                        onClick={() => handleCheckout(p.id)}
-                        disabled={isProcessing}
-                        className="btn-primary"
-                        style={{ width: '100%', padding: '0.9rem', fontSize: '0.95rem' }}
-                      >
-                        {isProcessing && selectedProtocol === p.id ? 'Processing Enrollment...' : 'Enroll & Unlock Portal →'}
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Guarantees */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
-                <ShieldCheck size={20} className="text-gold" /> No Insurance Needed (Flat Monthly Pricing)
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
-                <Truck size={20} className="text-gold" /> Free Temperature-Controlled Discreet Delivery
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
-                <CheckCircle2 size={20} className="text-gold" /> Cancel or Adjust Your Plan Anytime
-              </div>
-            </div>
+            <Link href="/get-started" className="btn-primary" style={{ display: 'inline-flex', padding: '0.9rem 1.5rem', fontSize: '0.95rem' }}>
+              Start medical intake →
+            </Link>
           </motion.div>
         ) : (
           /* ------------------------------------------------------------- */
@@ -237,7 +148,7 @@ export default function Dashboard() {
                     Active Protocol Membership
                   </div>
                   <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>
-                    {protocols.find(p => p.id === selectedProtocol)?.name || 'Medical Weight Loss Protocol'}
+                    Medical Weight Loss Protocol
                   </div>
                 </div>
               </div>

@@ -73,7 +73,7 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <Link href="/about" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>About {site.dba}</Link>
               <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Check Eligibility</Link>
-              <Link href="/dashboard" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Patient portal</Link>
+              <Link href="/get-started" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Patient portal</Link>
               <Link href="/contact" style={{ color: '#94A3B8', fontSize: '0.875rem', textDecoration: 'none' }}>Contact</Link>
               <a href={`mailto:${contact.email}`} style={{ color: 'var(--primary-gold)', fontSize: '0.875rem', textDecoration: 'none', fontWeight: 600 }}>
                 {contact.email}
