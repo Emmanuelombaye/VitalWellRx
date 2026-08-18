@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { site, trustBadges, contact } from '@/data/site'
 import { legalLinks } from '@/data/legal'
+import { FooterTrustBadges } from '@/components/FooterTrustBadges'
 
 export default function Footer() {
   return (
@@ -81,6 +82,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <FooterTrustBadges hipaaHref="/hipaa" />
 
         <div className="footer-bottom-block">
           <p className="footer-bottom-copy">
